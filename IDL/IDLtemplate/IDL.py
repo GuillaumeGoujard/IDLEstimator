@@ -13,11 +13,12 @@ class IDLEstimator(BaseEstimator):
     demo_param : str, default='demo_param'
         A parameter used for demonstation of how to pass and store paramters.
     """
-    def __init__(self, hidden_features = 1, demo_param='demo_param'):
+    def __init__(self, hidden_features=1, demo_param='demo_param'):
         self.demo_param = demo_param
         self.is_fitted_ = False
         self.theta = []
         self.h = hidden_features
+
 
 
     def fit(self, X, y):
@@ -60,7 +61,7 @@ class IDLEstimator(BaseEstimator):
             theta = theta - gd.alpha_theta(X, U)@gd.gradient_descent_theta(X, theta, U, y)
             theta = cp.project_to_S_theta(theta)
             X = np.maximum(0, X - gd.alpha_x(theta)@gd.gradient_descent_x(X, theta, U, y))
-            lambda_dual = da.update_dual(lambda_dual)
+            lambda_dual = da.update_dual(theta, X, U)
 
         self.theta = theta
         # `fit` should always return `self`
