@@ -4,7 +4,7 @@ def update_theta(theta, X, U, Y):
     grad_theta, lip_ABc, lip_DEf = gradient_descent_theta(theta, X, U, Y)
 
 
-    for key, value in grad_theta:
+    for key in grad_theta.keys():
         if key in ["A", "B", "c"]:
             theta[key] -= (1 / lip_ABc) * grad_theta[key]
         elif key in ["D", "E", "f"]:
@@ -29,16 +29,16 @@ def gradient_descent_theta(theta, X, U, Y):
     grad_theta["B"] = AB_Omega @ U.T
     grad_theta["c"] = AB_Omega @ np.ones(m).reshape(m, 1)
 
-    xnorm = np.linalg.eigvals(X, ord=2)
+    xnorm = np.linalg.norm(X, ord=2)
     unorm = np.linalg.norm(U, ord=2)
     lip_theta_one = (1 / m) * max(m, xnorm ** 2, unorm ** 2, np.linalg.norm(X @ U.T, ord=2))
 
-    DEF_Omega = Omega_DEfLambda(m, D=theta["D"], E=theta["E"], F=theta["F"],
-                                Lambda=theta["Lambda"], X=X, U=theta["U"])
+    DEF_Omega = Omega_DEfLambda(m, D=theta["D"], E=theta["E"], f=theta["f"],
+                                Lambda=theta["Lambda"], X=X, U=U)
 
     grad_theta["D" ] = DEF_Omega @ X.T
     grad_theta["E"] = DEF_Omega @ U.T
-    grad_theta["f"] = DEF_Omega @ np.ones(m)
+    grad_theta["f"] = DEF_Omega @ np.ones(m).reshape(m, 1)
 
     lip_theta_two = (np.max(theta["Lambda"]) / m) * max(m, xnorm ** 2, unorm ** 2, xnorm, unorm)
 
@@ -74,7 +74,6 @@ def gradient_descent_x(theta, X, U):
 def Omega_ABc(theta, X, U, Y):
     A, B, c = theta["A"], theta["B"], theta["c"]
     m = theta["m"]
-    assert np.shape(c @ np.ones(m).reshape(1, m)) == (m, m)
     return (1 / m) * (A @ X + B @ U + c @ np.ones(m).reshape(1, m) - Y)
 
 

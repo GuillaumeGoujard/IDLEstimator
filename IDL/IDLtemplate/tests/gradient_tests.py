@@ -28,11 +28,13 @@ def initial_test():
 
 
     X = np.random.rand(h, m)
+    Y = np.random.rand(p, m)
 
     U = np.random.rand(n, m)
-    grad_X = grad.gradient_descent_x(theta, X, U)
+    #grad_X = grad.gradient_descent_x(theta, X, U)
 
-    grad_theta = grad.project_to_S_theta(theta)
+    #grad_theta = grad.gradient_descent_theta(theta, X, U, Y)
+    new_theta = grad.update_theta(theta, X, U, Y)
     a = 2
 
 
