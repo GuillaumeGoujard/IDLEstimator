@@ -21,6 +21,8 @@ def initial_test():
     theta = {"A": A, "D": D, "Lambda": Lambda}
 
     result = conv.project_to_S_theta(theta)
+    newresult = conv.project_to_S_theta(theta)
+
     print(result)
     a = 2
 

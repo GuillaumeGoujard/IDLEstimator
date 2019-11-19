@@ -54,11 +54,12 @@ class IDLEstimator(BaseEstimator):
         X = None
         lambda_dual = np.ones((self.h))
         Lambda = np.diag(lambda_dual)
-        theta = [A, B, c, D, E, f, Lambda]
+        theta = {"A": A, "B": B, "c": c, "D": D, "E": E, "f": f, "Lambda": Lambda}
 
         for k in range(100):
             L = me.Loss(y, X, theta, U)
-            theta = theta - gd.alpha_theta(X, U)@gd.gradient_descent_theta(X, theta, U, y)
+            theta = gd.update_theta(theta, X, U, Y)
+            #theta = theta - gd.alpha_theta(X, U)@gd.gradient_descent_theta(X, theta, U, y)
             theta = cp.project_to_S_theta(theta)
             X = np.maximum(0, X - gd.alpha_x(theta)@gd.gradient_descent_x(X, theta, U, y))
             lambda_dual = da.update_dual(theta, X, U)

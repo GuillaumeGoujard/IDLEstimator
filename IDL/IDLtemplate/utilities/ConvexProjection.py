@@ -11,9 +11,12 @@ def project_to_S_theta(theta, epsilon=.05):
     """
 
     Lambda = theta["Lambda"]
-    proj_A = cp.Variable(shape=theta["A"].shape, value=theta["A"])
-    proj_D = cp.Variable(shape=theta["D"].shape, value=theta["D"])
+    #proj_A = cp.Variable(shape=theta["A"].shape)#, value=theta["A"])
+    proj_D = cp.Variable(shape=theta["D"].shape)#, value=theta["D"])
+    #smth = cp.bmat([[proj_A], [proj_D]])
     h, h = theta["D"].shape
+
+    D = theta["D"]
 
     #
     #big_D = cp.Variable(value=np.block([[(1 - epsilon) * np.eye(h), theta["D"]],
@@ -29,24 +32,21 @@ def project_to_S_theta(theta, epsilon=.05):
     # Since Lambda is diagonal, the matrix multiplication below could be more efficient right?
     # -> could just sum last two terms and multiply by lambda from either the right or left
 
-    expression = Lambda - (Lambda @ proj_D + proj_D.T @ Lambda)  # + (proj_A.T) @ (proj_A)
-
-    symm_mtrx = cp.Variable(shape=theta["Lambda"].shape, PSD=True)
-
-    # We now reformulate the norm constraint on D to a LMI through Schur Complement
+    expression = Lambda - (Lambda @ proj_D + proj_D.T @ Lambda)
 
     tmp = cp.bmat([[np.diag(np.repeat(1-epsilon, h)), proj_D], [proj_D.T, np.diag(np.repeat(1-epsilon, h))]])
 
-    objective = cp.norm(symm_mtrx - expression, p="fro")
+    constraint = [expression >= 0] + [tmp >= 0]
 
-    problem = cp.Problem(cp.Minimize(objective), constraints=[tmp >= 0])
+    objective = cp.norm(D - proj_D, p="fro")
+
+    #symm_mtrx = cp.Variable(shape=theta["Lambda"].shape, PSD=True)
+    # We now reformulate the norm constraint on D to a LMI through Schur Complement
+
+    problem = cp.Problem(cp.Minimize(objective), constraints=constraint)
 
     problem.solve()
-
-    # etteren, etterto = proj_D.value, proj_A.value
-
     theta["D"] = proj_D.value
-    theta["A"] = proj_A.value
 
     return theta
 

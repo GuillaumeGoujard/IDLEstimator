@@ -7,32 +7,35 @@ import sys
 
 sys.path.append("../")
 
-from utilities import GradientDescent as grad
+from utilities import GradientDescents as grad
 
 
 def initial_test():
     h = 5
     p = 4
+    n = 7
     A = np.random.rand(p, h)
     D = np.random.rand(h, h)
     c = np.random.rand(p, 1)
-    B = np.random.rand(p, h)
-    E = np.random.rand(h, h)
+    B = np.random.rand(p, n)
+    E = np.random.rand(h, n)
     f = np.random.rand(h, 1)
-
-
     Lambda = np.diag(np.random.rand(h))
-    theta = {"A": A, "D": D, "Lambda": Lambda, "c": c, "B": B, "E": E, "f": f}
 
     m = 6
-    X = np.random.rand()
+
+    theta = {"A": A, "D": D, "Lambda": Lambda, "c": c, "B": B, "E": E, "f": f, "m": m}
+
+
+    X = np.random.rand(h, m)
+
+    U = np.random.rand(n, m)
+    grad_X = grad.gradient_descent_x(theta, X, U)
 
     grad_theta = grad.project_to_S_theta(theta)
-    print(result)
     a = 2
 
 
 
 if __name__ == '__main__':
-    print(dir(conv))
     initial_test()
