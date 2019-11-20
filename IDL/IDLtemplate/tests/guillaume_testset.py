@@ -56,3 +56,36 @@ lambda_dual = DualAscents.update_dual(theta, x, U)
 # indicator = np.zeros(F.shape)
 # indicator[F > 0.5] = 1
 # dlambda = 0.2*np.multiply(F, indicator)
+
+
+"""
+Initialize
+"""
+
+X = np.array([[1,2, 3]])
+y = np.array([[1,2,3]])
+
+U = X.copy()
+
+"""
+Initialization of the theta vector
+"""
+n, m = U.shape
+p, m = y.shape
+h = 2
+A = np.ones((p, h))
+B = np.ones((p, n))
+c = np.ones((p, 1))
+D = np.ones((h, h))
+E = np.ones((h, n))
+f = np.ones((h, 1))
+X = np.identity(h)
+
+lambda_dual = np.ones((h))
+Lambda = np.diag(lambda_dual)
+theta = {"A": A, "B": B, "c": c, "D": D, "E": E, "f": f, "Lambda": Lambda, "m": m}
+
+from utilities import Metrics as me
+L = me.loss(y, U, theta, X)
+lambda_ = np.diag(theta["Lambda"])
+me.L2Loss(y, U, theta, X) + lambda_@fenchtel_div(X, y)
