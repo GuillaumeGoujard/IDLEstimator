@@ -26,8 +26,9 @@ class IDLEstimator(BaseEstimator):
         """
         self.demo_param = demo_param
         self.is_fitted_ = False
-        self.theta = []
+        self.theta = {}
         self.h = hidden_features
+        
 
 
 
@@ -35,9 +36,9 @@ class IDLEstimator(BaseEstimator):
         """
         Parameters
         ----------
-        X : {array-like, sparse matrix}, shape (n_samples, n_features)
+        X : {array-like, sparse matrix}, shape ( n_features, m_samples)
             The training input samples.
-        y : array-like, shape (n_samples,) or (n_samples, n_outputs)
+        y : array-like, shape (n_samples,) or (p_outputs, m_samples)
             The target values (class labels in classification, real numbers in
             regression).
 
@@ -53,18 +54,18 @@ class IDLEstimator(BaseEstimator):
         """
         Initialization of the theta vector
         """
-        n, N = U.shape
+        n, m = U.shape
         p, = y.shape
         A = np.ones((p, self.h))
         B = np.ones((p, n))
-        c = np.ones((p))
+        c = np.ones((p, 1))
         D = np.ones((self.h, self.h))
         E = np.ones((self.h, n))
-        f = np.ones((self.h))
+        f = np.ones((self.h, 1))
         X = None
         lambda_dual = np.ones((self.h))
         Lambda = np.diag(lambda_dual)
-        theta = {"A": A, "B": B, "c": c, "D": D, "E": E, "f": f, "Lambda": Lambda}
+        theta = {"A": A, "B": B, "c": c, "D": D, "E": E, "f": f, "Lambda": Lambda, "m": m}
 
         for k in range(100):
             L = me.Loss(y, X, theta, U)
