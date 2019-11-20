@@ -15,11 +15,8 @@ def project_to_S_theta(theta, epsilon=.05):
     D = theta["D"]
     
     expression = Lambda - (Lambda @ proj_D + proj_D.T @ Lambda)
-
     tmp = cp.bmat([[np.diag(np.repeat(1-epsilon, h)), proj_D], [proj_D.T, np.diag(np.repeat(1-epsilon, h))]])
-
     constraint = [expression >= 0] + [tmp >= 0]
-
     objective = cp.norm(D - proj_D, p="fro")
 
     #symm_mtrx = cp.Variable(shape=theta["Lambda"].shape, PSD=True)

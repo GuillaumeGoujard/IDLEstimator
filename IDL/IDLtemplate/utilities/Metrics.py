@@ -19,7 +19,7 @@ def test_satisfies_contraints(y, U, theta, X):
 def L2Loss(y, U, theta, X):
     A, B, c, D, E, f, Lambda = theta["A"], theta["B"], theta["c"], theta["D"], theta["E"], theta["f"], theta["Lambda"]
     m = theta["m"]
-    M = A@X+ B@U + c@np.ones((1,m)) - y
+    M = A@X + B@U + c@np.ones((1,m)) - y
     return (1/(2*m))*np.linalg.norm(M, ord="fro")**2
 
 

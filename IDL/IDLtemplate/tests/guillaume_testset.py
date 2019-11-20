@@ -1,8 +1,8 @@
 import sys
-sys.path.extend(['/Users/guillaumegoujard/Desktop/Fall Semester/EE227B_project/IDL/IDLtemplate'])
+sys.path.extend(['../'])
 from utilities import Metrics, DualAscents
 import numpy as np
-
+"""
 X = np.array([[-1,2,1],[3,4,1]])
 Y = np.array([[-2,-2,1],[-3,-3,2]])
 Z = np.multiply(X,X) + np.multiply(np.maximum(0,Y), np.maximum(0,Y)) - np.multiply(X,Y)
@@ -10,7 +10,7 @@ Z = np.multiply(X,X) + np.multiply(np.maximum(0,Y), np.maximum(0,Y)) - np.multip
 Z = Metrics.fenchtel_div(X,Y)
 
 """
-Toy example 1
+#Toy example 1
 """
 x = np.array([1,2])
 A = np.array([[2,0],[1,2]])
@@ -24,7 +24,7 @@ x == A@x + B@u + c
 # Z = Metrics.fenchtel_div(x, A@np.array([1,1.7]) + B@u + c)
 
 """
-Toy example 2
+#Toy example 2
 """
 p = 3
 y =  np.random.normal(0, 1, (p))
@@ -48,7 +48,7 @@ Lambda = np.diag(lambda_dual)
 theta = [A, B, c, D, E, f, Lambda]
 
 """
-Test the dual ascent
+#Test the dual ascent
 """
 lambda_dual = DualAscents.update_dual(theta, x, U)
 # m = x.shape[1]
@@ -57,13 +57,13 @@ lambda_dual = DualAscents.update_dual(theta, x, U)
 # indicator[F > 0.5] = 1
 # dlambda = 0.2*np.multiply(F, indicator)
 
-
+"""
 """
 Initialize
 """
 
-X = np.array([[1,2, 3]])
-y = np.array([[1,2,3]])
+X = np.array([[1,1,1]])
+y = np.array([[3,3,3]])
 
 U = X.copy()
 
@@ -72,14 +72,14 @@ Initialization of the theta vector
 """
 n, m = U.shape
 p, m = y.shape
-h = 2
+h = 1
 A = np.ones((p, h))
 B = np.ones((p, n))
 c = np.ones((p, 1))
 D = np.ones((h, h))
 E = np.ones((h, n))
 f = np.ones((h, 1))
-X = np.identity(h)
+X = np.ones((h,m))
 
 lambda_dual = np.ones((h))
 Lambda = np.diag(lambda_dual)
@@ -88,4 +88,4 @@ theta = {"A": A, "B": B, "c": c, "D": D, "E": E, "f": f, "Lambda": Lambda, "m": 
 from utilities import Metrics as me
 L = me.loss(y, U, theta, X)
 lambda_ = np.diag(theta["Lambda"])
-me.L2Loss(y, U, theta, X) + lambda_@fenchtel_div(X, y)
+print(me.L2Loss(y, U, theta, X) + lambda_@me.fenchtel_div(X, y))
