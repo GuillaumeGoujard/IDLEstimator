@@ -14,6 +14,16 @@ class IDLEstimator(BaseEstimator):
         A parameter used for demonstation of how to pass and store paramters.
     """
     def __init__(self, hidden_features=1, demo_param='demo_param'):
+        """[Summary]
+
+        :param [ParamName]: [ParamDescription], defaults to [DefaultParamVal]
+        :type [ParamName]: [ParamType](, optional)
+        ...
+        :raises [ErrorType]: [ErrorDescription]
+        ...
+        :return: [ReturnDescription]
+        :rtype: [ReturnType]
+        """
         self.demo_param = demo_param
         self.is_fitted_ = False
         self.theta = []
