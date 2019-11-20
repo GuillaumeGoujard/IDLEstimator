@@ -38,7 +38,7 @@ class IDLEstimator(BaseEstimator):
         ----------
         X : {array-like, sparse matrix}, shape ( n_features, m_samples)
             The training input samples.
-        y : array-like, shape (n_samples,) or (p_outputs, m_samples)
+        y : array-like, shape (m_samples, ) or (p_outputs, m_samples)
             The target values (class labels in classification, real numbers in
             regression).
 
@@ -47,6 +47,7 @@ class IDLEstimator(BaseEstimator):
         self : object
             Returns self.
         """
+        
         X, y = check_X_y(X, y, accept_sparse=True)
         self.is_fitted_ = True
         U = X.copy()
@@ -72,8 +73,8 @@ class IDLEstimator(BaseEstimator):
             theta = gd.update_theta(theta, X, U, Y)
             #theta = theta - gd.alpha_theta(X, U)@gd.gradient_descent_theta(X, theta, U, y)
             theta = cp.project_to_S_theta(theta)
-            X = np.maximum(0, X - gd.alpha_x(theta)@gd.gradient_descent_x(X, theta, U, y))
-            lambda_dual = da.update_dual(theta, X, U)
+            X = np.maximum(0, X - np.multiply(gd.alpha_x(theta), gd.gradient_descent_x(theta, X, U)))
+            theta["Lambda"] = np.diag(da.update_dual(theta, X, U))
 
         self.theta = theta
         # `fit` should always return `self`
