@@ -8,7 +8,7 @@ def update_dual(theta, X, U, alpha=0.1, epsilon=0.1):
     indicator = np.zeros(F.shape)
     indicator[F > epsilon] = 1
     dlambda = alpha*np.multiply(F, indicator)
-    return np.diag(Lambda) + dlambda
+    return np.diag(Lambda) + dlambda, dlambda
 
 
 def update_dual2(lambda_dual):

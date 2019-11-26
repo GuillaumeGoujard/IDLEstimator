@@ -122,12 +122,115 @@ class IDLModel(BaseEstimator):
             theta = gd.update_theta(theta, X, U, y)
             theta = cp.project_to_S_theta(theta)
             X = np.maximum(0, X - gd.alpha_x(theta) * gd.gradient_descent_x(theta, X, U))
-            theta["Lambda"] = np.diag(da.update_dual(theta, X, U, alpha=self.alpha, epsilon=self.epsilon))
+            theta["Lambda"], dlambda = np.diag(da.update_dual(theta, X, U, alpha=self.alpha, epsilon=self.epsilon))
             L = nL
             if k == 1:
                 best_theta_yet = (nL, theta)
             if nL < best_theta_yet[0]:
                 best_theta_yet = (nL, theta)
+
+        self.theta = best_theta_yet[1]
+        self.training_X = X #We keep the X in memory
+        if verbose:
+            print("="*70)
+            print("Returned theta for general loss : ", best_theta_yet[0])
+            # print("RESULTS")
+            # print("A@X + B@U + c = ", self.theta["A"]@self.training_X + self.theta["B"]@U + self.theta["c"]@np.ones((1,self.theta["m"])))
+            # print("y = ", y)
+            # print("(D@X + E@U + f@1m)+ = ", np.maximum(0, self.theta["D"]@self.training_X+self.theta["E"]@U+
+            #                                            self.theta["f"]@np.ones((1,self.theta["m"]))))
+            # print("X = ", self.training_X)
+            print("=" * 70)
+            plot_training_errors(training_errors)
+
+        # `fit` should always return `IDL`
+        return self,
+
+
+    def fit2(self, X, y, verbose=1, rounds_number=100,
+            sample_weight=None, eval_set=None, eval_metric=None,
+            early_stopping_rounds=None, callbacks=None ):
+        """
+        Fit the IDLModel parameters
+
+        Parameters
+        ----------
+        X : {array-like, sparse matrix}, shape (m_samples,  n_features)
+            The training input samples.
+        y : array-like, shape (m_samples, ) or (m_samples, p_outputs)
+            The target values (class labels in classification, real numbers in
+            regression).
+        verbose: If True (1) then we print everything on the console
+        rounds_number : how many rounds max do you want to do
+        early_stopping : If True : once the L2Loss will increase we automatically stop
+        sample_weight : array_like
+                    instance weights
+        eval_set : list, optional
+                    A list of (X, y) tuple pairs to use as a validation set for
+                    early-stopping
+        eval_metric : str, callable, optional
+                    If a str, should be a built-in evaluation metric to use. See
+                    doc/parameter.rst. If callable, a custom evaluation metric. The call
+                    signature is func(y_predicted, y_true) where y_true will be a
+                    DMatrix object such that you may need to call the get_label
+                    method. It must return a str, value pair where the str is a name
+                    for the evaluation and value is the value of the evaluation
+                    function. This objective is always minimized.
+        early_stopping_rounds : int
+                    Activates early stopping. Validation error needs to decrease at
+                    least every <early_stopping_rounds> round(s) to continue training.
+                    Requires at least one item in evals.  If there's more than one,
+                    will use the last. Returns the model from the last iteration
+                    (not the best one). If early stopping occurs, the model will
+                    have three additional fields: bst.best_score, bst.best_iteration
+                    and bst.best_ntree_limit.
+                    (Use bst.best_ntree_limit to get the correct value if num_parallel_tree
+                    and/or num_class appears in the parameters)
+
+        Returns
+        -------
+        self : object
+            Returns self.
+        """
+        #For multi-label y, set multi_output=True to allow 2D and sparse y.
+        #Standard sklearn fit is : X : (m_samples,  n_features) and y : (m_samples, p_outputs)
+        X, y = check_X_y(X, y, accept_sparse=True, multi_output=True)
+        self.is_fitted_ = True
+        U = X.T.copy() #set the shape (n_features, m_samples)
+        n_features, m_samples = U.shape
+        if len(y.shape) == 1: #We need this to solve the problem (m_samples, ) or (m_samples, p_outputs)
+            p_outputs = 1
+        else:
+            _, p_outputs = y.shape
+        self.theta, X = initialize_theta(y, U, n_features, m_samples, p_outputs, self.h, verbose=verbose, alpha=self.alpha,
+                                         epsilon=self.epsilon)
+        theta = self.theta
+        training_errors = [] #we are going to store the drop in the loss of our training
+        L = me.loss(y, U, theta, X)
+        training_errors.append([L, me.L2Loss(y, U, theta, X)])
+
+        best_theta_yet = (L, theta)
+        if verbose:
+            print("Launching training... \n")
+        i = 0 #i = number of time that the loss has not decreased for early stopping
+        for j in range(rounds_number):
+            for k in range(rounds_number):
+                nL = me.loss(y, U, theta, X)
+                l = me.L2Loss(y, U, theta, X)
+                training_errors.append([nL, l])
+                theta = gd.update_theta(theta, X, U, y)
+                theta = cp.project_to_S_theta(theta)
+                X = np.maximum(0, X - gd.alpha_x(theta) * gd.gradient_descent_x(theta, X, U))
+            nL = me.loss(y, U, theta, X)
+            l = me.L2Loss(y, U, theta, X)
+            if verbose:
+                print("Updating Lambda : General Loss for round {} : ".format(j), round(nL, 3), " L2Loss : ", round(l, 3))
+                print("Lambda : ", np.diag(theta["Lambda"]))
+            lambda_vector, dlambda = da.update_dual(theta, X, U, alpha=self.alpha, epsilon=self.epsilon)
+            theta["Lambda"] = np.diag(lambda_vector)
+            if (dlambda == np.zeros(dlambda.shape)).all():
+                print("finished training !")
+                break
 
         self.theta = best_theta_yet[1]
         self.training_X = X #We keep the X in memory
@@ -271,7 +374,8 @@ def initialize_theta(y, U, n_features, m_samples, p_outputs, h_variables, alpha=
             best_theta_yet = (nL, theta)
     theta = best_theta_yet[1]
 
-    theta["Lambda"] = np.diag(da.update_dual(theta, X, U, alpha=alpha, epsilon=epsilon))
+    lambda_vector, dlambda = da.update_dual(theta, X, U, alpha=alpha, epsilon=epsilon)
+    theta["Lambda"] = np.diag(epsilon*np.ones(h))
     print("Initialization is a Success ! ")
     print("...")
     return theta, X

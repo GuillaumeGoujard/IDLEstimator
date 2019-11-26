@@ -24,8 +24,8 @@ plt.show()
 print("X_train has shape : ", X_train.shape)
 print("y_train has shape : ", y_train.shape)
 
-IDL = idl.IDLModel(hidden_features=5)
-IDL.fit(X, y, rounds_number=100, early_stopping_rounds=10, verbose=True)
+IDL = idl.IDLModel(hidden_features=5, alpha=0.1, epsilon=0.01)
+IDL.fit2(X, y, rounds_number=100, early_stopping_rounds=10, verbose=True)
 
 """
 Test of the training model
