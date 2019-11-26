@@ -10,7 +10,7 @@ Y = 2*X + epsilon
 def create_regressive_model(n_samples, a=2, noise_std = 0.01):
     X = np.random.random_sample(n_samples)
     epsilons = np.random.normal(0, noise_std, n_samples)
-    return X.reshape((-1,1)), a*X + epsilons
+    return X.reshape((-1,1)), a*X + np.log(abs(X+epsilons)) + epsilons
 
 
 X, y = create_regressive_model(100, a=2, noise_std=0.1)

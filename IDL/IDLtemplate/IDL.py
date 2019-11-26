@@ -212,9 +212,9 @@ class IDLModel(BaseEstimator):
         best_theta_yet = (L, theta)
         if verbose:
             print("Launching training... \n")
-        i = 0 #i = number of time that the loss has not decreased for early stopping
-        for j in range(rounds_number):
-            for k in range(rounds_number):
+        # i = 0 #i = number of time that the loss has not decreased for early stopping
+        for j in range(int(rounds_number/10)):
+            for k in range(rounds_number*10):
                 nL = me.loss(y, U, theta, X)
                 l = me.L2Loss(y, U, theta, X)
                 training_errors.append([nL, l])
@@ -232,11 +232,11 @@ class IDLModel(BaseEstimator):
                 print("finished training !")
                 break
 
-        self.theta = best_theta_yet[1]
+        # self.theta = best_theta_yet[1]
         self.training_X = X #We keep the X in memory
         if verbose:
             print("="*70)
-            print("Returned theta for general loss : ", best_theta_yet[0])
+            print("Returned theta for general loss : ", nL)
             # print("RESULTS")
             # print("A@X + B@U + c = ", self.theta["A"]@self.training_X + self.theta["B"]@U + self.theta["c"]@np.ones((1,self.theta["m"])))
             # print("y = ", y)
@@ -312,7 +312,7 @@ def initialize_theta(y, U, n_features, m_samples, p_outputs, h_variables, alpha=
     E = np.random.normal(0, 1, (h, n))
     f = np.random.normal(0, 1, (h, 1))
     X = np.random.normal(0, 1, (h, m))
-
+    X[X < 0] = 0
     lambda_dual = np.ones((h_variables))
     Lambda = np.diag(lambda_dual)
     theta = {"A": A, "B": B, "c": c, "D": D, "E": E, "f": f, "Lambda": Lambda, "m": m}
