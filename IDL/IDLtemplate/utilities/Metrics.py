@@ -9,7 +9,10 @@ def fenchtel_div(X,Y):
 def loss(y, U, theta, X):
     test_satisfies_contraints(y, U, theta, X)
     lambda_ = np.diag(theta["Lambda"])
-    return L2Loss(y, U, theta, X) + lambda_@fenchtel_div(X, y)
+    m = theta["m"]
+    A, B, c, D, E, f, Lambda = theta["A"], theta["B"], theta["c"], theta["D"], theta["E"], theta["f"], theta["Lambda"]
+    y_fenchtel = D@X + E@U + f@np.ones((1,m))
+    return L2Loss(y, U, theta, X) + lambda_@fenchtel_div(X, y_fenchtel)
 
 
 def test_satisfies_contraints(y, U, theta, X):
@@ -21,5 +24,15 @@ def L2Loss(y, U, theta, X):
     m = theta["m"]
     M = A@X + B@U + c@np.ones((1,m)) - y
     return (1/(2*m))*np.linalg.norm(M, ord="fro")**2
+
+
+def fenchtel_error(theta, X, U, lambda_=None):
+    m = theta["m"]
+    A, B, c, D, E, f, Lambda = theta["A"], theta["B"], theta["c"], theta["D"], theta["E"], theta["f"], theta["Lambda"]
+    y_fenchtel = D @ X + E @ U + f @ np.ones((1, m))
+    if lambda_ is None:
+        lambda_ = np.diag(theta["Lambda"])
+    return np.float(lambda_ @ fenchtel_div(X, y_fenchtel))
+
 
 

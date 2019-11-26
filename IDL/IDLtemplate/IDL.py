@@ -92,7 +92,7 @@ class IDLModel(BaseEstimator):
             p_outputs = 1
         else:
             _, p_outputs = y.shape
-        self.theta, X = initialize_theta(n_features, m_samples, p_outputs, self.h)
+        self.theta, X = initialize_theta(y, U, n_features, m_samples, p_outputs, self.h)
         theta = self.theta
         training_errors = [] #we are going to store the drop in the loss of our training
         L = me.loss(y, U, theta, X)
@@ -175,7 +175,7 @@ class IDLClassifier(IDLModel):
 
 
 
-def initialize_theta(y, U, n_features, m_samples, p_outputs, h_variables):
+def initialize_theta(y, U, n_features, m_samples, p_outputs, h_variables, alpha=0.1, epsilon=0.1):
     n, m = n_features, m_samples
     p = p_outputs
     h = h_variables
@@ -191,32 +191,67 @@ def initialize_theta(y, U, n_features, m_samples, p_outputs, h_variables):
     Lambda = np.diag(lambda_dual)
     theta = {"A": A, "B": B, "c": c, "D": D, "E": E, "f": f, "Lambda": Lambda, "m": m}
 
-    # rounds_number = 100
-    # early_stopping_rounds = 10
-    # for k in range(rounds_number):
-    #     nL = me.L2Loss(y, U, theta, X)
-    #     if early_stopping_rounds is not None:
-    #         # but it seemed that the early stopping functionned better with the L2Loss
-    #         if nL > L:
-    #             i = i + 1
-    #             if i > early_stopping_rounds:
-    #                 if verbose:
-    #                     print("The general loss is increasing : early stopping...")
-    #                 break
-    #         else:
-    #             i = 0
-    #     l = me.L2Loss(y, U, theta, X)
-    #     training_errors.append([nL, l])
-    #     if verbose:
-    #         print("General Loss for round {} : ".format(k), round(nL, 3), " L2Loss : ", round(l, 3))
-    #     theta = gd.update_theta(theta, X, U, y)
-    #     theta = cp.project_to_S_theta(theta)
-    #     X = np.maximum(0, X - gd.alpha_x(theta) * gd.gradient_descent_x(theta, X, U))
-    #     theta["Lambda"] = np.diag(da.update_dual(theta, X, U, alpha=self.alpha, epsilon=self.epsilon))
-    #     if nL < best_theta_yet[0]:
-    #         best_theta_yet = (nL, theta)
+    training_errors = []
+    L = me.L2Loss(y, U, theta, X)
+    best_theta_yet = (L, theta)
+    rounds_number = 100
+    verbose = True
+    early_stopping_rounds = 10
+    i = 0
+    """
+    Best X, A, B, c guesses
+    """
+    for k in range(rounds_number):
+        nL = me.L2Loss(y, U, theta, X)
+        if early_stopping_rounds is not None:
+            # but it seemed that the early stopping functionned better with the L2Loss
+            if nL > L:
+                i = i + 1
+                if i > early_stopping_rounds:
+                    if verbose:
+                        print("The general loss is increasing : early stopping...")
+                    break
+            else:
+                i = 0
+        training_errors.append([nL])
+        if verbose:
+            print("Initialization A,B,c,X : L2 Loss for round {} : ".format(k), round(nL, 3))
+        theta = gd.update_ABc_init(theta, X, U, y)
+        X = np.maximum(0, X - gd.alpha_x(theta) * gd.gradient_descent_x(theta, X, U, initialization=True))
+        if nL < best_theta_yet[0]:
+            best_theta_yet = (nL, theta)
 
+    theta = best_theta_yet[1]
+    """
+    Best D, E, f guesses
+    """
+    training_errors = []
+    L = me.fenchtel_error(theta, X, U, lambda_=np.ones((1, h)))
+    best_theta_yet = (L, theta)
+    rounds_number = 100
+    verbose = True
+    early_stopping_rounds = 10
+    i = 0
+    for k in range(rounds_number):
+        nL = me.fenchtel_error(theta, X, U, lambda_=np.ones((1, h)))
+        if early_stopping_rounds is not None:
+            # but it seemed that the early stopping functionned better with the L2Loss
+            if nL > L:
+                i = i + 1
+                if i > early_stopping_rounds:
+                    if verbose:
+                        print("The general loss is increasing : early stopping...")
+                    break
+            else:
+                i = 0
+        training_errors.append([nL])
+        if verbose:
+            print("Initialization D,E,f : Fenchtel Loss for round {} : ".format(k), round(nL, 3))
+        theta = gd.update_DEf_init(theta, X, U, y)
+        if nL < best_theta_yet[0]:
+            best_theta_yet = (nL, theta)
 
+    theta["Lambda"] = np.diag(da.update_dual(theta, X, U, alpha=alpha, epsilon=epsilon))
     return theta, X
 
 

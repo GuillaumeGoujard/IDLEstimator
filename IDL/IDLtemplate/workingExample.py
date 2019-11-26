@@ -40,7 +40,7 @@ plt.show()
 """
 Let us try to predict !
 """
-IDL = idl.IDLModel(hidden_features=2, alpha=0.05)
+IDL = idl.IDLModel(hidden_features=100, alpha=0.05)
 IDL.fit(X, y, rounds_number=100, early_stopping_rounds=10, verbose=True)
 n = 10
 X_test = np.linspace(0, 1, n).reshape(-1,1)
@@ -52,5 +52,7 @@ plt.legend()
 plt.title("Predictions over the test set !")
 plt.show()
 
-
+"""
+Initialization
+"""
 
