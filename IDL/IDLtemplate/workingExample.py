@@ -7,13 +7,13 @@ Let us try to make it learn a very simple model :
 
 Y = 2*X + epsilon
 """
-
 def create_regressive_model(n_samples, a=2, noise_std = 0.01):
     X = np.random.random_sample(n_samples)
     epsilons = np.random.normal(0, noise_std, n_samples)
     return X.reshape((-1,1)), a*X + epsilons
 
-X, y = create_regressive_model(100, a=2, noise_std=0.01)
+
+X, y = create_regressive_model(100, a=2, noise_std=0.1)
 X_train, y_train, X_test, y_test = X[:90], y[:90], X[-10:], y[-10:]
 
 plt.scatter(X_train, y_train)
@@ -40,10 +40,15 @@ plt.show()
 """
 Let us try to predict !
 """
+IDL = idl.IDLModel(hidden_features=2, alpha=0.05)
+IDL.fit(X, y, rounds_number=100, early_stopping_rounds=10, verbose=True)
+n = 10
+X_test = np.linspace(0, 1, n).reshape(-1,1)
 y_pred = IDL.predict(X_test)
-plt.scatter(X_test, y_test, label="test set")
+plt.plot(X_test, 2*np.linspace(0, 1, n), color="red", label="regression model")
 plt.scatter(X_test, y_pred, label="predictions")
 plt.grid(True)
+plt.legend()
 plt.title("Predictions over the test set !")
 plt.show()
 

@@ -16,6 +16,7 @@ class IDLModel(BaseEstimator):
     demo_param : str, default='demo_param'
         A parameter used for demonstation of how to pass and store paramters.
     """
+
     def __init__(self, hidden_features=1, alpha=0.1, epsilon=0.1, random_state=0, seed=None):
         """[Summary]
 
@@ -97,36 +98,37 @@ class IDLModel(BaseEstimator):
         L = me.loss(y, U, theta, X)
         training_errors.append([L, me.L2Loss(y, U, theta, X)])
 
+        best_theta_yet = (L, theta)
         if verbose:
             print("Launching training... \n")
         i = 0 #i = number of time that the loss has not decreased for early stopping
         for k in range(rounds_number):
+            nL = me.loss(y, U, theta, X)  # We will have to discuss about this, normally we should aim at decreasing the general loss
             if early_stopping_rounds is not None:
-                nL = me.loss(y, U, theta, X) #We will have to discuss about this, normally we should aim at decreasing the general loss
                 # but it seemed that the early stopping functionned better with the L2Loss
                 if nL > L:
                     i = i+1
                     if i > early_stopping_rounds:
                         if verbose:
-                            print("The L2 loss is increasing : early stopping...")
+                            print("The general loss is increasing : early stopping...")
                         break
                 else:
                     i = 0
-                    L = nL
-            else:
-                L = me.loss(y, U, theta, X)
             l = me.L2Loss(y, U, theta, X)
-            training_errors.append([L, l])
+            training_errors.append([nL, l])
             if verbose:
-                print("General Loss for round {} : ".format(k), round(L, 3), " L2Loss : ", round(l, 3))
+                print("General Loss for round {} : ".format(k), round(nL, 3), " L2Loss : ", round(l, 3))
             theta = gd.update_theta(theta, X, U, y)
             theta = cp.project_to_S_theta(theta)
             X = np.maximum(0, X - gd.alpha_x(theta) * gd.gradient_descent_x(theta, X, U))
             theta["Lambda"] = np.diag(da.update_dual(theta, X, U, alpha=self.alpha, epsilon=self.epsilon))
+            if nL < best_theta_yet[0]:
+                best_theta_yet = (nL, theta)
 
-        self.theta = theta
+        self.theta = best_theta_yet[1]
         self.training_X = X #We keep the X in memory
         if verbose:
+            print("Returned theta for general loss : ", best_theta_yet[0])
             print("="*70)
             print("RESULTS")
             print("A@X + B@U + c = ", self.theta["A"]@self.training_X + self.theta["B"]@U + self.theta["c"]@np.ones((1,self.theta["m"])))
@@ -165,7 +167,6 @@ class IDLModel(BaseEstimator):
 
 
 class IDLClassifier(IDLModel):
-
     def __init__(self, hidden_features=1, alpha=0.1, epsilon=0.1, random_state=0, seed=None):
         super(IDLModel, self).__init__(hidden_features=hidden_features, alpha=alpha,
                                        epsilon=epsilon, random_state=random_state, seed=seed)
@@ -196,14 +197,14 @@ def plot_training_errors(training_errors):
 
     color = 'tab:red'
     ax1.set_xlabel('rounds')
-    ax1.set_ylabel('L2 Loss', color=color)
+    ax1.set_ylabel('General Loss', color=color)
     ax1.plot(L2_loss[:, 0][1:], color=color)
     ax1.tick_params(axis='y', labelcolor=color)
 
     ax2 = ax1.twinx()  # instantiate a second axes that shares the same x-axis
 
     color = 'tab:blue'
-    ax2.set_ylabel('general loss', color=color)  # we already handled the x-label with ax1
+    ax2.set_ylabel('L2 loss', color=color)  # we already handled the x-label with ax1
     ax2.plot(L2_loss[:, 1][1:], color=color)
     ax2.tick_params(axis='y', labelcolor=color)
 
