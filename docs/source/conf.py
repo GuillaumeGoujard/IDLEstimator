@@ -12,8 +12,11 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath("."))))
-print("TEST ", os.path.dirname(os.path.dirname(os.path.abspath("."))))
+path_module = os.path.dirname(os.path.dirname(os.path.abspath("."))) + "/IDL/IDLtemplate"
+path_example = os.path.dirname(os.path.dirname(os.path.abspath(".")))
+sys.path.insert(0, path_module)
+sys.path.insert(0, path_example)
+print("path for sources ", path_module)
 
 # -- Project information -----------------------------------------------------
 

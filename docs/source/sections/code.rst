@@ -1,5 +1,10 @@
-AUTO GENERATED DOCS
+Module IDLModel
 ======================
 
-.. automodule:: IDL
+.. autoclass:: IDL.IDLModel
+    :members:
+
+Module test
+============
+.. automodule:: docs.test_example.test
     :members:
