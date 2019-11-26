@@ -16,8 +16,14 @@ sns.set(rc={'figure.figsize':(11.7,8.27)})
 sns.distplot(boston['MEDV'], bins=30)
 plt.show()
 
+from sklearn.preprocessing import StandardScaler
 X = pd.DataFrame(np.c_[boston['LSTAT'], boston['RM']], columns = ['LSTAT','RM'])
-Y = boston['MEDV']
+scalerX = StandardScaler()
+X = scalerX.fit_transform(X)
+Y = boston[['MEDV']]
+scalerY = StandardScaler()
+Y = scalerX.fit_transform(Y)
+
 
 from sklearn.model_selection import train_test_split
 
@@ -57,9 +63,11 @@ print('R2 score is {}'.format(r2))
 
 print("NOW IDL !")
 
+
+
 import IDL as idl
-IDL = idl.IDLModel(hidden_features=10, alpha=1, epsilon=0.01)
-IDL.fit2(X_train, Y_train, rounds_number=50, early_stopping_rounds=10, verbose=True)
+IDL = idl.IDLModel(hidden_features=10, alpha=1, epsilon=0.001)
+IDL.fit2(X_train, Y_train.reshape(-1), rounds_number=100, early_stopping_rounds=10, verbose=True)
 
 y_train_predict = IDL.predict(X_train)[0]
 rmse = (np.sqrt(mean_squared_error(Y_train, y_train_predict)))

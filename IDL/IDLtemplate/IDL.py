@@ -221,10 +221,14 @@ class IDLModel(BaseEstimator):
                 theta = gd.update_theta(theta, X, U, y)
                 theta = cp.project_to_S_theta(theta)
                 X = np.maximum(0, X - gd.alpha_x(theta) * gd.gradient_descent_x(theta, X, U))
+                if abs(nL - me.loss(y, U, theta, X)) < self.epsilon:
+                    break
             nL = me.loss(y, U, theta, X)
             l = me.L2Loss(y, U, theta, X)
             if verbose:
                 print("Updating Lambda : General Loss for round {} : ".format(j), round(nL, 3), " L2Loss : ", round(l, 3))
+                print("Fenchel:", me.fenchtel_div(X, theta["D"] @ X + theta["E"] @ U + theta["f"].reshape(
+                    (theta["f"].shape[0], 1)) @ np.ones((1, theta["m"]))))
                 print("Lambda : ", np.diag(theta["Lambda"]))
             lambda_vector, dlambda = da.update_dual(theta, X, U, alpha=self.alpha, epsilon=self.epsilon)
             theta["Lambda"] = np.diag(lambda_vector)
