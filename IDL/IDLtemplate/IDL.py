@@ -124,6 +124,8 @@ class IDLModel(BaseEstimator):
             X = np.maximum(0, X - gd.alpha_x(theta) * gd.gradient_descent_x(theta, X, U))
             theta["Lambda"] = np.diag(da.update_dual(theta, X, U, alpha=self.alpha, epsilon=self.epsilon))
             L = nL
+            if k == 1:
+                best_theta_yet = (nL, theta)
             if nL < best_theta_yet[0]:
                 best_theta_yet = (nL, theta)
 
@@ -233,8 +235,8 @@ def initialize_theta(y, U, n_features, m_samples, p_outputs, h_variables, alpha=
                     break
             else:
                 i = 0
-        if verbose:
-            print("Initialization A,B,c,X : L2 Loss for round {} : ".format(k), round(nL, 3))
+        # if verbose:
+        #     print("Initialization A,B,c,X : L2 Loss for round {} : ".format(k), round(nL, 3))
         theta = gd.update_ABc_init(theta, X, U, y)
         X = np.maximum(0, X - gd.alpha_x(theta) * gd.gradient_descent_x(theta, X, U, initialization=True))
         if nL < best_theta_yet[0]:
@@ -262,8 +264,8 @@ def initialize_theta(y, U, n_features, m_samples, p_outputs, h_variables, alpha=
                     break
             else:
                 i = 0
-        if verbose:
-            print("Initialization D,E,f : Fenchtel Loss for round {} : ".format(k), round(nL, 3))
+        # if verbose:
+        #     print("Initialization D,E,f : Fenchtel Loss for round {} : ".format(k), round(nL, 3))
         theta = gd.update_DEf_init(theta, X, U, y)
         if nL < best_theta_yet[0]:
             best_theta_yet = (nL, theta)
