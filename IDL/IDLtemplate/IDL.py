@@ -122,14 +122,15 @@ class IDLModel(BaseEstimator):
             theta = cp.project_to_S_theta(theta)
             X = np.maximum(0, X - gd.alpha_x(theta) * gd.gradient_descent_x(theta, X, U))
             theta["Lambda"] = np.diag(da.update_dual(theta, X, U, alpha=self.alpha, epsilon=self.epsilon))
+            L = nL
             if nL < best_theta_yet[0]:
                 best_theta_yet = (nL, theta)
 
         self.theta = best_theta_yet[1]
         self.training_X = X #We keep the X in memory
         if verbose:
-            print("Returned theta for general loss : ", best_theta_yet[0])
             print("="*70)
+            print("Returned theta for general loss : ", best_theta_yet[0])
             print("RESULTS")
             print("A@X + B@U + c = ", self.theta["A"]@self.training_X + self.theta["B"]@U + self.theta["c"]@np.ones((1,self.theta["m"])))
             print("y = ", y)
@@ -174,7 +175,7 @@ class IDLClassifier(IDLModel):
 
 
 
-def initialize_theta(n_features, m_samples, p_outputs, h_variables):
+def initialize_theta(y, U, n_features, m_samples, p_outputs, h_variables):
     n, m = n_features, m_samples
     p = p_outputs
     h = h_variables
@@ -185,9 +186,37 @@ def initialize_theta(n_features, m_samples, p_outputs, h_variables):
     E = np.random.normal(0, 1, (h, n))
     f = np.random.normal(0, 1, (h, 1))
     X = np.random.normal(0, 1, (h, m))
+
     lambda_dual = np.ones((h_variables))
     Lambda = np.diag(lambda_dual)
     theta = {"A": A, "B": B, "c": c, "D": D, "E": E, "f": f, "Lambda": Lambda, "m": m}
+
+    # rounds_number = 100
+    # early_stopping_rounds = 10
+    # for k in range(rounds_number):
+    #     nL = me.L2Loss(y, U, theta, X)
+    #     if early_stopping_rounds is not None:
+    #         # but it seemed that the early stopping functionned better with the L2Loss
+    #         if nL > L:
+    #             i = i + 1
+    #             if i > early_stopping_rounds:
+    #                 if verbose:
+    #                     print("The general loss is increasing : early stopping...")
+    #                 break
+    #         else:
+    #             i = 0
+    #     l = me.L2Loss(y, U, theta, X)
+    #     training_errors.append([nL, l])
+    #     if verbose:
+    #         print("General Loss for round {} : ".format(k), round(nL, 3), " L2Loss : ", round(l, 3))
+    #     theta = gd.update_theta(theta, X, U, y)
+    #     theta = cp.project_to_S_theta(theta)
+    #     X = np.maximum(0, X - gd.alpha_x(theta) * gd.gradient_descent_x(theta, X, U))
+    #     theta["Lambda"] = np.diag(da.update_dual(theta, X, U, alpha=self.alpha, epsilon=self.epsilon))
+    #     if nL < best_theta_yet[0]:
+    #         best_theta_yet = (nL, theta)
+
+
     return theta, X
 
 
