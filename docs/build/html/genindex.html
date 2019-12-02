@@ -5,7 +5,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Index &#8212; IDL 0.01 documentation</title>
+    <title>Index &#8212; IDL 0.9 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -13,6 +13,7 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="#" />
     <link rel="search" title="Search" href="search.html" />
    
@@ -38,8 +39,10 @@
  <a href="#C"><strong>C</strong></a>
  | <a href="#D"><strong>D</strong></a>
  | <a href="#F"><strong>F</strong></a>
+ | <a href="#G"><strong>G</strong></a>
  | <a href="#I"><strong>I</strong></a>
  | <a href="#P"><strong>P</strong></a>
+ | <a href="#U"><strong>U</strong></a>
  
 </div>
 <h2 id="C">C</h2>
@@ -61,11 +64,21 @@
 <h2 id="F">F</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sections/code.html#IDL.IDLModel.fit">fit() (IDL.IDLModel method)</a>
+      <li><a href="sections/code.html#IDL.IDLModel.fit">fit() (IDL.IDLModel method)</a>, <a href="sections/learning.html#IDL.IDLModel.fit">[1]</a>
 </li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sections/code.html#IDL.IDLModel.fit2">fit2() (IDL.IDLModel method)</a>
+</li>
       <li><a href="sections/code.html#docs.test_example.test.foo">foo() (in module docs.test_example.test)</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="G">G</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sections/bi_convex_formulation.html#utilities.GradientDescents.gradient_descent_theta">gradient_descent_theta() (in module utilities.GradientDescents)</a>, <a href="sections/gradient_descents.html#utilities.GradientDescents.gradient_descent_theta">[1]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -73,7 +86,7 @@
 <h2 id="I">I</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sections/code.html#IDL.IDLModel">IDLModel (class in IDL)</a>
+      <li><a href="sections/code.html#IDL.IDLModel">IDLModel (class in IDL)</a>, <a href="sections/learning.html#IDL.IDLModel">[1]</a>, <a href="sections/prediction.html#IDL.IDLModel">[2]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -81,7 +94,19 @@
 <h2 id="P">P</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="sections/code.html#IDL.IDLModel.predict">predict() (IDL.IDLModel method)</a>
+      <li><a href="sections/code.html#IDL.IDLModel.predict">predict() (IDL.IDLModel method)</a>, <a href="sections/prediction.html#IDL.IDLModel.predict">[1]</a>
+</li>
+  </ul></td>
+</tr></table>
+
+<h2 id="U">U</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sections/dual_ascents.html#module-utilities.DualAscents">utilities.DualAscents (module)</a>
+</li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="sections/bi_convex_formulation.html#module-utilities.GradientDescents">utilities.GradientDescents (module)</a>, <a href="sections/gradient_descents.html#module-utilities.GradientDescents">[1]</a>
 </li>
   </ul></td>
 </tr></table>
@@ -104,10 +129,15 @@
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="sections/code.html">Module IDLModel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sections/code.html#module-docs.test_example.test">Module test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/bi_convex_formulation.html">Formulation for IDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/learning.html">Learning Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/gradient_descents.html">Gradient Descents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/dual_ascents.html">Dual Ascents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/prediction.html">Predicting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/classification_operational_example.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/citing.html">Citing</a></li>
 </ul>
 
 <div class="relations">
@@ -140,7 +170,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2019, ....
+      &copy;.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>

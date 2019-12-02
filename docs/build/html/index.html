@@ -4,7 +4,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-    <title>Implicit Deep Learning Solver &#8212; IDL 0.01 documentation</title>
+    <title>Implicit Deep Learning Solver &#8212; IDL 0.9 documentation</title>
     <link rel="stylesheet" href="_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
@@ -12,9 +12,10 @@
     <script type="text/javascript" src="_static/underscore.js"></script>
     <script type="text/javascript" src="_static/doctools.js"></script>
     <script type="text/javascript" src="_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Module IDLModel" href="sections/code.html" />
+    <link rel="next" title="Introduction" href="sections/introduction.html" />
    
   <link rel="stylesheet" href="_static/custom.css" type="text/css" />
   
@@ -33,13 +34,39 @@
             
   <div class="section" id="implicit-deep-learning-solver">
 <h1>Implicit Deep Learning Solver<a class="headerlink" href="#implicit-deep-learning-solver" title="Permalink to this headline">¶</a></h1>
-<p>This is a solver for IDL</p>
-<p>Requirements for the project :</p>
+<p>This package can be used to fit an Implicit Deep Learning (IDL)
+model for regression and classification purpose.</p>
 <div class="toctree-wrapper compound">
-<p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="sections/code.html">Module IDLModel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sections/code.html#module-docs.test_example.test">Module test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/introduction.html">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sections/introduction.html#id1">Implicit Deep Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sections/introduction.html#loss-functions">Loss Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sections/introduction.html#description-of-the-learning-process">Description of the learning process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sections/introduction.html#description-of-the-prediction-process">Description of the prediction process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sections/introduction.html#setup">Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sections/bi_convex_formulation.html">Formulation for IDL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sections/bi_convex_formulation.html#problem-formulation">Problem Formulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sections/bi_convex_formulation.html#fenchel-divergence-lagrangian-relaxation">Fenchel Divergence Lagrangian Relaxation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sections/bi_convex_formulation.html#linear-matrix-inequality">Linear matrix inequality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sections/bi_convex_formulation.html#module-utilities.GradientDescents">Bi-convex Formulation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sections/learning.html">Learning Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/gradient_descents.html">Gradient Descents</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sections/gradient_descents.html#bi-convexity-of-the-loss-function">Bi-Convexity of the Loss function</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sections/gradient_descents.html#id2">Gradient Descents</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sections/dual_ascents.html">Dual Ascents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/prediction.html">Predicting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/classification_operational_example.html">Examples</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sections/classification_operational_example.html#classification-mnist"><strong>Classification : MNIST</strong></a></li>
+<li class="toctree-l2"><a class="reference internal" href="sections/classification_operational_example.html#regression-boston-housing"><strong>Regression : Boston Housing</strong></a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sections/citing.html">Citing</a></li>
 </ul>
 </div>
 </div>
@@ -69,17 +96,22 @@
 
 
 <h3>Navigation</h3>
-<p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="sections/code.html">Module IDLModel</a></li>
-<li class="toctree-l1"><a class="reference internal" href="sections/code.html#module-docs.test_example.test">Module test</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/bi_convex_formulation.html">Formulation for IDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/learning.html">Learning Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/gradient_descents.html">Gradient Descents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/dual_ascents.html">Dual Ascents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/prediction.html">Predicting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/classification_operational_example.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="sections/citing.html">Citing</a></li>
 </ul>
 
 <div class="relations">
 <h3>Related Topics</h3>
 <ul>
   <li><a href="#">Documentation overview</a><ul>
-      <li>Next: <a href="sections/code.html" title="next chapter">Module IDLModel</a></li>
+      <li>Next: <a href="sections/introduction.html" title="next chapter">Introduction</a></li>
   </ul></li>
 </ul>
 </div>
@@ -106,7 +138,7 @@
       <div class="clearer"></div>
     </div>
     <div class="footer">
-      &copy;2019, ....
+      &copy;.
       
       |
       Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>

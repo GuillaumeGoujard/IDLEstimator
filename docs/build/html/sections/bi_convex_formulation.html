@@ -1,0 +1,148 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Formulation for IDL &#8212; IDL 0.9 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Learning Process" href="learning.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="formulation-for-idl">
+<span id="formulation"></span><h1>Formulation for IDL<a class="headerlink" href="#formulation-for-idl" title="Permalink to this headline">¶</a></h1>
+<p>See <a class="reference internal" href="citing.html#citing"><span class="std std-ref">Citing</span></a> for in-depth explanation</p>
+<div class="section" id="problem-formulation">
+<h2>Problem Formulation<a class="headerlink" href="#problem-formulation" title="Permalink to this headline">¶</a></h2>
+<p>** section 3.1 **</p>
+</div>
+<div class="section" id="fenchel-divergence-lagrangian-relaxation">
+<h2>Fenchel Divergence Lagrangian Relaxation<a class="headerlink" href="#fenchel-divergence-lagrangian-relaxation" title="Permalink to this headline">¶</a></h2>
+<p>** section 3.2 **</p>
+</div>
+<div class="section" id="linear-matrix-inequality">
+<h2>Linear matrix inequality<a class="headerlink" href="#linear-matrix-inequality" title="Permalink to this headline">¶</a></h2>
+<p>** section 3.3 **</p>
+</div>
+<div class="section" id="module-utilities.GradientDescents">
+<span id="bi-convex-formulation"></span><h2>Bi-convex Formulation<a class="headerlink" href="#module-utilities.GradientDescents" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="utilities.GradientDescents.gradient_descent_theta">
+<code class="sig-prename descclassname">utilities.GradientDescents.</code><code class="sig-name descname">gradient_descent_theta</code><span class="sig-paren">(</span><em class="sig-param">theta</em>, <em class="sig-param">X</em>, <em class="sig-param">U</em>, <em class="sig-param">Y</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/utilities/GradientDescents.html#gradient_descent_theta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#utilities.GradientDescents.gradient_descent_theta" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns the gradient of theta
+:param theta: a dictionary
+:param X: hidden variables
+:param U: input data
+:param Y: output data
+:return: grad_theta: dictionary containing gradients of elemnts in theta</p>
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">IDL</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Formulation for IDL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#problem-formulation">Problem Formulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fenchel-divergence-lagrangian-relaxation">Fenchel Divergence Lagrangian Relaxation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linear-matrix-inequality">Linear matrix inequality</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#module-utilities.GradientDescents">Bi-convex Formulation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="learning.html">Learning Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gradient_descents.html">Gradient Descents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dual_ascents.html">Dual Ascents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prediction.html">Predicting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classification_operational_example.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="introduction.html" title="previous chapter">Introduction</a></li>
+      <li>Next: <a href="learning.html" title="next chapter">Learning Process</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/sections/bi_convex_formulation.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

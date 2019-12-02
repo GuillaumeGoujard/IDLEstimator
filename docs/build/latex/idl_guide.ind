@@ -1,0 +1,28 @@
+\begin{sphinxtheindex}
+\let\bigletter\sphinxstyleindexlettergroup
+\let\spxpagem \sphinxstyleindexpagemain
+\let\spxentry \sphinxstyleindexentry
+\let\spxextra \sphinxstyleindexextra
+
+  \bigletter F
+  \item \spxentry{fit()}\spxextra{IDL.IDLModel method}, \hyperpage{7}
+
+  \indexspace
+  \bigletter G
+  \item \spxentry{gradient\_descent\_theta()}\spxextra{in module utilities.GradientDescents}, 
+		\hyperpage{5}, \hyperpage{9}
+
+  \indexspace
+  \bigletter I
+  \item \spxentry{IDLModel}\spxextra{class in IDL}, \hyperpage{7}, \hyperpage{13}
+
+  \indexspace
+  \bigletter P
+  \item \spxentry{predict()}\spxextra{IDL.IDLModel method}, \hyperpage{13}
+
+  \indexspace
+  \bigletter U
+  \item \spxentry{utilities.DualAscents}\spxextra{module}, \hyperpage{11}
+  \item \spxentry{utilities.GradientDescents}\spxextra{module}, \hyperpage{5}, \hyperpage{9}
+
+\end{sphinxtheindex}

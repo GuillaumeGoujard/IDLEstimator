@@ -1,22 +1,21 @@
-.. IDL documentation master file, created by
-   sphinx-quickstart on Tue Nov 19 16:57:49 2019.
-   You can adapt this file completely to your liking, but it should at least
-   contain the root `toctree` directive.
 
 Implicit Deep Learning Solver
 ===============================
 
-This is a solver for IDL
-
-Requirements for the project :
+This package can be used to fit an Implicit Deep Learning (IDL)
+model for regression and classification purpose.
 
 .. toctree::
-   :caption: Contents:
    :maxdepth: 2
 
-   sections/code.rst
-
-
+   sections/introduction.rst
+   sections/bi_convex_formulation.rst
+   sections/learning.rst
+   sections/gradient_descents.rst
+   sections/dual_ascents.rst
+   sections/prediction.rst
+   sections/classification_operational_example.rst
+   sections/citing.rst
 
 
 Indices and tables

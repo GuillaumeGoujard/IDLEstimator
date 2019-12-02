@@ -1,0 +1,161 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Introduction &#8212; IDL 0.9 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Formulation for IDL" href="bi_convex_formulation.html" />
+    <link rel="prev" title="Implicit Deep Learning Solver" href="../index.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="introduction">
+<h1>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h1>
+<p>This package can be used to fit an Implicit Deep Learning (IDL) model for regression
+and classification purpose.</p>
+<p>The IDL.fit function estimates a vector of parameters by applying successively
+gradient descents (see more at <a class="reference internal" href="gradient_descents.html#gradient-descents"><span class="std std-ref">Gradient Descents</span></a>) and dual ascent
+(see more at <a class="reference internal" href="dual_ascents.html#dual-ascents"><span class="std std-ref">Dual Ascents</span></a>).</p>
+<div class="section" id="id1">
+<h2>Implicit Deep Learning<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<p>** section 1.1 **</p>
+<p>Given an input <span class="math notranslate nohighlight">\(u \in \mathbb{R}^n\)</span>, where n denotes the number of features,
+we define the implicit deep learning prediction rule <span class="math notranslate nohighlight">\(\hat{y}(u) \in \mathbb{R}^n\)</span> with ReLU activation</p>
+<div class="math notranslate nohighlight">
+\[\hat{y}(u) = ...\]</div>
+</div>
+<div class="section" id="loss-functions">
+<h2>Loss Functions<a class="headerlink" href="#loss-functions" title="Permalink to this headline">¶</a></h2>
+<p>** section 3.2 equation 4 ** + Classification loss
+(see more at <a class="reference internal" href="learning.html#learning"><span class="std std-ref">Learning Process</span></a>)</p>
+</div>
+<div class="section" id="description-of-the-learning-process">
+<h2>Description of the learning process<a class="headerlink" href="#description-of-the-learning-process" title="Permalink to this headline">¶</a></h2>
+<p>(see more at <a class="reference internal" href="bi_convex_formulation.html#formulation"><span class="std std-ref">Formulation for IDL</span></a>)</p>
+</div>
+<div class="section" id="description-of-the-prediction-process">
+<h2>Description of the prediction process<a class="headerlink" href="#description-of-the-prediction-process" title="Permalink to this headline">¶</a></h2>
+<p>(see more at <a class="reference internal" href="prediction.html#prediction"><span class="std std-ref">Predicting</span></a>)</p>
+</div>
+<div class="section" id="setup">
+<h2>Setup<a class="headerlink" href="#setup" title="Permalink to this headline">¶</a></h2>
+<p>TODO</p>
+<p>The package is compatible with Python version 3 or higher only.
+The user is expected to have installed cvxpy before running the package.
+Go to … for more information.</p>
+<ol class="arabic simple">
+<li><p>Switch to a proper directory and then type:</p></li>
+</ol>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="o">+</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/...</span>
+</pre></div>
+</div>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">IDL</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Introduction</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Implicit Deep Learning</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#loss-functions">Loss Functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#description-of-the-learning-process">Description of the learning process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#description-of-the-prediction-process">Description of the prediction process</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setup">Setup</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bi_convex_formulation.html">Formulation for IDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="learning.html">Learning Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gradient_descents.html">Gradient Descents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dual_ascents.html">Dual Ascents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prediction.html">Predicting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classification_operational_example.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="../index.html" title="previous chapter">Implicit Deep Learning Solver</a></li>
+      <li>Next: <a href="bi_convex_formulation.html" title="next chapter">Formulation for IDL</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/sections/introduction.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -33,7 +33,17 @@ release = '0.01'
 # Add any Sphinx extension module names here, as strings. They can be
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
-extensions = ['sphinx.ext.todo', 'sphinx.ext.viewcode', 'sphinx.ext.autodoc']
+extensions = [
+              'sphinx.ext.autodoc',
+              'sphinx.ext.doctest',
+              'sphinx.ext.intersphinx',
+              'sphinx.ext.todo',
+              'sphinx.ext.coverage',
+              'sphinx.ext.mathjax',
+              'sphinx.ext.ifconfig',
+              'sphinx.ext.viewcode',
+              'sphinx.ext.githubpages',
+              ]
 
 
 # Add any paths that contain templates here, relative to this directory.
@@ -44,6 +54,7 @@ templates_path = ['_templates']
 # This pattern also affects html_static_path and html_extra_path.
 exclude_patterns = []
 
+master_doc = 'index'
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -56,3 +67,47 @@ html_theme = 'alabaster'
 # relative to this directory. They are copied after the builtin static files,
 # so a file named "default.css" will overwrite the builtin "default.css".
 html_static_path = ['_static']
+
+# General information about the project.
+project = 'IDL'
+copyright = ''
+author = 'us'
+
+# The short X.Y version.
+version = '0.9'
+# The full version, including alpha/beta/rc tags.
+release = '0.9'
+
+# List of patterns, relative to source directory, that match files and
+# directories to ignore when looking for source files.
+# This patterns also effect to html_static_path and html_extra_path
+exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+
+# -- Options for LaTeX output ---------------------------------------------
+
+latex_elements = {
+     # The paper size ('letterpaper' or 'a4paper').
+     #
+     # 'papersize': 'letterpaper',
+
+     # The font size ('10pt', '11pt' or '12pt').
+     #
+     # 'pointsize': '10pt',
+
+     # Additional stuff for the LaTeX preamble.
+     #
+     # 'preamble': '',
+
+     # Latex figure (float) alignment
+     #
+     # 'figure_align': 'htbp',
+}
+
+# Grouping the document tree into LaTeX files. List of tuples
+# (source start file, target name, title,
+#  author, documentclass [howto, manual, or own class]).
+latex_documents = [
+    (master_doc, 'idl_guide.tex', 'IDL\\_Guide Documentation',
+     'us', 'manual'),
+]
+
