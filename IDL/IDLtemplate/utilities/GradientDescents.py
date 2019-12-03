@@ -31,7 +31,7 @@ def update_DEf_init(theta, X, U, Y):
 
 def gradient_descent_theta(theta, X, U, Y):
     """
-    Returns the gradient of theta
+    Returns the gradient of theta \n
     :param theta: a dictionary
     :param X: hidden variables
     :param U: input data
