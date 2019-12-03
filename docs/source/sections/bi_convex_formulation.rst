@@ -19,7 +19,7 @@ squared error loss) reads
     \end{align}
     :label: eq_2
 
-where :math:`1_m` is a column vector of size :math:`m` consisting of ones. For clarity we have highlighted in \color{blue}{blue} the optimization variables.
+where :math:`1_m` is a column vector of size :math:`m` consisting of ones. For clarity we have highlighted in :math:`\color{blue}{\text{blue}}` the optimization variables.
 The non-convexity of this problem arises from the nonlinear implicit constraint and
 the matrix product terms :math:`AX` and :math:`DX`. In practice we replace the constraint :math:`\Vert D \Vert_2 < 1`
 by the closed convex form :math:`\Vert D \Vert_2 \leq 1 - \epsilon`, where :math:`\epsilon > 0` is small.
