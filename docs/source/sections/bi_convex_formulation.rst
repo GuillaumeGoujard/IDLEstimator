@@ -5,7 +5,7 @@ Formulation for IDL
 
 See :ref:`Citing` for in-depth explanation
 
-3.1 Problem formulation
+Problem formulation
 *************************
 Let us consider the input and output data matrices :math:`U = [u_1, \cdots, u_m] \in \mathbb{R}^{n \times m},Y = [y_1, \cdots, y_m] \in \mathbb{R}^{p \times m}`
 with :math:`m` being the number of datapoints - the corresponding optimization regression problem (i.e. with
@@ -24,7 +24,7 @@ The non-convexity of this problem arises from the nonlinear implicit constraint 
 the matrix product terms :math:`AX` and :math:`DX`. In practice we replace the constraint :math:`\Vert D \Vert_2 < 1`
 by the closed convex form :math:`\Vert D \Vert_2 \leq 1 - \epsilon`, where :math:`\epsilon > 0` is small.
 
-3.2 Fenchel Divergence Lagrangian Relaxation
+Fenchel Divergence Lagrangian Relaxation
 *************************
 Using Fenchel-Young inequality, it can be shown that the equation :math:`x = (Dx + Eu + f)_+` is equivalent to
 
@@ -59,7 +59,7 @@ solving given a dual variable :math:`\lambda \in \mathcal{R}_+^h`
 This problem is bi-smooth in :math:`[\Theta,X]`, but it is not convex or bi-convex. Nevertheless we can make it bi-convex
 with extra conditions on :math:`\Theta` as shown in the next section.
 
-3.3 Linear matrix inequality parameter constraints for bi-convexity
+Linear matrix inequality parameter constraints for bi-convexity
 *************************
 Let us define :math:`\Lambda = diag(\lambda) \in \mathbb{S}_+^h`
 
@@ -111,12 +111,11 @@ From this proof, the problem formulation reads
     \end{align}
     :label: eq_7
 
-this problem is well-posed - feasible solutions exist - and bi-smooth.
+this problem is well-posed -feasible solutions exist- and bi-smooth.
+
 
 Bi-convex Formulation
 ***********************************
-
-
 
 .. automodule:: utilities.GradientDescents
     :members:
