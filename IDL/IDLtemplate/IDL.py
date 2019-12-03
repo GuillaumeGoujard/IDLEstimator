@@ -253,7 +253,7 @@ class IDLModel(BaseEstimator):
         # `fit` should always return `IDL`
         return self,
 
-    def predict(self, X):
+    def predict(self, X, k_iterations=1000):
         """ A reference implementation of a predicting function.
 
         Parameters
@@ -272,7 +272,7 @@ class IDLModel(BaseEstimator):
         n_features, m_samples = U.shape
         X = np.random.normal(0, 1, (self.h, m_samples))
         X = pi.picard_iterations(X, self.theta["D"], self.theta["E"]@U + self.theta["f"]@np.ones((1, m_samples)),
-                             k_iterations=100)
+                                k_iterations=k_iterations)
         return self.theta["A"]@X + self.theta["B"]@U + self.theta["c"]@np.ones((1, m_samples))
 
 

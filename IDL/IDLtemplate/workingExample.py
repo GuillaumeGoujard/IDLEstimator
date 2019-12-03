@@ -9,12 +9,16 @@ Y = 2*X + epsilon
 """
 def create_regressive_model(n_samples, a=2, noise_std = 0.01):
     X = np.random.random_sample(n_samples)
+    return model(X, a=a, noise_std=noise_std)
+
+def model(X, a=2, noise_std =0.01):
+    n_samples = X.shape[0]
     epsilons = np.random.normal(0, noise_std, n_samples)
-    return X.reshape((-1,1)), a*X + np.log(abs(X+epsilons)) + epsilons
+    return X.reshape((-1, 1)), a * X + np.log(abs(X + epsilons)) + epsilons
 
 
-X, y = create_regressive_model(100, a=2, noise_std=0.1)
-X_train, y_train, X_test, y_test = X[:90], y[:90], X[-10:], y[-10:]
+X, y = create_regressive_model(1000, a=2, noise_std=0.1)
+X_train, y_train, X_test, y_test = X[:900], y[:900], X[-100:], y[-100:]
 
 plt.scatter(X_train, y_train)
 plt.grid(True)
@@ -24,7 +28,7 @@ plt.show()
 print("X_train has shape : ", X_train.shape)
 print("y_train has shape : ", y_train.shape)
 
-IDL = idl.IDLModel(hidden_features=5, alpha=0.1, epsilon=0.01)
+IDL = idl.IDLModel(hidden_features=10, alpha=0.1, epsilon=0.01)
 IDL.fit2(X, y, rounds_number=100, early_stopping_rounds=10, verbose=True)
 
 """
@@ -40,10 +44,11 @@ plt.show()
 """
 Let us try to predict !
 """
-n = 10
-X_test = np.linspace(0, 1, n).reshape(-1,1)
+n = 100
+# X_test = np.linspace(0, 1, n).reshape(-1,1)
 y_pred = IDL.predict(X_test)
-plt.plot(X_test, 2*np.linspace(0, 1, n), color="red", label="regression model")
+plt.scatter(X_test, model(X_test.reshape(1, -1), noise_std=0)[1], color="red", label="model")
+plt.scatter(X_test, y_test, label="y_test")
 plt.scatter(X_test, y_pred, label="predictions")
 plt.grid(True)
 plt.legend()
@@ -54,3 +59,6 @@ plt.show()
 Initialization
 """
 
+
+def quadratic(n_init):
+    pass

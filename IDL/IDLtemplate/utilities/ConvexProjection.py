@@ -24,7 +24,16 @@ def project_to_S_theta(theta, epsilon=.05):
 
     problem = cp.Problem(cp.Minimize(objective), constraints=constraint)
 
-    problem.solve()
+    # try:
+    problem.solve(verbose=True, solver="SCS")
+    # except:
+    #     print("PROBLEM")
+    #     problem.solve(verbose=True, solver="SCS")
+
+    # try:
+    #     problem.solve(verbose=False)
+    # except:
+    #     problem.solve(verbose=True)
     theta["D"] = proj_D.value
 
     return theta

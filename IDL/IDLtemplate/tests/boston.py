@@ -18,6 +18,7 @@ plt.show()
 
 from sklearn.preprocessing import StandardScaler
 X = pd.DataFrame(np.c_[boston['LSTAT'], boston['RM']], columns = ['LSTAT','RM'])
+X = boston.iloc[:,:-1]
 scalerX = StandardScaler()
 X = scalerX.fit_transform(X)
 Y = boston[['MEDV']]
@@ -38,6 +39,10 @@ from sklearn.metrics import mean_squared_error, r2_score
 
 lin_model = LinearRegression()
 lin_model.fit(X_train, Y_train)
+
+import IDL as idl
+IDL = idl.IDLModel(hidden_features=30, alpha=1, epsilon=0.01)
+IDL.fit2(X_train, Y_train.reshape(-1), rounds_number=1000, early_stopping_rounds=10, verbose=True)
 
 
 # model evaluation for training set
@@ -62,12 +67,6 @@ print('RMSE is {}'.format(rmse))
 print('R2 score is {}'.format(r2))
 
 print("NOW IDL !")
-
-
-
-import IDL as idl
-IDL = idl.IDLModel(hidden_features=10, alpha=1, epsilon=0.001)
-IDL.fit2(X_train, Y_train.reshape(-1), rounds_number=100, early_stopping_rounds=10, verbose=True)
 
 y_train_predict = IDL.predict(X_train)[0]
 rmse = (np.sqrt(mean_squared_error(Y_train, y_train_predict)))
