@@ -4,8 +4,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
+  
+  <!-- Licensed under the Apache 2.0 License -->
+  <link rel="stylesheet" type="text/css" href="../_static/fonts/open-sans/stylesheet.css" />
+  <!-- Licensed under the SIL Open Font License -->
+  <link rel="stylesheet" type="text/css" href="../_static/fonts/source-serif-pro/source-serif-pro.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/css/bootstrap-theme.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
     <title>Module IDLModel &#8212; IDL 0.9 documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/guzzle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
@@ -15,72 +24,111 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+  
    
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">IDL 0.9 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="container-wrapper">
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
+      <div id="mobile-toggle">
+        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+      </div>
+  <div id="left-column">
+    <div class="sphinxsidebar">
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <h2>Contents</h2>
+    <div class="sidebar-localtoc">
+      <ul>
+<li><a class="reference internal" href="#">Module IDLModel</a></li>
+<li><a class="reference internal" href="#module-docs.test_example.test">Module test</a></li>
+</ul>
+
+    </div>
+  </div>
+</div>
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="../_sources/sections/code.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <div id="main-search">
+      <form class="form-inline" action="../search.html" method="GET" role="form">
+        <div class="input-group">
+          <input name="q" type="text" class="form-control" placeholder="Search...">
+        </div>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+        <div id="right-column">
           
-
-          <div class="body" role="main">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+            <ol class="breadcrumb">
+              <li><a href="../index.html">Docs</a></li>
+              
+              <li>Module IDLModel</li>
+            </ol>
+          </div>
+          
+          <div class="document clearer body">
             
   <div class="section" id="module-idlmodel">
 <h1>Module IDLModel<a class="headerlink" href="#module-idlmodel" title="Permalink to this headline">¶</a></h1>
 <dl class="class">
 <dt id="IDL.IDLModel">
-<em class="property">class </em><code class="sig-prename descclassname">IDL.</code><code class="sig-name descname">IDLModel</code><span class="sig-paren">(</span><em class="sig-param">hidden_features=1</em>, <em class="sig-param">alpha=0.1</em>, <em class="sig-param">epsilon=0.1</em>, <em class="sig-param">random_state=0</em>, <em class="sig-param">seed=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IDL.html#IDLModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IDL.IDLModel" title="Permalink to this definition">¶</a></dt>
-<dd><dl class="simple">
-<dt>demo_param<span class="classifier">str, default=’demo_param’</span></dt><dd><p>A parameter used for demonstation of how to pass and store paramters.</p>
+<em class="property">class </em><code class="sig-prename descclassname">IDL.</code><code class="sig-name descname">IDLModel</code><span class="sig-paren">(</span><em class="sig-param">hidden_variables=1</em>, <em class="sig-param">dual_learning_rate=0.1</em>, <em class="sig-param">tol_fenchtel=0.1</em>, <em class="sig-param">random_state=0</em>, <em class="sig-param">verbosity=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IDL.html#IDLModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IDL.IDLModel" title="Permalink to this definition">¶</a></dt>
+<dd><p>Implementation of the Scikit-Learn API for Implicit Deep Learning</p>
+<dl class="simple">
+<dt>hidden_variables<span class="classifier">int</span></dt><dd><p>number of hidden variables of the vector X (see</p>
+</dd>
+<dt>dual_learning_rate<span class="classifier">float</span></dt><dd><p>Positive float, Dual learning rate (IDL’s “alpha”)</p>
+</dd>
+<dt>tol_fenchtel<span class="classifier">float</span></dt><dd><p>Positive float, Fenchtel tolerance threshold for dual’s update (IDL’s “alpha”)</p>
+</dd>
+<dt>verbosity<span class="classifier">bool</span></dt><dd><p>Verbosity of the training process.</p>
+</dd>
+<dt>random_state<span class="classifier">int</span></dt><dd><p>Random number seed for initialization.</p>
+</dd>
+</dl>
+<dl class="simple">
+<dt>Full documentation of parameters can</dt><dd><p>be found here: <a class="reference external" href="https://github.com/GuillaumeGoujard/IDLEstimator/blob/master/docs/source/sections/introduction.rst">https://github.com/GuillaumeGoujard/IDLEstimator/blob/master/docs/source/sections/introduction.rst</a>.</p>
 </dd>
 </dl>
 <dl class="method">
 <dt id="IDL.IDLModel.fit">
-<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y</em>, <em class="sig-param">verbose=1</em>, <em class="sig-param">rounds_number=100</em>, <em class="sig-param">sample_weight=None</em>, <em class="sig-param">eval_set=None</em>, <em class="sig-param">eval_metric=None</em>, <em class="sig-param">early_stopping_rounds=None</em>, <em class="sig-param">callbacks=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IDL.html#IDLModel.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IDL.IDLModel.fit" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fit the IDLModel parameters</p>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y</em>, <em class="sig-param">rounds_number=100</em>, <em class="sig-param">verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IDL.html#IDLModel.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IDL.IDLModel.fit" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit IDL Model</p>
 <dl class="simple">
-<dt>X<span class="classifier">{array-like, sparse matrix}, shape (m_samples,  n_features)</span></dt><dd><p>The training input samples.</p>
+<dt>X<span class="classifier">array_like</span></dt><dd><p>Feature matrix</p>
 </dd>
-<dt>y<span class="classifier">array-like, shape (m_samples, ) or (m_samples, p_outputs)</span></dt><dd><p>The target values (class labels in classification, real numbers in
-regression).</p>
+<dt>y<span class="classifier">array_like</span></dt><dd><p>Labels</p>
+</dd>
+<dt>max_rounds_number<span class="classifier">int</span></dt><dd><p>Maximum rounds number in the outer loop</p>
 </dd>
 </dl>
-<p>verbose: If True (1) then we print everything on the console
-rounds_number : how many rounds max do you want to do
-early_stopping : If True : once the L2Loss will increase we automatically stop
-sample_weight : array_like</p>
-<blockquote>
-<div><p>instance weights</p>
-</div></blockquote>
-<dl class="simple">
-<dt>eval_set<span class="classifier">list, optional</span></dt><dd><p>A list of (X, y) tuple pairs to use as a validation set for
-early-stopping</p>
-</dd>
-<dt>eval_metric<span class="classifier">str, callable, optional</span></dt><dd><p>If a str, should be a built-in evaluation metric to use. See
-doc/parameter.rst. If callable, a custom evaluation metric. The call
-signature is func(y_predicted, y_true) where y_true will be a
-DMatrix object such that you may need to call the get_label
-method. It must return a str, value pair where the str is a name
-for the evaluation and value is the value of the evaluation
-function. This objective is always minimized.</p>
-</dd>
-<dt>early_stopping_rounds<span class="classifier">int</span></dt><dd><p>Activates early stopping. Validation error needs to decrease at
-least every &lt;early_stopping_rounds&gt; round(s) to continue training.
-Requires at least one item in evals.  If there’s more than one,
-will use the last. Returns the model from the last iteration
-(not the best one). If early stopping occurs, the model will
-have three additional fields: bst.best_score, bst.best_iteration
-and bst.best_ntree_limit.
-(Use bst.best_ntree_limit to get the correct value if num_parallel_tree
-and/or num_class appears in the parameters)</p>
-</dd>
-</dl>
+<p>verbose : bool</p>
 <dl class="simple">
 <dt>self<span class="classifier">object</span></dt><dd><p>Returns self.</p>
 </dd>
@@ -89,54 +137,35 @@ and/or num_class appears in the parameters)</p>
 
 <dl class="method">
 <dt id="IDL.IDLModel.fit2">
-<code class="sig-name descname">fit2</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y</em>, <em class="sig-param">verbose=1</em>, <em class="sig-param">rounds_number=100</em>, <em class="sig-param">sample_weight=None</em>, <em class="sig-param">eval_set=None</em>, <em class="sig-param">eval_metric=None</em>, <em class="sig-param">early_stopping_rounds=None</em>, <em class="sig-param">callbacks=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IDL.html#IDLModel.fit2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IDL.IDLModel.fit2" title="Permalink to this definition">¶</a></dt>
-<dd><p>Fit the IDLModel parameters</p>
+<code class="sig-name descname">fit2</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y</em>, <em class="sig-param">max_rounds_number=100</em>, <em class="sig-param">verbose=True</em>, <em class="sig-param">early_stopping_rounds=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IDL.html#IDLModel.fit2"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IDL.IDLModel.fit2" title="Permalink to this definition">¶</a></dt>
+<dd><p>Fit IDL Model</p>
 <dl class="simple">
-<dt>X<span class="classifier">{array-like, sparse matrix}, shape (m_samples,  n_features)</span></dt><dd><p>The training input samples.</p>
+<dt>X<span class="classifier">array_like</span></dt><dd><p>Feature matrix</p>
 </dd>
-<dt>y<span class="classifier">array-like, shape (m_samples, ) or (m_samples, p_outputs)</span></dt><dd><p>The target values (class labels in classification, real numbers in
-regression).</p>
+<dt>y<span class="classifier">array_like</span></dt><dd><p>Labels</p>
+</dd>
+<dt>max_rounds_number<span class="classifier">int</span></dt><dd><p>Maximume rounds number in the outer loop</p>
 </dd>
 </dl>
-<p>verbose: If True (1) then we print everything on the console
-rounds_number : how many rounds max do you want to do
-early_stopping : If True : once the L2Loss will increase we automatically stop
-sample_weight : array_like</p>
-<blockquote>
-<div><p>instance weights</p>
-</div></blockquote>
-<dl class="simple">
-<dt>eval_set<span class="classifier">list, optional</span></dt><dd><p>A list of (X, y) tuple pairs to use as a validation set for
-early-stopping</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>X</strong> – </p></li>
+<li><p><strong>y</strong> – </p></li>
+<li><p><strong>max_rounds_number</strong> – </p></li>
+<li><p><strong>verbose</strong> – </p></li>
+<li><p><strong>early_stopping_rounds</strong> – </p></li>
+</ul>
 </dd>
-<dt>eval_metric<span class="classifier">str, callable, optional</span></dt><dd><p>If a str, should be a built-in evaluation metric to use. See
-doc/parameter.rst. If callable, a custom evaluation metric. The call
-signature is func(y_predicted, y_true) where y_true will be a
-DMatrix object such that you may need to call the get_label
-method. It must return a str, value pair where the str is a name
-for the evaluation and value is the value of the evaluation
-function. This objective is always minimized.</p>
-</dd>
-<dt>early_stopping_rounds<span class="classifier">int</span></dt><dd><p>Activates early stopping. Validation error needs to decrease at
-least every &lt;early_stopping_rounds&gt; round(s) to continue training.
-Requires at least one item in evals.  If there’s more than one,
-will use the last. Returns the model from the last iteration
-(not the best one). If early stopping occurs, the model will
-have three additional fields: bst.best_score, bst.best_iteration
-and bst.best_ntree_limit.
-(Use bst.best_ntree_limit to get the correct value if num_parallel_tree
-and/or num_class appears in the parameters)</p>
-</dd>
-</dl>
-<dl class="simple">
-<dt>self<span class="classifier">object</span></dt><dd><p>Returns self.</p>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="method">
 <dt id="IDL.IDLModel.predict">
-<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">X</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IDL.html#IDLModel.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IDL.IDLModel.predict" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">predict</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">k_iterations=1000</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IDL.html#IDLModel.predict"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IDL.IDLModel.predict" title="Permalink to this definition">¶</a></dt>
 <dd><p>A reference implementation of a predicting function.</p>
 <dl class="simple">
 <dt>X<span class="classifier">{array-like, sparse matrix}, shape (n_samples, n_features)</span></dt><dd><p>The training input samples.</p>
@@ -194,75 +223,30 @@ and/or num_class appears in the parameters)</p>
 
 
           </div>
-          
+            
         </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../index.html">IDL</a></h1>
-
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="bi_convex_formulation.html">Formulation for IDL</a></li>
-<li class="toctree-l1"><a class="reference internal" href="learning.html">Learning Process</a></li>
-<li class="toctree-l1"><a class="reference internal" href="gradient_descents.html">Gradient Descents</a></li>
-<li class="toctree-l1"><a class="reference internal" href="dual_ascents.html">Dual Ascents</a></li>
-<li class="toctree-l1"><a class="reference internal" href="prediction.html">Predicting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="classification_operational_example.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing</a></li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../index.html">Documentation overview</a><ul>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
+        <div class="clearfix"></div>
     </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">IDL 0.9 documentation</a> &#187;</li> 
+      </ul>
     </div>
-    <div class="footer">
-      &copy;.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-      |
-      <a href="../_sources/sections/code.rst.txt"
-          rel="nofollow">Page source</a>
-    </div>
-
-    
-
-    
+<script type="text/javascript">
+  $("#mobile-toggle a").click(function () {
+    $("#left-column").toggle();
+  });
+</script>
+<script type="text/javascript" src="../_static/js/bootstrap.js"></script>
+  <div class="footer">
+    &copy; Copyright . Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
   </body>
 </html>

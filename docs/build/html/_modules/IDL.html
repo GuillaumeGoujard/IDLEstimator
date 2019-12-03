@@ -4,8 +4,17 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
+  
+  <!-- Licensed under the Apache 2.0 License -->
+  <link rel="stylesheet" type="text/css" href="../_static/fonts/open-sans/stylesheet.css" />
+  <!-- Licensed under the SIL Open Font License -->
+  <link rel="stylesheet" type="text/css" href="../_static/fonts/source-serif-pro/source-serif-pro.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/css/bootstrap.min.css" />
+  <link rel="stylesheet" type="text/css" href="../_static/css/bootstrap-theme.min.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
     <title>IDL &#8212; IDL 0.9 documentation</title>
-    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/guzzle.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
@@ -15,21 +24,59 @@
     <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
     <link rel="index" title="Index" href="../genindex.html" />
     <link rel="search" title="Search" href="../search.html" />
+  
    
-  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
-  
-  
-  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-  
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">IDL 0.9 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" accesskey="U">Module code</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="container-wrapper">
 
-    <div class="document">
-      <div class="documentwrapper">
-        <div class="bodywrapper">
+      <div id="mobile-toggle">
+        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
+      </div>
+  <div id="left-column">
+    <div class="sphinxsidebar">
+<div class="sidebar-block">
+  <div class="sidebar-wrapper">
+    <div id="main-search">
+      <form class="form-inline" action="../search.html" method="GET" role="form">
+        <div class="input-group">
+          <input name="q" type="text" class="form-control" placeholder="Search...">
+        </div>
+        <input type="hidden" name="check_keywords" value="yes" />
+        <input type="hidden" name="area" value="default" />
+      </form>
+    </div>
+  </div>
+</div>
+      
+    </div>
+  </div>
+        <div id="right-column">
           
-
-          <div class="body" role="main">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+            <ol class="breadcrumb">
+              <li><a href="../index.html">Docs</a></li>
+              
+                <li><a href="index.html">Module code</a></li>
+              
+              <li>IDL</li>
+            </ol>
+          </div>
+          
+          <div class="document clearer body">
             
   <h1>Source code for IDL</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -40,40 +87,61 @@
 <span class="kn">from</span> <span class="nn">utilities</span> <span class="k">import</span> <span class="n">DualAscents</span> <span class="k">as</span> <span class="n">da</span>
 <span class="kn">from</span> <span class="nn">utilities</span> <span class="k">import</span> <span class="n">Metrics</span> <span class="k">as</span> <span class="n">me</span>
 <span class="kn">from</span> <span class="nn">utilities</span> <span class="k">import</span> <span class="n">PicardIterations</span> <span class="k">as</span> <span class="n">pi</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
+<span class="kn">import</span> <span class="nn">training</span> <span class="k">as</span> <span class="nn">idltraining</span>
 
 
 <div class="viewcode-block" id="IDLModel"><a class="viewcode-back" href="../sections/prediction.html#IDL.IDLModel">[docs]</a><span class="k">class</span> <span class="nc">IDLModel</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
+    <span class="sd">&quot;&quot;&quot;Implementation of the Scikit-Learn API for Implicit Deep Learning</span>
+
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
-<span class="sd">    demo_param : str, default=&#39;demo_param&#39;</span>
-<span class="sd">        A parameter used for demonstation of how to pass and store paramters.</span>
+<span class="sd">    hidden_variables : int</span>
+<span class="sd">        number of hidden variables of the vector X (see</span>
+<span class="sd">    dual_learning_rate : float</span>
+<span class="sd">        Positive float, Dual learning rate (IDL&#39;s &quot;alpha&quot;)</span>
+<span class="sd">    tol_fenchtel : float</span>
+<span class="sd">        Positive float, Fenchtel tolerance threshold for dual&#39;s update (IDL&#39;s &quot;alpha&quot;)</span>
+<span class="sd">    verbosity : bool</span>
+<span class="sd">        Verbosity of the training process.</span>
+<span class="sd">    random_state : int</span>
+<span class="sd">        Random number seed for initialization.</span>
+
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">    Full documentation of parameters can</span>
+<span class="sd">        be found here: https://github.com/GuillaumeGoujard/IDLEstimator/blob/master/docs/source/sections/introduction.rst.</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hidden_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;[Summary]</span>
-
-<span class="sd">        :param [ParamName]: [ParamDescription], defaults to [DefaultParamVal]</span>
-<span class="sd">        :type [ParamName]: [ParamType](, optional)</span>
-<span class="sd">        ...</span>
-<span class="sd">        :raises [ErrorType]: [ErrorDescription]</span>
-<span class="sd">        ...</span>
-<span class="sd">        :return: [ReturnDescription]</span>
-<span class="sd">        :rtype: [ReturnType]</span>
-<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hidden_variables</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dual_learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">tol_fenchtel</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">verbosity</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted_</span> <span class="o">=</span> <span class="kc">False</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">theta</span> <span class="o">=</span> <span class="p">{}</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">hidden_features</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">training_X</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span> <span class="o">=</span> <span class="n">alpha</span><span class="p">,</span> <span class="n">epsilon</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">hidden_variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dual_learning_rate</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tol_fenchtel</span> <span class="o">=</span> <span class="n">dual_learning_rate</span><span class="p">,</span> <span class="n">tol_fenchtel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_X</span> <span class="o">=</span> <span class="p">{},</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">=</span> <span class="n">verbosity</span>
 
 
 
 
-<div class="viewcode-block" id="IDLModel.fit"><a class="viewcode-back" href="../sections/learning.html#IDL.IDLModel.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rounds_number</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-            <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_set</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_metric</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="kc">None</span> <span class="p">):</span>
+<div class="viewcode-block" id="IDLModel.fit2"><a class="viewcode-back" href="../sections/code.html#IDL.IDLModel.fit2">[docs]</a>    <span class="k">def</span> <span class="nf">fit2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">max_rounds_number</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fit IDL Model</span>
+
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        X : array_like</span>
+<span class="sd">            Feature matrix</span>
+<span class="sd">        y : array_like</span>
+<span class="sd">            Labels</span>
+<span class="sd">        max_rounds_number : int</span>
+<span class="sd">            Maximume rounds number in the outer loop</span>
+<span class="sd">        :param X:</span>
+<span class="sd">        :param y:</span>
+<span class="sd">        :param max_rounds_number:</span>
+<span class="sd">        :param verbose:</span>
+<span class="sd">        :param early_stopping_rounds:</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Fit the IDLModel parameters</span>
 
@@ -116,21 +184,20 @@
 <span class="sd">        self : object</span>
 <span class="sd">            Returns self.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="c1">#For multi-label y, set multi_output=True to allow 2D and sparse y.</span>
-        <span class="c1">#Standard sklearn fit is : X : (m_samples,  n_features) and y : (m_samples, p_outputs)</span>
         <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">check_X_y</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">multi_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted_</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="n">U</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1">#set the shape (n_features, m_samples)</span>
+        <span class="n">U</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1">#set the shape (n_features, m_samples), to be consistent with IDL notes</span>
         <span class="n">n_features</span><span class="p">,</span> <span class="n">m_samples</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">shape</span>
         <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c1">#We need this to solve the problem (m_samples, ) or (m_samples, p_outputs)</span>
             <span class="n">p_outputs</span> <span class="o">=</span> <span class="mi">1</span>
         <span class="k">else</span><span class="p">:</span>
             <span class="n">_</span><span class="p">,</span> <span class="n">p_outputs</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">initialize_theta</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">n_features</span><span class="p">,</span> <span class="n">m_samples</span><span class="p">,</span> <span class="n">p_outputs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span>
+
+        <span class="n">theta</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">initialize_theta</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">n_features</span><span class="p">,</span> <span class="n">m_samples</span><span class="p">,</span> <span class="n">p_outputs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+                                         <span class="n">dual_learning_rate</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dual_learning_rate</span><span class="p">,</span>
                                          <span class="n">epsilon</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span><span class="p">)</span>
-        <span class="n">theta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">theta</span>
-        <span class="n">training_errors</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#we are going to store the drop in the loss of our training</span>
+
         <span class="n">L</span> <span class="o">=</span> <span class="n">me</span><span class="o">.</span><span class="n">loss</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
+        <span class="n">evals_result</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#storing the result of the loss for each iteration</span>
         <span class="n">training_errors</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">L</span><span class="p">,</span> <span class="n">me</span><span class="o">.</span><span class="n">L2Loss</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">)])</span>
 
         <span class="n">best_theta_yet</span> <span class="o">=</span> <span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
@@ -178,48 +245,22 @@
             <span class="n">plot_training_errors</span><span class="p">(</span><span class="n">training_errors</span><span class="p">)</span>
 
         <span class="c1"># `fit` should always return `IDL`</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted_</span> <span class="o">=</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="bp">self</span><span class="p">,</span></div>
 
 
-<div class="viewcode-block" id="IDLModel.fit2"><a class="viewcode-back" href="../sections/code.html#IDL.IDLModel.fit2">[docs]</a>    <span class="k">def</span> <span class="nf">fit2</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">rounds_number</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span>
-            <span class="n">sample_weight</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_set</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">eval_metric</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span>
-            <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">callbacks</span><span class="o">=</span><span class="kc">None</span> <span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Fit the IDLModel parameters</span>
+<div class="viewcode-block" id="IDLModel.fit"><a class="viewcode-back" href="../sections/learning.html#IDL.IDLModel.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">rounds_number</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fit IDL Model</span>
 
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        X : {array-like, sparse matrix}, shape (m_samples,  n_features)</span>
-<span class="sd">            The training input samples.</span>
-<span class="sd">        y : array-like, shape (m_samples, ) or (m_samples, p_outputs)</span>
-<span class="sd">            The target values (class labels in classification, real numbers in</span>
-<span class="sd">            regression).</span>
-<span class="sd">        verbose: If True (1) then we print everything on the console</span>
-<span class="sd">        rounds_number : how many rounds max do you want to do</span>
-<span class="sd">        early_stopping : If True : once the L2Loss will increase we automatically stop</span>
-<span class="sd">        sample_weight : array_like</span>
-<span class="sd">                    instance weights</span>
-<span class="sd">        eval_set : list, optional</span>
-<span class="sd">                    A list of (X, y) tuple pairs to use as a validation set for</span>
-<span class="sd">                    early-stopping</span>
-<span class="sd">        eval_metric : str, callable, optional</span>
-<span class="sd">                    If a str, should be a built-in evaluation metric to use. See</span>
-<span class="sd">                    doc/parameter.rst. If callable, a custom evaluation metric. The call</span>
-<span class="sd">                    signature is func(y_predicted, y_true) where y_true will be a</span>
-<span class="sd">                    DMatrix object such that you may need to call the get_label</span>
-<span class="sd">                    method. It must return a str, value pair where the str is a name</span>
-<span class="sd">                    for the evaluation and value is the value of the evaluation</span>
-<span class="sd">                    function. This objective is always minimized.</span>
-<span class="sd">        early_stopping_rounds : int</span>
-<span class="sd">                    Activates early stopping. Validation error needs to decrease at</span>
-<span class="sd">                    least every &lt;early_stopping_rounds&gt; round(s) to continue training.</span>
-<span class="sd">                    Requires at least one item in evals.  If there&#39;s more than one,</span>
-<span class="sd">                    will use the last. Returns the model from the last iteration</span>
-<span class="sd">                    (not the best one). If early stopping occurs, the model will</span>
-<span class="sd">                    have three additional fields: bst.best_score, bst.best_iteration</span>
-<span class="sd">                    and bst.best_ntree_limit.</span>
-<span class="sd">                    (Use bst.best_ntree_limit to get the correct value if num_parallel_tree</span>
-<span class="sd">                    and/or num_class appears in the parameters)</span>
+<span class="sd">        X : array_like</span>
+<span class="sd">            Feature matrix</span>
+<span class="sd">        y : array_like</span>
+<span class="sd">            Labels</span>
+<span class="sd">        max_rounds_number : int</span>
+<span class="sd">            Maximum rounds number in the outer loop</span>
+<span class="sd">        verbose : bool</span>
 
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -227,67 +268,26 @@
 <span class="sd">            Returns self.</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="c1">#For multi-label y, set multi_output=True to allow 2D and sparse y.</span>
-        <span class="c1">#Standard sklearn fit is : X : (m_samples,  n_features) and y : (m_samples, p_outputs)</span>
         <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">check_X_y</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">multi_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted_</span> <span class="o">=</span> <span class="kc">True</span>
-        <span class="n">U</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span> <span class="c1">#set the shape (n_features, m_samples)</span>
-        <span class="n">n_features</span><span class="p">,</span> <span class="n">m_samples</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">shape</span>
-        <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="o">.</span><span class="n">shape</span><span class="p">)</span> <span class="o">==</span> <span class="mi">1</span><span class="p">:</span> <span class="c1">#We need this to solve the problem (m_samples, ) or (m_samples, p_outputs)</span>
-            <span class="n">p_outputs</span> <span class="o">=</span> <span class="mi">1</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">_</span><span class="p">,</span> <span class="n">p_outputs</span> <span class="o">=</span> <span class="n">y</span><span class="o">.</span><span class="n">shape</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">initialize_theta</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">n_features</span><span class="p">,</span> <span class="n">m_samples</span><span class="p">,</span> <span class="n">p_outputs</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span>
-                                         <span class="n">epsilon</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span><span class="p">)</span>
-        <span class="n">theta</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">theta</span>
-        <span class="n">training_errors</span> <span class="o">=</span> <span class="p">[]</span> <span class="c1">#we are going to store the drop in the loss of our training</span>
-        <span class="n">L</span> <span class="o">=</span> <span class="n">me</span><span class="o">.</span><span class="n">loss</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
-        <span class="n">training_errors</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">L</span><span class="p">,</span> <span class="n">me</span><span class="o">.</span><span class="n">L2Loss</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">)])</span>
+        <span class="n">U</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># set the shape (n_features, m_samples), to be consistent with IDL notes</span>
 
-        <span class="n">best_theta_yet</span> <span class="o">=</span> <span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Launching training... </span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-        <span class="c1"># i = 0 #i = number of time that the loss has not decreased for early stopping</span>
-        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">rounds_number</span><span class="o">/</span><span class="mi">10</span><span class="p">)):</span>
-            <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rounds_number</span><span class="o">*</span><span class="mi">10</span><span class="p">):</span>
-                <span class="n">nL</span> <span class="o">=</span> <span class="n">me</span><span class="o">.</span><span class="n">loss</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
-                <span class="n">l</span> <span class="o">=</span> <span class="n">me</span><span class="o">.</span><span class="n">L2Loss</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
-                <span class="n">training_errors</span><span class="o">.</span><span class="n">append</span><span class="p">([</span><span class="n">nL</span><span class="p">,</span> <span class="n">l</span><span class="p">])</span>
-                <span class="n">theta</span> <span class="o">=</span> <span class="n">gd</span><span class="o">.</span><span class="n">update_theta</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-                <span class="n">theta</span> <span class="o">=</span> <span class="n">cp</span><span class="o">.</span><span class="n">project_to_S_theta</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span>
-                <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">X</span> <span class="o">-</span> <span class="n">gd</span><span class="o">.</span><span class="n">alpha_x</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">gd</span><span class="o">.</span><span class="n">gradient_descent_x</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">))</span>
-                <span class="k">if</span> <span class="nb">abs</span><span class="p">(</span><span class="n">nL</span> <span class="o">-</span> <span class="n">me</span><span class="o">.</span><span class="n">loss</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">))</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span><span class="p">:</span>
-                    <span class="k">break</span>
-            <span class="n">nL</span> <span class="o">=</span> <span class="n">me</span><span class="o">.</span><span class="n">loss</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
-            <span class="n">l</span> <span class="o">=</span> <span class="n">me</span><span class="o">.</span><span class="n">L2Loss</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
-            <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Updating Lambda : General Loss for round </span><span class="si">{}</span><span class="s2"> : &quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">j</span><span class="p">),</span> <span class="nb">round</span><span class="p">(</span><span class="n">nL</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot; L2Loss : &quot;</span><span class="p">,</span> <span class="nb">round</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="mi">3</span><span class="p">))</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Fenchel:&quot;</span><span class="p">,</span> <span class="n">me</span><span class="o">.</span><span class="n">fenchtel_div</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">]</span> <span class="o">@</span> <span class="n">X</span> <span class="o">+</span> <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">]</span> <span class="o">@</span> <span class="n">U</span> <span class="o">+</span> <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;f&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span>
-                    <span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="s2">&quot;f&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="mi">1</span><span class="p">))</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;m&quot;</span><span class="p">]))))</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Lambda : &quot;</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="s2">&quot;Lambda&quot;</span><span class="p">]))</span>
-            <span class="n">lambda_vector</span><span class="p">,</span> <span class="n">dlambda</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">update_dual</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">alpha</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">epsilon</span><span class="p">)</span>
-            <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;Lambda&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">lambda_vector</span><span class="p">)</span>
-            <span class="k">if</span> <span class="p">(</span><span class="n">dlambda</span> <span class="o">==</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">dlambda</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
-                <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;finished training !&quot;</span><span class="p">)</span>
-                <span class="k">break</span>
+        <span class="n">theta</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">idltraining</span><span class="o">.</span><span class="n">initialize_theta</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">dual_learning_rate</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dual_learning_rate</span><span class="p">,</span>
+                                                <span class="n">tol_fenchtel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tol_fenchtel</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+                                                <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
 
-        <span class="c1"># self.theta = best_theta_yet[1]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">training_X</span> <span class="o">=</span> <span class="n">X</span> <span class="c1">#We keep the X in memory</span>
-        <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span><span class="o">*</span><span class="mi">70</span><span class="p">)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Returned theta for general loss : &quot;</span><span class="p">,</span> <span class="n">nL</span><span class="p">)</span>
-            <span class="c1"># print(&quot;RESULTS&quot;)</span>
-            <span class="c1"># print(&quot;A@X + B@U + c = &quot;, self.theta[&quot;A&quot;]@self.training_X + self.theta[&quot;B&quot;]@U + self.theta[&quot;c&quot;]@np.ones((1,self.theta[&quot;m&quot;])))</span>
-            <span class="c1"># print(&quot;y = &quot;, y)</span>
-            <span class="c1"># print(&quot;(D@X + E@U + f@1m)+ = &quot;, np.maximum(0, self.theta[&quot;D&quot;]@self.training_X+self.theta[&quot;E&quot;]@U+</span>
-            <span class="c1">#                                            self.theta[&quot;f&quot;]@np.ones((1,self.theta[&quot;m&quot;]))))</span>
-            <span class="c1"># print(&quot;X = &quot;, self.training_X)</span>
-            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">70</span><span class="p">)</span>
-            <span class="n">plot_training_errors</span><span class="p">(</span><span class="n">training_errors</span><span class="p">)</span>
+        <span class="n">evals_result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">IDLResults</span> <span class="o">=</span> <span class="n">idltraining</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">outer_max_rounds_number</span><span class="o">=</span><span class="n">rounds_number</span><span class="p">,</span> <span class="n">inner_max_rounds_number</span><span class="o">=</span><span class="mi">500</span><span class="p">,</span>
+                                       <span class="n">inner_loop_tol</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tol_fenchtel</span><span class="p">,</span> <span class="n">dual_learning_rate</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dual_learning_rate</span><span class="p">,</span>
+                                       <span class="n">tol_fenchtel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tol_fenchtel</span><span class="p">,</span> <span class="n">evals_result</span><span class="o">=</span><span class="n">evals_result</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
 
-        <span class="c1"># `fit` should always return `IDL`</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_X</span> <span class="o">=</span> <span class="n">IDLResults</span><span class="o">.</span><span class="n">theta</span><span class="p">,</span> <span class="n">IDLResults</span><span class="o">.</span><span class="n">X</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">evals_result</span> <span class="o">=</span> <span class="n">IDLResults</span><span class="o">.</span><span class="n">evals_result</span>
+        <span class="k">if</span> <span class="n">verbose</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">evals_result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">idltraining</span><span class="o">.</span><span class="n">plot_training_errors</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">evals_result</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="p">,</span></div>
 
-<div class="viewcode-block" id="IDLModel.predict"><a class="viewcode-back" href="../sections/prediction.html#IDL.IDLModel.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">):</span>
+
+<div class="viewcode-block" id="IDLModel.predict"><a class="viewcode-back" href="../sections/prediction.html#IDL.IDLModel.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">k_iterations</span><span class="o">=</span><span class="mi">1000</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot; A reference implementation of a predicting function.</span>
 
 <span class="sd">        Parameters</span>
@@ -306,210 +306,45 @@
         <span class="n">n_features</span><span class="p">,</span> <span class="n">m_samples</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">shape</span>
         <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">m_samples</span><span class="p">))</span>
         <span class="n">X</span> <span class="o">=</span> <span class="n">pi</span><span class="o">.</span><span class="n">picard_iterations</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">]</span><span class="nd">@U</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="s2">&quot;f&quot;</span><span class="p">]</span><span class="nd">@np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">m_samples</span><span class="p">)),</span>
-                             <span class="n">k_iterations</span><span class="o">=</span><span class="mi">100</span><span class="p">)</span>
+                                <span class="n">k_iterations</span><span class="o">=</span><span class="n">k_iterations</span><span class="p">)</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">]</span><span class="nd">@X</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">]</span><span class="nd">@U</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">]</span><span class="nd">@np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">m_samples</span><span class="p">))</span></div></div>
 
 
 
 <span class="k">class</span> <span class="nc">IDLClassifier</span><span class="p">(</span><span class="n">IDLModel</span><span class="p">):</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hidden_features</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">IDLModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">hidden_features</span><span class="o">=</span><span class="n">hidden_features</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hidden_variables</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">IDLModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">hidden_variables</span><span class="o">=</span><span class="n">hidden_variables</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
                                        <span class="n">epsilon</span><span class="o">=</span><span class="n">epsilon</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
 
 
-
-
-<span class="k">def</span> <span class="nf">initialize_theta</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">n_features</span><span class="p">,</span> <span class="n">m_samples</span><span class="p">,</span> <span class="n">p_outputs</span><span class="p">,</span> <span class="n">h_variables</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-
-<span class="sd">    :param y:</span>
-<span class="sd">    :param U:</span>
-<span class="sd">    :param n_features:</span>
-<span class="sd">    :param m_samples:</span>
-<span class="sd">    :param p_outputs:</span>
-<span class="sd">    :param h_variables:</span>
-<span class="sd">    :param alpha:</span>
-<span class="sd">    :param epsilon:</span>
-<span class="sd">    :param verbose:</span>
-<span class="sd">    :return:</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Create random instance of theta</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;=&quot;</span> <span class="o">*</span> <span class="mi">60</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Initialization&quot;</span><span class="p">)</span>
-
-    <span class="n">n</span><span class="p">,</span> <span class="n">m</span> <span class="o">=</span> <span class="n">n_features</span><span class="p">,</span> <span class="n">m_samples</span>
-    <span class="n">p</span> <span class="o">=</span> <span class="n">p_outputs</span>
-    <span class="n">h</span> <span class="o">=</span> <span class="n">h_variables</span>
-    <span class="n">A</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">h</span><span class="p">))</span>
-    <span class="n">B</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
-    <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">p</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-    <span class="n">D</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">h</span><span class="p">))</span>
-    <span class="n">E</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">n</span><span class="p">))</span>
-    <span class="n">f</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="mi">1</span><span class="p">))</span>
-    <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="n">h</span><span class="p">,</span> <span class="n">m</span><span class="p">))</span>
-    <span class="n">X</span><span class="p">[</span><span class="n">X</span> <span class="o">&lt;</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">lambda_dual</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="n">h_variables</span><span class="p">))</span>
-    <span class="n">Lambda</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">lambda_dual</span><span class="p">)</span>
-    <span class="n">theta</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;A&quot;</span><span class="p">:</span> <span class="n">A</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">:</span> <span class="n">B</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">:</span> <span class="n">c</span><span class="p">,</span> <span class="s2">&quot;D&quot;</span><span class="p">:</span> <span class="n">D</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">:</span> <span class="n">E</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">:</span> <span class="n">f</span><span class="p">,</span> <span class="s2">&quot;Lambda&quot;</span><span class="p">:</span> <span class="n">Lambda</span><span class="p">,</span> <span class="s2">&quot;m&quot;</span><span class="p">:</span> <span class="n">m</span><span class="p">}</span>
-
-
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Best X, A, B, c guesses</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;_&quot;</span> <span class="o">*</span> <span class="mi">50</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best X, A, B, c guesses&quot;</span><span class="p">)</span>
-    <span class="n">L</span> <span class="o">=</span> <span class="n">me</span><span class="o">.</span><span class="n">L2Loss</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
-    <span class="n">best_theta_yet</span> <span class="o">=</span> <span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
-    <span class="n">rounds_number</span><span class="p">,</span> <span class="n">early_stopping_rounds</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">20</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rounds_number</span><span class="p">):</span>
-        <span class="n">nL</span> <span class="o">=</span> <span class="n">me</span><span class="o">.</span><span class="n">L2Loss</span><span class="p">(</span><span class="n">y</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">early_stopping_rounds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">nL</span> <span class="o">&gt;</span> <span class="n">L</span><span class="p">:</span>
-                <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
-                <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">early_stopping_rounds</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-                        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The L2 loss is increasing : early stopping...&quot;</span><span class="p">)</span>
-                    <span class="k">break</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="c1"># if verbose:</span>
-        <span class="c1">#     print(&quot;Initialization A,B,c,X : L2 Loss for round {} : &quot;.format(k), round(nL, 3))</span>
-        <span class="n">theta</span> <span class="o">=</span> <span class="n">gd</span><span class="o">.</span><span class="n">update_ABc_init</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-        <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="n">X</span> <span class="o">-</span> <span class="n">gd</span><span class="o">.</span><span class="n">alpha_x</span><span class="p">(</span><span class="n">theta</span><span class="p">)</span> <span class="o">*</span> <span class="n">gd</span><span class="o">.</span><span class="n">gradient_descent_x</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">initialization</span><span class="o">=</span><span class="kc">True</span><span class="p">))</span>
-        <span class="k">if</span> <span class="n">nL</span> <span class="o">&lt;</span> <span class="n">best_theta_yet</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-            <span class="n">best_theta_yet</span> <span class="o">=</span> <span class="p">(</span><span class="n">nL</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
-    <span class="n">theta</span> <span class="o">=</span> <span class="n">best_theta_yet</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Best D, E, f guesses</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;_&quot;</span><span class="o">*</span><span class="mi">50</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Best D, E, f guesses&quot;</span><span class="p">)</span>
-    <span class="n">L</span> <span class="o">=</span> <span class="n">me</span><span class="o">.</span><span class="n">fenchtel_error</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">lambda_</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="p">)))</span>
-    <span class="n">best_theta_yet</span> <span class="o">=</span> <span class="p">(</span><span class="n">L</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
-    <span class="n">rounds_number</span><span class="p">,</span> <span class="n">early_stopping_rounds</span> <span class="o">=</span> <span class="mi">300</span><span class="p">,</span> <span class="mi">20</span>
-    <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="k">for</span> <span class="n">k</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">rounds_number</span><span class="p">):</span>
-        <span class="n">nL</span> <span class="o">=</span> <span class="n">me</span><span class="o">.</span><span class="n">fenchtel_error</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">lambda_</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">h</span><span class="p">)))</span>
-        <span class="k">if</span> <span class="n">early_stopping_rounds</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="c1"># but it seemed that the early stopping functionned better with the L2Loss</span>
-            <span class="k">if</span> <span class="n">nL</span> <span class="o">&gt;</span> <span class="n">L</span><span class="p">:</span>
-                <span class="n">i</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span>
-                <span class="k">if</span> <span class="n">i</span> <span class="o">&gt;</span> <span class="n">early_stopping_rounds</span><span class="p">:</span>
-                    <span class="k">if</span> <span class="n">verbose</span><span class="p">:</span>
-                        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The Fenchtel loss is increasing : early stopping...&quot;</span><span class="p">)</span>
-                    <span class="k">break</span>
-            <span class="k">else</span><span class="p">:</span>
-                <span class="n">i</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="c1"># if verbose:</span>
-        <span class="c1">#     print(&quot;Initialization D,E,f : Fenchtel Loss for round {} : &quot;.format(k), round(nL, 3))</span>
-        <span class="n">theta</span> <span class="o">=</span> <span class="n">gd</span><span class="o">.</span><span class="n">update_DEf_init</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">nL</span> <span class="o">&lt;</span> <span class="n">best_theta_yet</span><span class="p">[</span><span class="mi">0</span><span class="p">]:</span>
-            <span class="n">best_theta_yet</span> <span class="o">=</span> <span class="p">(</span><span class="n">nL</span><span class="p">,</span> <span class="n">theta</span><span class="p">)</span>
-    <span class="n">theta</span> <span class="o">=</span> <span class="n">best_theta_yet</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
-
-    <span class="n">lambda_vector</span><span class="p">,</span> <span class="n">dlambda</span> <span class="o">=</span> <span class="n">da</span><span class="o">.</span><span class="n">update_dual</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="n">epsilon</span><span class="p">)</span>
-    <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;Lambda&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">epsilon</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">h</span><span class="p">))</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Initialization is a Success ! &quot;</span><span class="p">)</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;...&quot;</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">theta</span><span class="p">,</span> <span class="n">X</span>
-
-
-
-<span class="k">def</span> <span class="nf">plot_training_errors</span><span class="p">(</span><span class="n">training_errors</span><span class="p">):</span>
-    <span class="n">L2_loss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">training_errors</span><span class="p">)</span>
-    <span class="n">fig</span><span class="p">,</span> <span class="n">ax1</span> <span class="o">=</span> <span class="n">plt</span><span class="o">.</span><span class="n">subplots</span><span class="p">()</span>
-
-    <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;tab:red&#39;</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">set_xlabel</span><span class="p">(</span><span class="s1">&#39;rounds&#39;</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;General Loss&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">L2_loss</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">:],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
-    <span class="n">ax1</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
-
-    <span class="n">ax2</span> <span class="o">=</span> <span class="n">ax1</span><span class="o">.</span><span class="n">twinx</span><span class="p">()</span>  <span class="c1"># instantiate a second axes that shares the same x-axis</span>
-
-    <span class="n">color</span> <span class="o">=</span> <span class="s1">&#39;tab:blue&#39;</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">set_ylabel</span><span class="p">(</span><span class="s1">&#39;L2 loss&#39;</span><span class="p">,</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>  <span class="c1"># we already handled the x-label with ax1</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">L2_loss</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">][</span><span class="mi">1</span><span class="p">:],</span> <span class="n">color</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
-    <span class="n">ax2</span><span class="o">.</span><span class="n">tick_params</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="s1">&#39;y&#39;</span><span class="p">,</span> <span class="n">labelcolor</span><span class="o">=</span><span class="n">color</span><span class="p">)</span>
-
-    <span class="n">fig</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>  <span class="c1"># otherwise the right y-label is slightly clipped</span>
-    <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
           </div>
-          
+            
         </div>
-      </div>
-      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
-        <div class="sphinxsidebarwrapper">
-<h1 class="logo"><a href="../index.html">IDL</a></h1>
-
-
-
-
-
-
-
-
-<h3>Navigation</h3>
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="../sections/introduction.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sections/bi_convex_formulation.html">Formulation for IDL</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sections/learning.html">Learning Process</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sections/gradient_descents.html">Gradient Descents</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sections/dual_ascents.html">Dual Ascents</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sections/prediction.html">Predicting</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sections/classification_operational_example.html">Examples</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../sections/citing.html">Citing</a></li>
-</ul>
-
-<div class="relations">
-<h3>Related Topics</h3>
-<ul>
-  <li><a href="../index.html">Documentation overview</a><ul>
-  <li><a href="index.html">Module code</a><ul>
-  </ul></li>
-  </ul></li>
-</ul>
-</div>
-<div id="searchbox" style="display: none" role="search">
-  <h3 id="searchlabel">Quick search</h3>
-    <div class="searchformwrapper">
-    <form class="search" action="../search.html" method="get">
-      <input type="text" name="q" aria-labelledby="searchlabel" />
-      <input type="submit" value="Go" />
-    </form>
+        <div class="clearfix"></div>
     </div>
-</div>
-<script type="text/javascript">$('#searchbox').show(0);</script>
-
-
-
-
-
-
-
-
-        </div>
-      </div>
-      <div class="clearer"></div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="../genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="../py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="../index.html">IDL 0.9 documentation</a> &#187;</li>
+          <li class="nav-item nav-item-1"><a href="index.html" >Module code</a> &#187;</li> 
+      </ul>
     </div>
-    <div class="footer">
-      &copy;.
-      
-      |
-      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
-      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
-      
-    </div>
-
-    
-
-    
+<script type="text/javascript">
+  $("#mobile-toggle a").click(function () {
+    $("#left-column").toggle();
+  });
+</script>
+<script type="text/javascript" src="../_static/js/bootstrap.js"></script>
+  <div class="footer">
+    &copy; Copyright . Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
+  </div>
   </body>
 </html>

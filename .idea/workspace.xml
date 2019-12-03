@@ -2,14 +2,80 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97b0686d-5d10-4a7a-9111-942bab0dbc7a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/EE227B_project.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/EE227B_project.iml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IDL/IDLtemplate/training.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/IDL.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/IDL.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/tests/boston.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/tests/boston.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/ConvexProjection.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/ConvexProjection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/PicardIterations.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/PicardIterations.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/DualAscents.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/DualAscents.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/Metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/Metrics.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/workingExample.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/workingExample.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/environment.pickle" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/sections/bi_convex_formulation.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/sections/bi_convex_formulation.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/sections/code.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/sections/code.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/sections/dual_ascents.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/sections/dual_ascents.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/sections/gradient_descents.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/sections/gradient_descents.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/sections/introduction.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/sections/introduction.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/sections/learning.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/sections/learning.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/sections/prediction.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/sections/prediction.doctree" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/.buildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/.buildinfo" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_modules/IDL.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_modules/IDL.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_modules/docs/test_example/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_modules/docs/test_example/test.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_modules/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_modules/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_modules/utilities/GradientDescents.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_modules/utilities/GradientDescents.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_sources/sections/bi_convex_formulation.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_sources/sections/bi_convex_formulation.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_sources/sections/dual_ascents.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_sources/sections/dual_ascents.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_sources/sections/gradient_descents.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_sources/sections/gradient_descents.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_sources/sections/introduction.rst.txt" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_sources/sections/introduction.rst.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/alabaster.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/custom.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/jquery.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_static/jquery.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/pygments.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_static/pygments.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/genindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/index.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/py-modindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/py-modindex.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/search.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/searchindex.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/bi_convex_formulation.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/bi_convex_formulation.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/citing.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/citing.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/classification_operational_example.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/classification_operational_example.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/code.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/code.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/dual_ascents.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/dual_ascents.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/gradient_descents.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/gradient_descents.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/introduction.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/introduction.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/learning.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/learning.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/options.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/options.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/prediction.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/prediction.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/regression_operational_example copy.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/regression_operational_example copy.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/rts_example.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/rts_example.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/LICRcyr2utf8.xdy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/LICRlatin2utf8.xdy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/LatinRules.xdy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/footnotehyper-sphinx.sty" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/idl_guide.aux" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/idl_guide.fdb_latexmk" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/idl_guide.fls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/idl_guide.idx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/idl_guide.ilg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/idl_guide.ind" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/idl_guide.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/idl_guide.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/idl_guide.pdf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/idl_guide.tex" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/idl_guide.toc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/latexmkjarc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/latexmkrc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/make.bat" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/python.ist" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/sphinx.sty" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/sphinx.xdy" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/sphinxcyrillic.sty" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/sphinxhighlight.sty" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/sphinxhowto.cls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/sphinxmanual.cls" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/sphinxmessages.sty" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/sphinxmulticell.sty" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/source/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/docs/source/conf.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -19,25 +85,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/GradientDescents.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="379">
-              <caret line="26" column="34" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/source/index.rst">
-          <provider selected="true" editor-type-id="restructured-text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/IDL.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="255" column="42" selection-start-line="255" selection-start-column="42" selection-end-line="255" selection-end-column="42" />
+            <state relative-caret-position="-730">
+              <caret line="47" column="30" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -45,11 +97,26 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/PicardIterations.py">
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/workingExample.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="75">
-              <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
+            <state relative-caret-position="328">
+              <caret line="87" column="18" selection-start-line="87" selection-start-column="18" selection-end-line="87" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#17#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/training.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1937">
+              <caret line="132" column="27" selection-start-line="132" selection-start-column="27" selection-end-line="132" selection-end-column="27" />
+              <folding>
+                <element signature="e#0#44#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -57,8 +124,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/Metrics.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="178">
-              <caret line="25" column="52" lean-forward="true" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="52" />
+            <state relative-caret-position="225">
+              <caret line="15" selection-start-line="15" selection-end-line="15" />
             </state>
           </provider>
         </entry>
@@ -66,7 +133,7 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/tests/boston.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="130">
+            <state relative-caret-position="459">
               <caret line="43" column="37" selection-start-line="43" selection-start-column="37" selection-end-line="43" selection-end-column="37" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
@@ -78,8 +145,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/DualAscents.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+            <state relative-caret-position="45">
+              <caret line="4" column="52" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
             </state>
           </provider>
         </entry>
@@ -87,8 +154,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/ConvexProjection.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="33">
-              <caret line="27" column="44" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
+            <state relative-caret-position="90">
+              <caret line="6" column="44" lean-forward="true" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
             </state>
           </provider>
         </entry>
@@ -96,20 +163,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/cvxpy/problems/problem.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state>
-              <caret line="549" column="34" lean-forward="true" selection-start-line="549" selection-start-column="34" selection-end-line="549" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/workingExample.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="53">
-              <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
-              <folding>
-                <element signature="e#0#17#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="655">
+              <caret line="549" column="34" selection-start-line="549" selection-start-column="34" selection-end-line="549" selection-end-column="34" />
             </state>
           </provider>
         </entry>
@@ -128,10 +183,14 @@
       <find>IDL</find>
       <find>self</find>
       <find>master_doc</find>
+      <find>hidden_features</find>
+      <find>alpha</find>
     </findStrings>
     <replaceStrings>
       <replace>self</replace>
       <replace>IDL</replace>
+      <replace>hidden_variables</replace>
+      <replace>dual_learning_rate</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -148,27 +207,28 @@
         <option value="$PROJECT_DIR$/IDL/IDLtemplate/tests/guillaume_testset.py" />
         <option value="$PROJECT_DIR$/docs/source/test.py" />
         <option value="$PROJECT_DIR$/test.py" />
-        <option value="$PROJECT_DIR$/docs/source/conf.py" />
         <option value="$PROJECT_DIR$/docs/source/sections/code.rst" />
         <option value="$PROJECT_DIR$/IDL/IDLtemplate/tests/mnist.py" />
-        <option value="$PROJECT_DIR$/IDL/IDLtemplate/utilities/Metrics.py" />
         <option value="$PROJECT_DIR$/IDL/IDLtemplate/utilities/GradientDescents.py" />
-        <option value="$PROJECT_DIR$/IDL/IDLtemplate/utilities/DualAscents.py" />
         <option value="$PROJECT_DIR$/IDL/IDLtemplate/tests/boston.py" />
         <option value="$PROJECT_DIR$/docs/source/conf2.py" />
-        <option value="$PROJECT_DIR$/IDL/IDLtemplate/workingExample.py" />
         <option value="/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/cvxpy/problems/problem.py" />
-        <option value="$PROJECT_DIR$/IDL/IDLtemplate/utilities/ConvexProjection.py" />
-        <option value="$PROJECT_DIR$/IDL/IDLtemplate/IDL.py" />
         <option value="$PROJECT_DIR$/IDL/IDLtemplate/utilities/PicardIterations.py" />
+        <option value="$PROJECT_DIR$/IDL/IDLtemplate/utilities/Metrics.py" />
+        <option value="$PROJECT_DIR$/IDL/IDLtemplate/utilities/DualAscents.py" />
+        <option value="$PROJECT_DIR$/docs/source/conf.py" />
+        <option value="$PROJECT_DIR$/IDL/IDLtemplate/utilities/ConvexProjection.py" />
+        <option value="$PROJECT_DIR$/IDL/IDLtemplate/training.py" />
+        <option value="$PROJECT_DIR$/IDL/IDLtemplate/workingExample.py" />
+        <option value="$PROJECT_DIR$/IDL/IDLtemplate/IDL.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="180" />
-    <option name="y" value="112" />
-    <option name="width" value="1080" />
-    <option name="height" value="676" />
+    <option name="x" value="1440" />
+    <option name="y" value="-35" />
+    <option name="width" value="1920" />
+    <option name="height" value="1080" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -186,12 +246,29 @@
             <path>
               <item name="EE227B_project" type="b2602c69:ProjectViewProjectNode" />
               <item name="EE227B_project" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="EE227B_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EE227B_project" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="EE227B_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EE227B_project" type="462c0819:PsiDirectoryNode" />
               <item name="documents" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="EE227B_project" type="b2602c69:ProjectViewProjectNode" />
               <item name="EE227B_project" type="462c0819:PsiDirectoryNode" />
               <item name="IDL" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="EE227B_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EE227B_project" type="462c0819:PsiDirectoryNode" />
+              <item name="IDL" type="462c0819:PsiDirectoryNode" />
+              <item name="doc" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="EE227B_project" type="b2602c69:ProjectViewProjectNode" />
@@ -390,12 +467,14 @@
       <workItem from="1574786297796" duration="10982000" />
       <workItem from="1574828217136" duration="375000" />
       <workItem from="1575313862043" duration="889000" />
-      <workItem from="1575334067456" duration="4337000" />
+      <workItem from="1575334067456" duration="4632000" />
+      <workItem from="1575349985633" duration="12000" />
+      <workItem from="1575391755463" duration="9426000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="44600000" />
+    <option name="totallyTimeSpent" value="54333000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -407,10 +486,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <frame x="1440" y="-35" width="1920" height="1080" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25286534" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.19349681" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -424,14 +503,14 @@
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32971016" />
       <window_info anchor="bottom" id="Database Changes" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.3478261" />
-      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.46859902" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" visible="true" weight="0.24900794" />
+      <window_info anchor="bottom" id="Python Console" order="12" weight="0.2857143" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" weight="0.24283667" />
+      <window_info anchor="right" id="SciView" order="3" visible="true" weight="0.2771855" />
       <window_info anchor="right" id="Database" order="4" />
-      <window_info anchor="right" id="R Graphics" order="5" />
+      <window_info anchor="right" id="R Graphics" order="5" weight="0.32995737" />
       <window_info anchor="right" id="R Packages" order="6" />
     </layout>
   </component>
@@ -584,16 +663,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/source/conf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="825">
-          <caret line="56" column="20" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/source/index.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/source/conf_3.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="788">
@@ -603,45 +672,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/GradientDescents.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="379">
+        <state relative-caret-position="390">
           <caret line="26" column="34" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
         </state>
       </provider>
     </entry>
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/cvxpy/problems/problem.py">
+    <entry file="file://$PROJECT_DIR$/docs/source/index.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/PicardIterations.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret line="549" column="34" lean-forward="true" selection-start-line="549" selection-start-column="34" selection-end-line="549" selection-end-column="34" />
+        <state relative-caret-position="75">
+          <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/workingExample.py">
+    <entry file="file://$PROJECT_DIR$/IDL/doc/conf.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="53">
-          <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="365">
+          <caret line="118" selection-start-line="118" selection-end-line="135" selection-end-column="31" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/ConvexProjection.py">
+    <entry file="file://$PROJECT_DIR$/docs/source/conf.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="33">
-          <caret line="27" column="44" selection-start-line="27" selection-start-column="44" selection-end-line="27" selection-end-column="44" />
+        <state relative-caret-position="342">
+          <caret line="63" lean-forward="true" selection-start-line="63" selection-end-line="63" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/DualAscents.py">
+    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/Metrics.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="10" column="45" selection-start-line="10" selection-start-column="45" selection-end-line="10" selection-end-column="45" />
+        <state relative-caret-position="225">
+          <caret line="15" selection-start-line="15" selection-end-line="15" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/tests/boston.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="130">
+        <state relative-caret-position="459">
           <caret line="43" column="37" selection-start-line="43" selection-start-column="37" selection-end-line="43" selection-end-column="37" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
@@ -649,27 +718,54 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/Metrics.py">
+    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/DualAscents.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="178">
-          <caret line="25" column="52" lean-forward="true" selection-start-line="25" selection-start-column="21" selection-end-line="25" selection-end-column="52" />
+        <state relative-caret-position="45">
+          <caret line="4" column="52" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/cvxpy/problems/problem.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="655">
+          <caret line="549" column="34" selection-start-line="549" selection-start-column="34" selection-end-line="549" selection-end-column="34" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/ConvexProjection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="90">
+          <caret line="6" column="44" lean-forward="true" selection-start-line="6" selection-start-column="44" selection-end-line="6" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/training.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1937">
+          <caret line="132" column="27" selection-start-line="132" selection-start-column="27" selection-end-line="132" selection-end-column="27" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/workingExample.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="87" column="18" selection-start-line="87" selection-start-column="18" selection-end-line="87" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/IDL.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="255" column="42" selection-start-line="255" selection-start-column="42" selection-end-line="255" selection-end-column="42" />
+        <state relative-caret-position="-730">
+          <caret line="47" column="30" selection-start-line="47" selection-start-column="30" selection-end-line="47" selection-end-column="30" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/PicardIterations.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="39" selection-start-line="5" selection-start-column="39" selection-end-line="5" selection-end-column="39" />
         </state>
       </provider>
     </entry>

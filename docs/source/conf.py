@@ -62,6 +62,30 @@ master_doc = 'index'
 # a list of builtin themes.
 #
 html_theme = 'alabaster'
+# import guzzle_sphinx_theme
+# html_theme_path = guzzle_sphinx_theme.html_theme_path()
+# html_theme = 'guzzle_sphinx_theme'
+#
+# # Register the theme as an extension to generate a sitemap.xml
+# extensions.append("guzzle_sphinx_theme")
+# # The name of the Pygments (syntax highlighting) style to use.
+# pygments_style = 'sphinx'
+
+# Custom style
+# html_style = 'css/project-template.css'
+
+# A list of ignored prefixes for module index sorting.
+#modindex_common_prefix = []
+
+# If true, keep warnings as "system message" paragraphs in the built documents.
+#keep_warnings = False
+
+
+# -- Options for HTML output ----------------------------------------------
+
+# The theme to use for HTML and HTML Help pages.  See the documentation for
+# a list of builtin themes.
+# html_theme = 'sphinx_rtd_theme'
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
