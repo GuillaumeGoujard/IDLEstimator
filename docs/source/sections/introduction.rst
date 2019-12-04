@@ -26,7 +26,7 @@ where :math:`(.)_+ := \text{max}(0,.)` is ReLU activation, :math:`x \in \mathbb{
 (h is the number of hidden features), :math:`\Theta := (A,B,c,D,E,f)` are matrices and vectors of appropriate size, they define the
 parameters of the model. The hidden variable :math:`x` is implicit in the sense that there is in general no analytical
 formula for it, this is different from classic deep learning for which, given the model parameters, the hidden
-variables can be computed explicitly via propagation trough the network.
+variables can be computed explicitly via propagation through the network.
 
 Notation and definitions
 *************************

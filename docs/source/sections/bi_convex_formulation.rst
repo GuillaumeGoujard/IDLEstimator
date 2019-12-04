@@ -101,6 +101,10 @@ Schur complement we can prove it is equivalent to
 If D satisfies :eq:`eq_5` then it satisfies :eq:`eq_6`. We imediately have that :math:`D = \delta I_n` with :math:`\delta \leq \frac{1}{2}` satisfies :eq:`eq_5`
 (and :math:`\Vert D \Vert_2 \leq 1 - \epsilon`). Which proves that both LMIs are feasible.
 
+
+Bi-convex Formulation
+***********************************
+
 From this proof, the problem formulation reads
 
 .. math::
@@ -112,10 +116,3 @@ From this proof, the problem formulation reads
     :label: eq_7
 
 this problem is well-posed -feasible solutions exist- and bi-smooth.
-
-
-Bi-convex Formulation
-***********************************
-
-.. automodule:: utilities.GradientDescents
-    :members:
