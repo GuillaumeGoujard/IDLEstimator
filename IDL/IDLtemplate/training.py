@@ -2,6 +2,7 @@ from utilities import GradientDescents as gd
 from utilities import ConvexProjection as cp
 from utilities import DualAscents as da
 from utilities import Metrics as me
+from scipy import sparse
 from utilities import PicardIterations as pi
 import numpy as np
 import matplotlib.pyplot as plt
@@ -64,7 +65,7 @@ def train(U, y, theta, X, outer_max_rounds_number=50, inner_max_rounds_number=50
     for j in range(outer_max_rounds_number):
         for k in range(inner_max_rounds_number):
             theta = gd.update_theta(theta, X, U, y)
-            theta = cp.project_to_S_theta(theta, solver=solver, **solver_options)
+            theta["D"] = cp.non_cvx_projection(theta["D"], epsilon=1e-1)
             X = np.maximum(0, X - gd.alpha_x(theta) * gd.gradient_descent_x(theta, X, U))
 
             nL = me.loss(U, y, theta, X)
@@ -85,10 +86,12 @@ def train(U, y, theta, X, outer_max_rounds_number=50, inner_max_rounds_number=50
         if evals_result is not None:
             evals_result.append([nL, l])
         if verbose:
-            print("Updating Lambda : General Loss for round {} : ".format(j), round(nL, 3), " L2Loss : ", round(l, 3))
-            print("Fenchel:", me.fenchtel_div(X, theta["D"] @ X + theta["E"] @ U + theta["f"].reshape(
-                (theta["f"].shape[0], 1)) @ np.ones((1, theta["m"]))))
-            print("Lambda : ", np.diag(theta["Lambda"]))
+            rounding = int(np.log((1/inner_loop_tol)))
+            print("Updating Lambda : General Loss for round {} : ".format(j), round(nL, rounding), " L2Loss : ",
+                  round(l, rounding))
+            # print("Fenchel:", me.fenchtel_div(X, theta["D"] @ X + theta["E"] @ U + theta["f"].reshape(
+            #     (theta["f"].shape[0], 1)) @ np.ones((1, theta["m"]))))
+            # print("Lambda : ", np.diag(theta["Lambda"]))
 
         if (dlambda == np.zeros(dlambda.shape)).all():
             print("finished training !")
@@ -203,12 +206,19 @@ def initialize_theta(U, y, h_variables, dual_learning_rate=0.1, tol_fenchtel=0.0
 
     h = h_variables
     np.random.RandomState(random_state)
-    A = np.random.normal(0, 1, (p, h))
-    B = np.random.normal(0, 1, (p, n))
-    c = np.random.normal(0, 1, (p, 1))
-    D = np.random.normal(0, 1, (h, h))
-    E = np.random.normal(0, 1, (h, n))
-    f = np.random.normal(0, 1, (h, 1))
+    A = sparse.random(p, h).toarray()
+    B = sparse.random(p, n).toarray()
+    c = sparse.random(p, 1).toarray()
+    D = sparse.random(h, h).toarray()
+    D = cp.non_cvx_projection(D, epsilon=1e-3)
+    E = sparse.random(h, n).toarray()
+    f = sparse.random(h, 1).toarray()
+    # A = np.random.normal(0, 1, (p, h))
+    # B = np.random.normal(0, 1, (p, n))
+    # c = np.random.normal(0, 1, (p, 1))
+    # D = np.random.normal(0, 1, (h, h))
+    # E = np.random.normal(0, 1, (h, n))
+    # f = np.random.normal(0, 1, (h, 1))
     X = np.random.normal(0, 1, (h, m))
     X[X < 0] = 0
     lambda_dual = np.ones((h_variables))

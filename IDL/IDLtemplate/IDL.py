@@ -35,7 +35,8 @@ class IDLModel(BaseEstimator):
         be found here: https://github.com/GuillaumeGoujard/IDLEstimator/blob/master/docs/source/sections/introduction.rst.
     """
 
-    def __init__(self, hidden_variables=1, dual_learning_rate=0.1, tol_fenchtel=0.1, random_state=0, verbosity=True,
+    def __init__(self, hidden_variables=1, dual_learning_rate=0.1, tol_fenchtel=0.1, inner_tol=1e-3, random_state=0,
+                 verbosity=True,
                  solver=None, solver_options=None):
         self.is_fitted_ = False
         self.h = hidden_variables
@@ -43,6 +44,7 @@ class IDLModel(BaseEstimator):
         self.random_state = random_state
         self.theta, self.training_X = {}, None
         self.verbosity = verbosity
+        self.inner_tol = inner_tol
         self.solver = solver
         self.solver_options = solver_options
         self.evals_result = []
@@ -81,8 +83,9 @@ class IDLModel(BaseEstimator):
 
         evals_result = []
         if type_of_training == "two_loops":
-            IDLResults = idltraining.train(U, y, theta, X, outer_max_rounds_number=rounds_number, inner_max_rounds_number=500,
-                                       inner_loop_tol=self.tol_fenchtel, dual_learning_rate=self.dual_learning_rate,
+            IDLResults = idltraining.train(U, y, theta, X, outer_max_rounds_number=rounds_number,
+                                           inner_max_rounds_number=1000,
+                                       inner_loop_tol=self.inner_tol, dual_learning_rate=self.dual_learning_rate,
                                        tol_fenchtel=self.tol_fenchtel, evals_result=evals_result, verbose=verbose,
                                         solver= self.solver, solver_options=self.solver_options)
         elif type_of_training == "one_loop":
@@ -103,7 +106,7 @@ class IDLModel(BaseEstimator):
         return self,
 
 
-    def predict(self, X, k_iterations=1000):
+    def predict(self, X, k_iterations=10000):
         """ Predicting function.
 
         Parameters

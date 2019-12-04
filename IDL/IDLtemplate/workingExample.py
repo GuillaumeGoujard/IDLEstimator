@@ -21,6 +21,8 @@ def model(X, a=2, noise_std =0.01):
     return X.reshape((-1, 1)), a * X + epsilons
 
 
+from sklearn.metrics import mean_squared_error, r2_score
+
 X, y = create_regressive_model(number_of_data_points, a=1, noise_std=0.1)
 X_train, y_train, X_test, y_test = X[:-test_data_point], y[:-test_data_point], X[-test_data_point:], y[-test_data_point:]
 
@@ -29,6 +31,7 @@ if plot_training:
     plt.grid(True)
     plt.title("Training Set")
     plt.show()
+
 
 """
 IDL model
@@ -62,13 +65,13 @@ Y = X^2 + epsilon
 """
 
 def create_quadratic_model(n_samples, noise_std = 0.01):
-    X = np.random.random_sample(n_samples)*4 - 2
+    X = np.random.random_sample(n_samples)*np.pi
     return quadratic_model(X, noise_std=noise_std)
 
 def quadratic_model(X, noise_std =0.01):
     n_samples = X.shape[0]
     epsilons = np.random.normal(0, noise_std, n_samples)
-    return X.reshape((-1, 1)), np.power(X,2) + epsilons
+    return X.reshape((-1, 1)), np.sin(X) #np.power(X,2) + epsilons
 
 X, y = create_quadratic_model(number_of_data_points, noise_std=0)
 X_train, y_train, X_test, y_test = X[:-test_data_point], y[:-test_data_point], X[-test_data_point:], y[-test_data_point:]
@@ -83,12 +86,12 @@ if True:
 """
 IDL model
 """
-hidden_variables = 50
-dual_learning_rate = 1
-tol_fenchtel = 0.01
+hidden_variables = 100
+dual_learning_rate = .1
+tol_fenchtel = 0.001
 IDL = idl.IDLModel(hidden_variables=hidden_variables, dual_learning_rate=dual_learning_rate, tol_fenchtel=tol_fenchtel,
                    random_state=0, verbosity=True, solver="SCS")
-IDL.fit(X_train, y_train, rounds_number=10, verbose=True, type_of_training="two_loops")
+IDL.fit(X_train, y_train, rounds_number=100, verbose=True, type_of_training="two_loops")
 
 """
 Let us try to predict !
@@ -103,3 +106,8 @@ plt.grid(True)
 plt.legend()
 plt.title("Predictions over the test set")
 plt.show()
+
+plt.clf()
+plt.scatter(X_train, IDL.predict(X_train))
+plt.show()
+

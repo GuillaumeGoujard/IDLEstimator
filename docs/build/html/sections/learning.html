@@ -4,17 +4,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <meta charset="utf-8" />
-  
-  <!-- Licensed under the Apache 2.0 License -->
-  <link rel="stylesheet" type="text/css" href="../_static/fonts/open-sans/stylesheet.css" />
-  <!-- Licensed under the SIL Open Font License -->
-  <link rel="stylesheet" type="text/css" href="../_static/fonts/source-serif-pro/source-serif-pro.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/css/bootstrap.min.css" />
-  <link rel="stylesheet" type="text/css" href="../_static/css/bootstrap-theme.min.css" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  
     <title>Learning Process &#8212; IDL 0.9 documentation</title>
-    <link rel="stylesheet" href="../_static/guzzle.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
     <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
     <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
     <script type="text/javascript" src="../_static/jquery.js"></script>
@@ -26,82 +17,28 @@
     <link rel="search" title="Search" href="../search.html" />
     <link rel="next" title="Gradient Descents" href="gradient_descents.html" />
     <link rel="prev" title="Formulation for IDL" href="bi_convex_formulation.html" />
-  
    
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
 
   </head><body>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             accesskey="I">index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="gradient_descents.html" title="Gradient Descents"
-             accesskey="N">next</a> |</li>
-        <li class="right" >
-          <a href="bi_convex_formulation.html" title="Formulation for IDL"
-             accesskey="P">previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">IDL 0.9 documentation</a> &#187;</li> 
-      </ul>
-    </div>
-    <div class="container-wrapper">
+  
 
-      <div id="mobile-toggle">
-        <a href="#"><span class="glyphicon glyphicon-align-justify" aria-hidden="true"></span></a>
-      </div>
-  <div id="left-column">
-    <div class="sphinxsidebar">
-  <h4>Previous topic</h4>
-  <p class="topless"><a href="bi_convex_formulation.html"
-                        title="previous chapter">Formulation for IDL</a></p>
-  <h4>Next topic</h4>
-  <p class="topless"><a href="gradient_descents.html"
-                        title="next chapter">Gradient Descents</a></p>
-  <div role="note" aria-label="source link">
-    <h3>This Page</h3>
-    <ul class="this-page-menu">
-      <li><a href="../_sources/sections/learning.rst.txt"
-            rel="nofollow">Show Source</a></li>
-    </ul>
-   </div>
-<div class="sidebar-block">
-  <div class="sidebar-wrapper">
-    <div id="main-search">
-      <form class="form-inline" action="../search.html" method="GET" role="form">
-        <div class="input-group">
-          <input name="q" type="text" class="form-control" placeholder="Search...">
-        </div>
-        <input type="hidden" name="check_keywords" value="yes" />
-        <input type="hidden" name="area" value="default" />
-      </form>
-    </div>
-  </div>
-</div>
-      
-    </div>
-  </div>
-        <div id="right-column">
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
           
-          <div role="navigation" aria-label="breadcrumbs navigation">
-            <ol class="breadcrumb">
-              <li><a href="../index.html">Docs</a></li>
-              
-              <li>Learning Process</li>
-            </ol>
-          </div>
-          
-          <div class="document clearer body">
+
+          <div class="body" role="main">
             
   <div class="section" id="learning-process">
 <span id="learning"></span><h1>Learning Process<a class="headerlink" href="#learning-process" title="Permalink to this headline">¶</a></h1>
 <p>** section 3.4 algo in the end **</p>
 <dl class="class">
 <dt id="IDL.IDLModel">
-<em class="property">class </em><code class="sig-prename descclassname">IDL.</code><code class="sig-name descname">IDLModel</code><span class="sig-paren">(</span><em class="sig-param">hidden_variables=1</em>, <em class="sig-param">dual_learning_rate=0.1</em>, <em class="sig-param">tol_fenchtel=0.1</em>, <em class="sig-param">random_state=0</em>, <em class="sig-param">verbosity=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IDL.html#IDLModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IDL.IDLModel" title="Permalink to this definition">¶</a></dt>
+<em class="property">class </em><code class="sig-prename descclassname">IDL.</code><code class="sig-name descname">IDLModel</code><span class="sig-paren">(</span><em class="sig-param">hidden_variables=1</em>, <em class="sig-param">dual_learning_rate=0.1</em>, <em class="sig-param">tol_fenchtel=0.1</em>, <em class="sig-param">random_state=0</em>, <em class="sig-param">verbosity=True</em>, <em class="sig-param">solver=None</em>, <em class="sig-param">solver_options=None</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IDL.html#IDLModel"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IDL.IDLModel" title="Permalink to this definition">¶</a></dt>
 <dd><p>Implementation of the Scikit-Learn API for Implicit Deep Learning</p>
 <dl class="simple">
 <dt>hidden_variables<span class="classifier">int</span></dt><dd><p>number of hidden variables of the vector X (see</p>
@@ -114,6 +51,10 @@
 </dd>
 <dt>random_state<span class="classifier">int</span></dt><dd><p>Random number seed for initialization.</p>
 </dd>
+<dt>solver<span class="classifier">string</span></dt><dd><p>solver used for cvxpy, if None then we select “ECOS”</p>
+</dd>
+<dt>solver_options<span class="classifier">dict</span></dt><dd><p>options for the solver to use</p>
+</dd>
 </dl>
 <dl class="simple">
 <dt>Full documentation of parameters can</dt><dd><p>be found here: <a class="reference external" href="https://github.com/GuillaumeGoujard/IDLEstimator/blob/master/docs/source/sections/introduction.rst">https://github.com/GuillaumeGoujard/IDLEstimator/blob/master/docs/source/sections/introduction.rst</a>.</p>
@@ -121,7 +62,7 @@
 </dl>
 <dl class="method">
 <dt id="IDL.IDLModel.fit">
-<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y</em>, <em class="sig-param">rounds_number=100</em>, <em class="sig-param">verbose=True</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IDL.html#IDLModel.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IDL.IDLModel.fit" title="Permalink to this definition">¶</a></dt>
+<code class="sig-name descname">fit</code><span class="sig-paren">(</span><em class="sig-param">X</em>, <em class="sig-param">y</em>, <em class="sig-param">rounds_number=100</em>, <em class="sig-param">verbose=True</em>, <em class="sig-param">type_of_training='two_loops'</em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/IDL.html#IDLModel.fit"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#IDL.IDLModel.fit" title="Permalink to this definition">¶</a></dt>
 <dd><p>Fit IDL Model</p>
 <dl class="simple">
 <dt>X<span class="classifier">array_like</span></dt><dd><p>Feature matrix</p>
@@ -131,7 +72,18 @@
 <dt>max_rounds_number<span class="classifier">int</span></dt><dd><p>Maximum rounds number in the outer loop</p>
 </dd>
 </dl>
-<p>verbose : bool</p>
+<p>verbose : bool
+type_of_training : string</p>
+<blockquote>
+<div><dl>
+<dt>Two types of training :</dt><dd><ul class="simple">
+<li><p>“two_loops” : RECOMMENDED, we optimize the theta, X variables and then we do one step of dual ascent.</p></li>
+<li><p>“one_loop” : one iteration is going to successively operate one step of gradient descent and one step</p></li>
+</ul>
+<p>of dual ascent</p>
+</dd>
+</dl>
+</div></blockquote>
 <dl class="simple">
 <dt>self<span class="classifier">object</span></dt><dd><p>Returns self.</p>
 </dd>
@@ -144,48 +96,77 @@
 
 
           </div>
-            
-  <div class="footer-relations">
-    
-      <div class="pull-left">
-        <a class="btn btn-default" href="bi_convex_formulation.html" title="previous chapter (use the left arrow)">Formulation for IDL</a>
-      </div>
-    
-      <div class="pull-right">
-        <a class="btn btn-default" href="gradient_descents.html" title="next chapter (use the right arrow)">Gradient Descents</a>
-      </div>
-    </div>
-    <div class="clearer"></div>
-  
+          
         </div>
-        <div class="clearfix"></div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">IDL</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bi_convex_formulation.html">Formulation for IDL</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Learning Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gradient_descents.html">Gradient Descents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dual_ascents.html">Dual Ascents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prediction.html">Predicting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classification_operational_example.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="bi_convex_formulation.html" title="previous chapter">Formulation for IDL</a></li>
+      <li>Next: <a href="gradient_descents.html" title="next chapter">Gradient Descents</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
     </div>
-    <div class="related" role="navigation" aria-label="related navigation">
-      <h3>Navigation</h3>
-      <ul>
-        <li class="right" style="margin-right: 10px">
-          <a href="../genindex.html" title="General Index"
-             >index</a></li>
-        <li class="right" >
-          <a href="../py-modindex.html" title="Python Module Index"
-             >modules</a> |</li>
-        <li class="right" >
-          <a href="gradient_descents.html" title="Gradient Descents"
-             >next</a> |</li>
-        <li class="right" >
-          <a href="bi_convex_formulation.html" title="Formulation for IDL"
-             >previous</a> |</li>
-        <li class="nav-item nav-item-0"><a href="../index.html">IDL 0.9 documentation</a> &#187;</li> 
-      </ul>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
     </div>
-<script type="text/javascript">
-  $("#mobile-toggle a").click(function () {
-    $("#left-column").toggle();
-  });
-</script>
-<script type="text/javascript" src="../_static/js/bootstrap.js"></script>
-  <div class="footer">
-    &copy; Copyright . Created using <a href="http://sphinx.pocoo.org/">Sphinx</a>.
-  </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/sections/learning.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
   </body>
 </html>
