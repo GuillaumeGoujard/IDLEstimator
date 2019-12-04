@@ -14,19 +14,19 @@ class IDLModel(BaseEstimator):
 
     Parameters
     ----------
-    hidden_variables : int
+    :param hidden_variables: int
         number of hidden variables of the vector X (see
-    dual_learning_rate : float
+    :param dual_learning_rate: float
         Positive float, Dual learning rate (IDL's "alpha")
-    tol_fenchtel : float
-        Positive float, Fenchtel tolerance threshold for dual's update (IDL's "alpha")
-    verbosity : bool
+    :param tol_fenchel: float
+        Positive float, Fenchel tolerance threshold for dual's update (IDL's "alpha")
+    :param verbosity: bool
         Verbosity of the training process.
-    random_state : int
+    :param random_state: int
         Random number seed for initialization.
-    solver : string
+    :param solver: string
         solver used for cvxpy, if None then we select "ECOS"
-    solver_options : dict
+    :param solver_options: dict
         options for the solver to use
 
     Note
@@ -51,26 +51,22 @@ class IDLModel(BaseEstimator):
 
 
     def fit(self, X, y, rounds_number=100, verbose=True, type_of_training="two_loops"):
-        """Fit IDL Model
+        """Fit IDL Model \n
 
-        Parameters
-        ----------
-        X : array_like
+        :param X: array_like
             Feature matrix
-        y : array_like
+        :param y: array_like
             Labels
-        max_rounds_number : int
+        :param max_rounds_number: int
             Maximum rounds number in the outer loop
-        verbose : bool
-        type_of_training : string
+        :param verbose: bool
+        :param type_of_training: string
             Two types of training :
                 * "two_loops" : RECOMMENDED, we optimize the theta, X variables and then we do one step of dual ascent.
                 * "one_loop" : one iteration is going to successively operate one step of gradient descent and one step
                 of dual ascent
 
-        Returns
-        -------
-        self : object
+        :return: self : object
             Returns self.
         """
         #For multi-label y, set multi_output=True to allow 2D and sparse y.
@@ -108,17 +104,12 @@ class IDLModel(BaseEstimator):
 
     def predict(self, X, k_iterations=10000):
         """ Predicting function.
-
-        Parameters
-        ----------
-        X : array-like
+        :param X: array-like
             The input sample.
-        k_iterations : int
+        :param k_iterations: int
             Maximum number of Picard iterations
 
-        Returns
-        -------
-        y : array-like
+        :return: y: array-like
             Returns a prediction array.
         """
         X = check_array(X, accept_sparse=True)

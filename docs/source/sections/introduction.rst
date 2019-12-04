@@ -9,7 +9,7 @@ gradient descents (see more at :ref:`Gradient Descents`) and dual ascent
 (see more at :ref:`Dual Ascents`).
 
 .. _Implicit Deep Learning:
-1.1 Implicit Deep Learning
+Implicit Deep Learning
 *************************
 
 Given an input :math:`u \in \mathbb{R}^n`, where n denotes the number of features,
@@ -26,9 +26,9 @@ where :math:`(.)_+ := \text{max}(0,.)` is ReLU activation, :math:`x \in \mathbb{
 (h is the number of hidden features), :math:`\Theta := (A,B,c,D,E,f)` are matrices and vectors of appropriate size, they define the
 parameters of the model. The hidden variable :math:`x` is implicit in the sense that there is in general no analytical
 formula for it, this is different from classic deep learning for which, given the model parameters, the hidden
-variables can be computed explicitly via propagation trough the network.
+variables can be computed explicitly via propagation through the network.
 
-1.2 Notation and definitions
+Notation and definitions
 *************************
 We denote :math:`\Vert . \Vert` the eucledian norm, :math:`\Vert . \Vert_2` the corresponding norm (i.e. the spectral norm) and
 :math:`\Vert . \Vert_F` the Frobenius norm. :math:`\mathbb{R}_+^n` denotes the positive orthant of the vector space :math:`\mathbb{R}^n, \mathbb{S}^n`
@@ -49,7 +49,7 @@ if for all :math:`x \in \mathcal{X}`, the function :math:`y \rightarrow f(x,y)` 
 We say that a function is smooth if it is differentiable and its gradient is Lipschitz continious. We say that :math:`f` is bi-smooth if it is smooth in :math:`x` given :math:`y` and
 vice-versa. An example of bi-smooth and bi-convex function is :math:`(x,A) \rightarrow x^TAx, A \in \mathbb{S}_+^n`.
 
-2 Well-posedness
+Well-posedness
 *************************
 We say that matrix :math:`D` is well-posed for :eq:`eq_1` if there exists a unique solution :math:`x = (Dx + \delta)_+ \forall \delta \in \mathbb{R}^h`.
 Using the fact that ReLU is 1-Lipschitz we have for :math:`x_1,x_2 \in \mathbb{R}^h`

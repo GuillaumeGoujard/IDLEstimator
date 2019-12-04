@@ -19,7 +19,7 @@ squared error loss) reads
     \end{align}
     :label: eq_2
 
-where :math:`1_m` is a column vector of size :math:`m` consisting of ones. For clarity we have highlighted in \color{blue}{blue} the optimization variables.
+where :math:`1_m` is a column vector of size :math:`m` consisting of ones. For clarity we have highlighted in :math:`\color{blue}{\text{blue}}` the optimization variables.
 The non-convexity of this problem arises from the nonlinear implicit constraint and
 the matrix product terms :math:`AX` and :math:`DX`. In practice we replace the constraint :math:`\Vert D \Vert_2 < 1`
 by the closed convex form :math:`\Vert D \Vert_2 \leq 1 - \epsilon`, where :math:`\epsilon > 0` is small.
@@ -101,6 +101,10 @@ Schur complement we can prove it is equivalent to
 If D satisfies :eq:`eq_5` then it satisfies :eq:`eq_6`. We imediately have that :math:`D = \delta I_n` with :math:`\delta \leq \frac{1}{2}` satisfies :eq:`eq_5`
 (and :math:`\Vert D \Vert_2 \leq 1 - \epsilon`). Which proves that both LMIs are feasible.
 
+
+Bi-convex Formulation
+***********************************
+
 From this proof, the problem formulation reads
 
 .. math::
@@ -112,10 +116,3 @@ From this proof, the problem formulation reads
     :label: eq_7
 
 this problem is well-posed -feasible solutions exist- and bi-smooth.
-
-
-Bi-convex Formulation
-***********************************
-
-.. automodule:: utilities.GradientDescents
-    :members:

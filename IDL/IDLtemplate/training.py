@@ -19,37 +19,34 @@ class ResultsIDL():
 
 def train(U, y, theta, X, outer_max_rounds_number=50, inner_max_rounds_number=500, inner_loop_tol=1e-3,
           dual_learning_rate=0.1, tol_fenchtel=0.01, evals_result=None, verbose=True, solver=None, solver_options=None):
-    """Train a IDLModel with given parameters.
-        Parameters
-        ----------
-        U : array_like
+    """Train a IDLModel with given parameters. \n
+
+        :param U: array_like
             Feature matrix.
-        y : array_like
+        :param y: array_like
             Labels.
-        outer_max_rounds_number: int
+        :param outer_max_rounds_number: int
             Number of iterations in the outer loop, i.e, max number of dual update. Training will stop automatically, if
             the dual variables are not updated for an iteration.
-        inner_max_rounds_number: int
+        :param inner_max_rounds_number: int
             Number of iterations in the inner loop, i.e, max number of steps in gradient descents for theta given dual
             variables.
-        inner_loop_tol : float
+        :param inner_loop_tol: float
             Inner loop will break automatically, if the loss does not decrease by more than the inner_loop_tol for an
             iteration
-        dual_learning_rate : float
+        :param dual_learning_rate: float
             Positive float, Dual learning rate (IDL's "alpha")
-        tol_fenchtel : float
+        :param tol_fenchtel: float
             Positive float, Fenchtel tolerance threshold for dual's update (IDL's "alpha")
-        evals_result: list of pairs (float, float)
+        :param evals_result: list of pairs (float, float)
             Training losses list for general loss and L2 Loss. Will help us track the performance of the model.
-        verbose : bool
+        :param verbose: bool
             If **verbose** is True then the evaluation metric on the training set is
             printed at each dual update stage.
-        solver : string
+        :param solver: string
             solver used for cvxpy, if None then we select "ECOS"
 
-        Returns
-        -------
-        ResultsIDL : a trained IDL model
+        :return: ResultsIDL: a trained IDL model
     """
 
     L = me.loss(U, y, theta, X)
@@ -103,32 +100,29 @@ def train(U, y, theta, X, outer_max_rounds_number=50, inner_max_rounds_number=50
 
 def train_theta_lambda(U, y, theta, X, outer_max_rounds_number=50, early_stopping_rounds=10, dual_learning_rate=0.1,
                        tol_fenchtel=0.01, evals_result=None, verbose=True, solver=None, solver_options=None):
-    """Train a IDLModel with given parameters.
-        Parameters
-        ----------
-        U : array_like
+    """Train a IDLModel with given parameters. \n
+
+        :param U: array_like
             Feature matrix.
-        y : array_like
+        :param y: array_like
             Labels.
-        outer_max_rounds_number: int
+        :param outer_max_rounds_number: int
             Number of iterations in the outer loop.
-        early_stopping_rounds: int
+        :param early_stopping_rounds: int
             Training will stop automatically if for early_stopping_rounds iterations, the general loss has not decreased.
-        dual_learning_rate : float
+        :param dual_learning_rate: float
             Positive float, Dual learning rate (IDL's "alpha")
-        tol_fenchtel : float
-            Positive float, Fenchtel tolerance threshold for dual's update (IDL's "alpha")
-        evals_result: list of pairs (float, float)
+        :param tol_fenchtel: float
+            Positive float, Fenchel tolerance threshold for dual's update (IDL's "alpha")
+        :param evals_result: list of pairs (float, float)
             Training losses list for general loss and L2 Loss. Will help us track the performance of the model.
-        verbose : bool
+        :param verbose: bool
             If **verbose** is True then the evaluation metric on the training set is
             printed at each dual update stage.
-        solver : string
+        :param solver: string
             solver used for cvxpy, if None then we select "ECOS"
 
-        Returns
-        -------
-        ResultsIDL : a trained IDL model
+        :return: ResultsIDL: a trained IDL model
     """
 
     L = me.loss(U, y, theta, X)
@@ -173,27 +167,24 @@ def train_theta_lambda(U, y, theta, X, outer_max_rounds_number=50, early_stoppin
 
 
 def initialize_theta(U, y, h_variables, dual_learning_rate=0.1, tol_fenchtel=0.01, verbose=True, random_state=0):
-    """Initialize theta and X for a IDLModel with given parameters.
-            Parameters
-            ----------
-            U : array_like
+    """Initialize theta and X for a IDLModel with given parameters. \n
+
+            :param U: array_like
                 Feature matrix.
-            y : array_like
+            :param y: array_like
                 Labels.
-            h_variables: int
+            :param h_variables: int
                 Number of hidden variables in the X vector.
-            dual_learning_rate : float
+            :param dual_learning_rate: float
                 Positive float, Dual learning rate (IDL's "alpha").
-            tol_fenchtel : float
+            :param tol_fenchtel: float
                 Positive float, Fenchtel tolerance threshold for dual's update (IDL's "alpha").
-            verbose : bool
+            :param verbose: bool
                 If **verbose** is True then some metrics will be printed on the console.
-            random_state : int
+            :param random_state: int
                 Random number seed.
 
-            Returns
-            -------
-            Theta, X : a pair of IDL parameter and hidden features
+            :return: Theta, X: a pair of IDL parameter and hidden features
     """
     if verbose:
         print("=" * 60)
