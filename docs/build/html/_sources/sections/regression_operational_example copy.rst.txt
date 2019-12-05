@@ -1,5 +1,0 @@
-Classification Example : MNIST
-===============================
-
-**Example**
--------------

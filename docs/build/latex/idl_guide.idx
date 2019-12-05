@@ -1,0 +1,7 @@
+\indexentry{IDLModel (class in IDL)@\spxentry{IDLModel}\spxextra{class in IDL}|hyperpage}{7}
+\indexentry{fit() (IDL.IDLModel method)@\spxentry{fit()}\spxextra{IDL.IDLModel method}|hyperpage}{7}
+\indexentry{utilities.GradientDescents (module)@\spxentry{utilities.GradientDescents}\spxextra{module}|hyperpage}{10}
+\indexentry{gradient\_descent\_theta() (in module utilities.GradientDescents)@\spxentry{gradient\_descent\_theta()}\spxextra{in module utilities.GradientDescents}|hyperpage}{10}
+\indexentry{utilities.DualAscents (module)@\spxentry{utilities.DualAscents}\spxextra{module}|hyperpage}{14}
+\indexentry{IDLModel (class in IDL)@\spxentry{IDLModel}\spxextra{class in IDL}|hyperpage}{15}
+\indexentry{predict() (IDL.IDLModel method)@\spxentry{predict()}\spxextra{IDL.IDLModel method}|hyperpage}{15}
