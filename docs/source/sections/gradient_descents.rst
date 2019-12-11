@@ -76,10 +76,10 @@ A Lipschitz constant for this gradient is
     L_X(\Theta) = \frac{1}{m}(\Vert A^TA + \Lambda - \Lambda D + D^T\Lambda \Vert_2 + \lambda_{\text{max}} \Vert D \Vert_2^2).
 
 We can then take the step-size :math:`\alpha_X(\Theta) = \frac{1}{L_X(\Theta)}`. We propose the following block coordinate projected
-gradient scheme (BC-gradient) to nd a candidate solution to :eq:`eq_7. We denote compactly the convex set
+gradient scheme (BC-gradient) to find a candidate solution to :eq:`eq_7. We denote compactly the convex set
 
 .. math::
-    \mathcal{S}_{\Theta} := \{\Theta \vert \Lambda + A^TA - (\Lambda D + D^T \Lambda) \in \mathbb{s}_+^h, \Vert D \Vert_2 \leq 1 - \epsilon \}
+    \mathcal{S}_{\Theta} := \{\Theta \vert \Lambda + A^TA - (\Lambda D + D^T \Lambda) \in \mathbb{S}_+^h, \Vert D \Vert_2 \leq 1 - \epsilon \}
 
 and :math:`\mathcal{P}_{\mathcal{S}_{\Theta}}` the corresponding convex projection
 
@@ -91,16 +91,6 @@ and :math:`\mathcal{P}_{\mathcal{S}_{\Theta}}` the corresponding convex projecti
         X^k &= \bigg(X^{k-1} - \alpha_X(\Theta^k) \nabla_X \mathcal{G}(\Theta^k,X^{k-1}) \bigg)
     \end{align}
 **end**
-
-Bi-Convexity of the Loss function
-**********************************
-TODO
-
-
-Gradient Descents
-*************************
-TODO
-
 
 Code for calculating Gradient Descent
 *************************

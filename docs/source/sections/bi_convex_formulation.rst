@@ -47,7 +47,7 @@ Given :math:`X = [x_1, \cdots, x_m]` and :math:`Z = [z_1, \cdots, z_m]` we write
     \mathcal{F}(X,Z) := \frac{1}{m} \sum_{i=1}^m \mathcal{F}(x_i,z_i).
 
 A Lagrangian relaxation approach to solving :eq:`eq_2` problem using the implicit constraint formulation :eq:`eq_3` consists in
-solving given a dual variable :math:`\lambda \in \mathcal{R}_+^h`
+solving given a dual variable :math:`\lambda \in \mathbb{R}_+^h`
 
 .. math::
     \begin{align}
@@ -61,7 +61,7 @@ with extra conditions on :math:`\Theta` as shown in the next section.
 
 Linear matrix inequality parameter constraints for bi-convexity
 *************************
-Let us define :math:`\Lambda = diag(\lambda) \in \mathbb{S}_+^h`
+Let us define :math:`\Lambda = \text{diag}(\lambda) \in \mathbb{S}_+^h`
 
 Theorem 1. *Problem* :eq:`eq_4` *is bi-convex in* :math:`[\Theta,X]` *if we impose one of the two following feasible linear matrix inequalities (LMI)*
 
@@ -111,7 +111,8 @@ From this proof, the problem formulation reads
     \begin{align}
         \min_{\color{blue}{X} \geq 0, \color{blue}{\Theta}} \quad &\mathcal{L}(Y,[\color{blue}{\Theta},\color{blue}{X}]) + \lambda^T \mathcal{F}(\color{blue}{X},\color{blue}{DX} + \color{blue}{E}U + \color{blue}{f}1_m^T) \\
         \text{s.t.} \quad &\Vert \color{blue}{D} \Vert_2 \leq 1 - \epsilon \\
-                    \quad &\Lambda + \color{blue}{A}^T\color{blue}{A} - (\Lambda \color{blue}{D} + \color{blue}{D}^T \Lambda) \in \mathbb{S}_+^h,
+                    \quad &\Lambda + \color{blue}{A}^T\color{blue}{A} - (\Lambda \color{blue}{D} + \color{blue}{D}^T \Lambda) \in \mathbb{S}_+^h \\
+                    \quad &\Lambda = \text{diag}(\lambda) \in \mathbb{S}_+^h,
     \end{align}
     :label: eq_7
 

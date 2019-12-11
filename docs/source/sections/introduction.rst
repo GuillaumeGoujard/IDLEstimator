@@ -67,19 +67,6 @@ Picard iterations
 Note that :math:`\Vert D \Vert_2 < 1` is only a sufficient condition for well-posedness. Nevertheless this is the only condition
 we will consider in this article.
 
-Loss Functions
-*************************
-** section 3.2 equation 4 ** + Classification loss
-(see more at :ref:`Learning`)
-
-Description of the learning process
-*************************************
-(see more at :ref:`Formulation`)
-
-Description of the prediction process
-**************************************
-(see more at :ref:`Prediction`)
-
 Setup
 ******
 TODO
