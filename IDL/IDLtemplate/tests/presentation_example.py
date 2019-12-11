@@ -112,7 +112,7 @@ def sin_example():
     IDL = idl.IDLModel(hidden_variables=hidden_variables, dual_learning_rate=dual_learning_rate, tol_fenchel=tol_fenchtel,
                        initialization_theta=(theta.copy(), X.copy()), starting_lambda=starting_lambda,
                        random_state=0, verbosity=True)
-    IDL.fit(X_train, y_train, rounds_number=200, verbose=True, type_of_training="two_loops")
+    IDL.fit(X_train, y_train, rounds_number=200, verbose=True, type_of_training="two_loops", eval_set = (X_test, y_test))
 
     y_pred = IDL.predict(X_test)
     X_test_model = X_test.reshape(1, -1).copy()
@@ -128,10 +128,11 @@ def sin_example():
     dual_learning_rate = 1000
     tol_fenchtel = 1e-10
     IDL = idl.IDLModel(hidden_variables=hidden_variables, dual_learning_rate=dual_learning_rate, tol_fenchel=tol_fenchtel,
-                       early_stopping=True,
+                       early_stopping=False,
                        initialization_theta=(theta.copy(), X.copy()), starting_lambda=1000000,
                        random_state=0, verbosity=True)
-    IDL.fit(X_train, y_train, rounds_number=200, verbose=True, type_of_training="two_loops")
+    IDL.fit(X_train, y_train, rounds_number=200, verbose=True, type_of_training="two_loops", eval_set = (X_test, y_test),
+            )
 
     y_pred = IDL.predict(X_test)
     X_test_model = X_test.reshape(1, -1).copy()

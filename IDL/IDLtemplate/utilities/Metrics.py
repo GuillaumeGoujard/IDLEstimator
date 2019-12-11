@@ -21,7 +21,7 @@ def test_satisfies_contraints(y, U, theta, X):
 
 def L2Loss(U, y, theta, X):
     A, B, c, D, E, f, Lambda = theta["A"], theta["B"], theta["c"], theta["D"], theta["E"], theta["f"], theta["Lambda"]
-    m = theta["m"]
+    m = U.shape[1]
     M = A@X + B@U + c@np.ones((1,m)) - y
     return (1/(2*m))*np.linalg.norm(M, ord="fro")**2
 
@@ -42,6 +42,7 @@ def how_far_from_RELU(U, X, theta):
 
 def plot_training_errors(training_errors):
     L2_loss = np.array(training_errors)
+
     fig, ax1 = plt.subplots(figsize=(12,8))
 
     color = 'tab:red'
@@ -54,7 +55,10 @@ def plot_training_errors(training_errors):
 
     color = 'tab:blue'
     ax2.set_ylabel('L2 loss', color=color)  # we already handled the x-label with ax1
-    ax2.plot(L2_loss[:, 1][1:], color=color)
+    ax2.plot(L2_loss[:, 1][1:], label="L2 loss on train set")
+    if L2_loss.shape[1] == 5 :
+        ax2.plot(L2_loss[:, 4][1:], label="L2 loss on eval set")
+    ax2.legend()
     ax2.tick_params(axis='y', labelcolor=color)
 
     fig.tight_layout()  # otherwise the right y-label is slightly clipped

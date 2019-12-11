@@ -17,7 +17,7 @@ class ResultsIDL():
 
 def train(U, y, theta, X, outer_max_rounds_number=50, inner_max_rounds_number=500, inner_loop_tol=1e-3,
           dual_learning_rate=0.1, tol_fenchtel=0.01, evals_result=None, verbose=True,
-          early_stopping=True):
+          early_stopping=True, eval_set = None):
     """Train a IDLModel with given parameters.
         Parameters
         ----------
@@ -50,11 +50,21 @@ def train(U, y, theta, X, outer_max_rounds_number=50, inner_max_rounds_number=50
         -------
         ResultsIDL : a trained IDL model
     """
+    if eval_set is not None:
+        U_test = eval_set[0].T.copy()
+        y_test = eval_set[1]
+        n, m_temp = U_test.shape
+        h = X.shape[0]
+        X_temp = np.ones(shape=(h, m_temp))
 
     L = me.loss(U, y, theta, X)
     if evals_result is not None:
-        evals_result.append([L, me.L2Loss(U, y, theta, X), np.linalg.norm(theta["Lambda"], ord=1),
-                             me.how_far_from_RELU(U, X, theta)])
+        eval_element = [L, me.L2Loss(U, y, theta, X),  np.linalg.norm(theta["Lambda"], ord=1), me.how_far_from_RELU(U, X, theta)]
+        if eval_set is not None:
+            X_temp, loss = L2_eval_set(U_test, y_test, X_temp, theta)
+            eval_element = eval_element + [loss]
+            print(eval_element)
+        evals_result.append(eval_element)
 
     if verbose:
         print("Launching training... \n")
@@ -67,7 +77,11 @@ def train(U, y, theta, X, outer_max_rounds_number=50, inner_max_rounds_number=50
             nL = me.loss(U, y, theta, X)
             l = me.L2Loss(U, y, theta, X)
             if evals_result is not None:
-                evals_result.append([nL, l, np.linalg.norm(theta["Lambda"], ord=1), me.how_far_from_RELU(U, X, theta)])
+                eval_element = [nL, l, np.linalg.norm(theta["Lambda"], ord=1), me.how_far_from_RELU(U, X, theta)]
+                if eval_set is not None:
+                    X_temp, loss = L2_eval_set(U_test, y_test, X_temp, theta)
+                    eval_element = eval_element + [loss]
+                evals_result.append(eval_element)
             if abs(nL - L) < inner_loop_tol:
                 break
             L = nL
@@ -77,14 +91,27 @@ def train(U, y, theta, X, outer_max_rounds_number=50, inner_max_rounds_number=50
         dlambda = updated_lambda_vector - last_lambda
         theta["Lambda"] = np.diag(updated_lambda_vector)
 
+        if eval_set is not None:
+            X_temp, loss = L2_eval_set(U_test, y_test, X_temp, theta)
+            # print("L2 Loss on eval set : ", loss)
+
         nL = me.loss(U, y, theta, X)
         l = me.L2Loss(U, y, theta, X)
         if evals_result is not None:
-            evals_result.append([nL, l, np.linalg.norm(theta["Lambda"], ord=1), me.how_far_from_RELU(U, X, theta)])
+            eval_element = [nL, l, np.linalg.norm(theta["Lambda"], ord=1), me.how_far_from_RELU(U, X, theta)]
+            if eval_set is not None:
+                X_temp, loss = L2_eval_set(U_test, y_test, X_temp, theta)
+                eval_element = eval_element + [loss]
+                # print(eval_element)
+            evals_result.append(eval_element)
 
         if verbose :
-            print("Updating Lambda : General Loss after round {} : ".format(j + 1), round(nL, 3), " L2Loss : ",
-                  round(l, 3))
+            print_message = "Updating Lambda... General Loss after round {} : ".format(j + 1) + str(round(nL, 4)) + \
+                            ", L2Loss : " + str(round(l, 4))
+            if eval_set is not None:
+                eval_element = evals_result[-1][-1]
+                print_message += ", L2Loss on eval is " + str(round(eval_element, 4))
+            print(print_message)
             if j % 10 == 0 :
                 pi.plot_before_after_picard(U, y, theta, X, j)
 
@@ -96,6 +123,11 @@ def train(U, y, theta, X, outer_max_rounds_number=50, inner_max_rounds_number=50
     return training_result
 
 
+def L2_eval_set(U_test, y_test, X_temp, theta):
+    m_samples = U_test.shape[1]
+    X_temp = pi.picard_iterations(X_temp, theta["D"], theta["E"] @ U_test + theta["f"] @ np.ones((1, m_samples)),
+                             k_iterations=1000)
+    return X_temp, me.L2Loss(U_test, y_test, theta, X_temp)
 
 def train_theta_lambda(U, y, theta, X, outer_max_rounds_number=50, early_stopping_rounds=10, dual_learning_rate=0.1,
                        tol_fenchtel=0.01, evals_result=None, verbose=True, solver=None, solver_options=None):

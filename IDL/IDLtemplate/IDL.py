@@ -45,7 +45,7 @@ class IDLModel(BaseEstimator):
         self.initialization_theta = initialization_theta
         self.early_stopping = early_stopping
 
-    def fit(self, X, y, rounds_number=100, verbose=True, type_of_training="two_loops"):
+    def fit(self, X, y, rounds_number=100, verbose=True, type_of_training="two_loops", eval_set = None):
         """Fit IDL Model \n
 
         :param X: array_like
@@ -81,7 +81,8 @@ class IDLModel(BaseEstimator):
                                            inner_max_rounds_number=1000,
                                            inner_loop_tol=self.inner_tol, dual_learning_rate=self.dual_learning_rate,
                                            tol_fenchtel=self.tol_fenchtel, evals_result=evals_result, verbose=verbose,
-                                           early_stopping = self.early_stopping)
+                                           early_stopping = self.early_stopping,
+                                           eval_set = eval_set)
 
         elif type_of_training == "one_loop":
             IDLResults = idltraining.train_theta_lambda(U, y, theta, X, outer_max_rounds_number=rounds_number,

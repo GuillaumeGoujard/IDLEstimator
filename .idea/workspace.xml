@@ -2,35 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97b0686d-5d10-4a7a-9111-942bab0dbc7a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/IDL/IDLtemplate/tests/presentation_example.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/ExampleABcDEf.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/tests/ExampleABcDEf.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/IDL.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/IDL.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/presentation_example.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/tests/boston.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/tests/gradient_tests.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/tests/guillaume_testset.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/tests/mnist.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/tests/test_common.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/tests/test_projection.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/tests/test_template.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/tests/theta_example.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/tests/presentation_example.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/tests/presentation_example.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/training.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/training.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/ConvexProjection.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/ConvexProjection.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/DualAscents.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/DualAscents.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/GradientDescents.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/GradientDescents.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/Metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/Metrics.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/PicardIterations.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/PicardIterations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/draft_examples/__init__.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/workingExample.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/tests/workingExample.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/environment.pickle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/sections/learning.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/sections/learning.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/sections/prediction.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/sections/prediction.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/latex/idl_guide.fdb_latexmk" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/latex/idl_guide.fdb_latexmk" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/latex/idl_guide.fls" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/latex/idl_guide.fls" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/latex/idl_guide.log" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/latex/idl_guide.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/latex/idl_guide.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/latex/idl_guide.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/latex/idl_guide.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/latex/idl_guide.tex" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -43,8 +18,11 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/IDL.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-677">
-              <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+            <state relative-caret-position="175">
+              <caret line="84" column="62" selection-start-line="84" selection-start-column="62" selection-end-line="84" selection-end-column="62" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -52,64 +30,10 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/training.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3525">
-              <caret line="235" column="8" lean-forward="true" selection-start-line="235" selection-start-column="8" selection-end-line="235" selection-end-column="8" />
+            <state relative-caret-position="323">
+              <caret line="105" column="27" selection-start-line="105" selection-start-column="27" selection-end-line="105" selection-end-column="27" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/PicardIterations.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="210">
-              <caret line="14" column="28" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="28" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/Metrics.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="58">
-              <caret line="4" column="73" lean-forward="true" selection-start-line="4" selection-start-column="73" selection-end-line="4" selection-end-column="73" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/GradientDescents.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="15">
-              <caret line="1" column="22" lean-forward="true" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/DualAscents.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/ConvexProjection.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="21" selection-start-line="21" selection-end-line="21" />
-              <folding>
-                <element signature="e#0#31#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -118,8 +42,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/tests/presentation_example.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="123" column="16" lean-forward="true" selection-start-line="123" selection-start-column="16" selection-end-line="123" selection-end-column="16" />
+            <state relative-caret-position="162">
+              <caret line="134" column="33" lean-forward="true" selection-start-line="134" selection-start-column="33" selection-end-line="134" selection-end-column="33" />
               <folding>
                 <element signature="e#0#17#0" expanded="true" />
               </folding>
@@ -128,12 +52,12 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/tests/workingExample.py">
+        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/Metrics.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="94" selection-start-line="94" selection-end-line="96" selection-end-column="88" />
+            <state relative-caret-position="168">
+              <caret line="57" column="32" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
               <folding>
-                <element signature="e#0#17#0" expanded="true" />
+                <element signature="e#0#18#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -204,9 +128,9 @@
         <option value="$PROJECT_DIR$/IDL/IDLtemplate/workingExample.py" />
         <option value="$PROJECT_DIR$/IDL/IDLtemplate/utilities/PicardIterations.py" />
         <option value="$PROJECT_DIR$/IDL/IDLtemplate/utilities/GradientDescents.py" />
+        <option value="$PROJECT_DIR$/IDL/IDLtemplate/IDL.py" />
         <option value="$PROJECT_DIR$/IDL/IDLtemplate/utilities/Metrics.py" />
         <option value="$PROJECT_DIR$/IDL/IDLtemplate/training.py" />
-        <option value="$PROJECT_DIR$/IDL/IDLtemplate/IDL.py" />
         <option value="$PROJECT_DIR$/IDL/IDLtemplate/tests/presentation_example.py" />
       </list>
     </option>
@@ -238,6 +162,13 @@
               <item name="EE227B_project" type="462c0819:PsiDirectoryNode" />
               <item name="docs" type="462c0819:PsiDirectoryNode" />
               <item name="build" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="EE227B_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EE227B_project" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+              <item name="latex" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="EE227B_project" type="b2602c69:ProjectViewProjectNode" />
@@ -518,12 +449,12 @@
       <workItem from="1575561248569" duration="9453000" />
       <workItem from="1575749256571" duration="69000" />
       <workItem from="1576023264712" duration="2817000" />
-      <workItem from="1576090202062" duration="1570000" />
+      <workItem from="1576090202062" duration="4180000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="95884000" />
+    <option name="totallyTimeSpent" value="98494000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -553,11 +484,11 @@
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32971016" />
       <window_info anchor="bottom" id="Terminal" order="11" weight="0.29589373" />
-      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.3152174" />
+      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.4746377" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info active="true" anchor="right" id="SciView" order="3" visible="true" weight="0.3144699" />
+      <window_info anchor="right" id="SciView" order="3" weight="0.58667624" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="right" id="R Graphics" order="5" weight="0.32995737" />
       <window_info anchor="right" id="R Packages" order="6" />
@@ -764,13 +695,6 @@
     <entry file="file://$PROJECT_DIR$/docs/source/sections/learning.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/build/latex/idl_guide.tex">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="8" column="27" selection-end-line="701" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/cvxpy/problems/problem.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="3990">
@@ -798,30 +722,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/PicardIterations.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="210">
-          <caret line="14" column="28" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="28" />
-          <folding>
-            <element signature="e#0#18#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/GradientDescents.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="22" lean-forward="true" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/DualAscents.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="120">
-          <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/ConvexProjection.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -832,10 +732,41 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/PicardIterations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="28" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/build/latex/idl_guide.tex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="27" selection-end-line="701" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/DualAscents.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/GradientDescents.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="22" lean-forward="true" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/Metrics.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="58">
-          <caret line="4" column="73" lean-forward="true" selection-start-line="4" selection-start-column="73" selection-end-line="4" selection-end-column="73" />
+        <state relative-caret-position="168">
+          <caret line="57" column="32" selection-start-line="57" selection-start-column="32" selection-end-line="57" selection-end-column="32" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -844,8 +775,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/training.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3525">
-          <caret line="235" column="8" lean-forward="true" selection-start-line="235" selection-start-column="8" selection-end-line="235" selection-end-column="8" />
+        <state relative-caret-position="323">
+          <caret line="105" column="27" selection-start-line="105" selection-start-column="27" selection-end-line="105" selection-end-column="27" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
           </folding>
@@ -854,15 +785,18 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/IDL.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-677">
-          <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
+        <state relative-caret-position="175">
+          <caret line="84" column="62" selection-start-line="84" selection-start-column="62" selection-end-line="84" selection-end-column="62" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/tests/presentation_example.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="186">
-          <caret line="123" column="16" lean-forward="true" selection-start-line="123" selection-start-column="16" selection-end-line="123" selection-end-column="16" />
+        <state relative-caret-position="162">
+          <caret line="134" column="33" lean-forward="true" selection-start-line="134" selection-start-column="33" selection-end-line="134" selection-end-column="33" />
           <folding>
             <element signature="e#0#17#0" expanded="true" />
           </folding>
