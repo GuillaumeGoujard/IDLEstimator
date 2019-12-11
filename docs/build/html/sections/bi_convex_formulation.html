@@ -1,0 +1,203 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Formulation for IDL &#8212; IDL 0.9 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+    <link rel="next" title="Learning Process" href="learning.html" />
+    <link rel="prev" title="Introduction" href="introduction.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <div class="section" id="formulation-for-idl">
+<span id="formulation"></span><h1>Formulation for IDL<a class="headerlink" href="#formulation-for-idl" title="Permalink to this headline">¶</a></h1>
+<p>See <a class="reference internal" href="citing.html#citing"><span class="std std-ref">Citing</span></a> for in-depth explanation</p>
+<div class="section" id="problem-formulation">
+<h2>Problem formulation<a class="headerlink" href="#problem-formulation" title="Permalink to this headline">¶</a></h2>
+<p>Let us consider the input and output data matrices <span class="math notranslate nohighlight">\(U = [u_1, \cdots, u_m] \in \mathbb{R}^{n \times m},Y = [y_1, \cdots, y_m] \in \mathbb{R}^{p \times m}\)</span>
+with <span class="math notranslate nohighlight">\(m\)</span> being the number of datapoints - the corresponding optimization regression problem (i.e. with
+squared error loss) reads</p>
+<div class="math notranslate nohighlight" id="equation-eq-2">
+<span class="eqno">(1)<a class="headerlink" href="#equation-eq-2" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+    \min_{\color{blue}{X}, \color{blue}{\Theta}} \quad &amp;\mathcal{L}(Y,[\color{blue}{\Theta},\color{blue}{X}]) := \frac{1}{2m} \Vert \color{blue}{AX} + \color{blue}{B}U + \color{blue}{c}1_m^T - Y \Vert_F^2 \\
+    \text{s.t.} \quad &amp;\color{blue}{X}=(\color{blue}{DX} + \color{blue}{E}U + \color{blue}{f}1_m^T)_+ \\
+                \quad &amp;\Vert \color{blue}{D} \Vert_2 &lt; 1,
+\end{align}\end{split}\]</div>
+<p>where <span class="math notranslate nohighlight">\(1_m\)</span> is a column vector of size <span class="math notranslate nohighlight">\(m\)</span> consisting of ones. For clarity we have highlighted in <span class="math notranslate nohighlight">\(\color{blue}{\text{blue}}\)</span> the optimization variables.
+The non-convexity of this problem arises from the nonlinear implicit constraint and
+the matrix product terms <span class="math notranslate nohighlight">\(AX\)</span> and <span class="math notranslate nohighlight">\(DX\)</span>. In practice we replace the constraint <span class="math notranslate nohighlight">\(\Vert D \Vert_2 &lt; 1\)</span>
+by the closed convex form <span class="math notranslate nohighlight">\(\Vert D \Vert_2 \leq 1 - \epsilon\)</span>, where <span class="math notranslate nohighlight">\(\epsilon &gt; 0\)</span> is small.</p>
+</div>
+<div class="section" id="fenchel-divergence-lagrangian-relaxation">
+<h2>Fenchel Divergence Lagrangian Relaxation<a class="headerlink" href="#fenchel-divergence-lagrangian-relaxation" title="Permalink to this headline">¶</a></h2>
+<p>Using Fenchel-Young inequality, it can be shown that the equation <span class="math notranslate nohighlight">\(x = (Dx + Eu + f)_+\)</span> is equivalent to</p>
+<div class="math notranslate nohighlight" id="equation-eq-3">
+<span class="eqno">(2)<a class="headerlink" href="#equation-eq-3" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{cases}
+    \mathcal{F}(x,Ax + Bu + c) = 0 \\
+    x \geq 0
+\end{cases}\end{split}\]</div>
+<p>with the Fenchel Divergence <span class="math notranslate nohighlight">\(\mathcal{F}\)</span> defined by</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{F}(x_1,x_2) := \frac{1}{2} x_1 \odot x_1 + \frac{1}{2} (x_2)_+ \odot (x_2)_+ - x_1 \odot x_2.\]</div>
+<p>We use the term divergence because by construction <span class="math notranslate nohighlight">\(\mathcal{F}(x_1,x_2) \geq 0 \forall x_1,x_2 \in \mathbb{R}_+^h \times \mathbb{R}^h\)</span>.
+Given <span class="math notranslate nohighlight">\(X = [x_1, \cdots, x_m]\)</span> and <span class="math notranslate nohighlight">\(Z = [z_1, \cdots, z_m]\)</span> we write</p>
+<div class="math notranslate nohighlight">
+\[\mathcal{F}(X,Z) := \frac{1}{m} \sum_{i=1}^m \mathcal{F}(x_i,z_i).\]</div>
+<p>A Lagrangian relaxation approach to solving <a class="reference internal" href="#equation-eq-2">(1)</a> problem using the implicit constraint formulation <a class="reference internal" href="#equation-eq-3">(2)</a> consists in
+solving given a dual variable <span class="math notranslate nohighlight">\(\lambda \in \mathcal{R}_+^h\)</span></p>
+<div class="math notranslate nohighlight" id="equation-eq-4">
+<span class="eqno">(3)<a class="headerlink" href="#equation-eq-4" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+    \min_{\color{blue}{X} \geq 0, \color{blue}{\Theta}} \quad &amp;\mathcal{L}(Y,[\color{blue}{\Theta},\color{blue}{X}]) + \lambda^T \mathcal{F}(\color{blue}{X},\color{blue}{DX} + \color{blue}{E}U + \color{blue}{f}1_m^T) \\
+    \text{s.t.} \quad &amp;\Vert \color{blue}{D} \Vert_2 &lt; 1,
+\end{align}\end{split}\]</div>
+<p>This problem is bi-smooth in <span class="math notranslate nohighlight">\([\Theta,X]\)</span>, but it is not convex or bi-convex. Nevertheless we can make it bi-convex
+with extra conditions on <span class="math notranslate nohighlight">\(\Theta\)</span> as shown in the next section.</p>
+</div>
+<div class="section" id="linear-matrix-inequality-parameter-constraints-for-bi-convexity">
+<h2>Linear matrix inequality parameter constraints for bi-convexity<a class="headerlink" href="#linear-matrix-inequality-parameter-constraints-for-bi-convexity" title="Permalink to this headline">¶</a></h2>
+<p>Let us define <span class="math notranslate nohighlight">\(\Lambda = diag(\lambda) \in \mathbb{S}_+^h\)</span></p>
+<p>Theorem 1. <em>Problem</em> <a class="reference internal" href="#equation-eq-4">(3)</a> <em>is bi-convex in</em> <span class="math notranslate nohighlight">\([\Theta,X]\)</span> <em>if we impose one of the two following feasible linear matrix inequalities (LMI)</em></p>
+<div class="math notranslate nohighlight" id="equation-eq-5">
+<span class="eqno">(4)<a class="headerlink" href="#equation-eq-5" title="Permalink to this equation">¶</a></span>\[\begin{split}\Lambda - (\Lambda D + D^T \Lambda) \in \mathbb{S}_+^h \\\end{split}\]</div>
+<div class="math notranslate nohighlight" id="equation-eq-6">
+<span class="eqno">(5)<a class="headerlink" href="#equation-eq-6" title="Permalink to this equation">¶</a></span>\[\begin{split}\Lambda + A^TA - (\Lambda D + D^T \Lambda) \in \mathbb{S}_+^h \\\end{split}\]</div>
+<p><em>Proof.</em> The loss term <span class="math notranslate nohighlight">\(\mathcal{L}(Y,[\Theta,X])\)</span> is already bi-convex in <span class="math notranslate nohighlight">\((\Theta,X)\)</span>, but it is not the case for the Fenchel
+Divergence term <span class="math notranslate nohighlight">\(\lambda^T \mathcal{F}(X,DX + EU + f1_m^T)\)</span>, which is not convex in <span class="math notranslate nohighlight">\(X\)</span> in the general case. A sufficient
+condition for this term to be convex in <span class="math notranslate nohighlight">\(X\)</span> given <span class="math notranslate nohighlight">\(\Theta\)</span> is for the following function</p>
+<div class="math notranslate nohighlight">
+\[x \rightarrow \lambda^T(\frac{1}{2} x \odot x - x \odot Dx) = \frac{1}{2}x^T(\Lambda - (\Lambda D + D^T \Lambda))x,\]</div>
+<p>to be convex. This term is convex in <span class="math notranslate nohighlight">\(x\)</span> if the LMI <a class="reference internal" href="#equation-eq-5">(4)</a> is satisfied. Now the second LMI similarly arises by
+leveraging the fact that we can also use the term in the loss to make the objective convex in <span class="math notranslate nohighlight">\(x\)</span>. Indeed the
+objective function of <a class="reference internal" href="#equation-eq-2">(1)</a> is convex in <span class="math notranslate nohighlight">\(x\)</span> if</p>
+<div class="math notranslate nohighlight">
+\[x \rightarrow \frac{1}{2}x^TA^TAx + \frac{1}{2}x^T(\Lambda - (\Lambda D + D^T \Lambda))x,\]</div>
+<p>is convex, which corresponds to LMI <a class="reference internal" href="#equation-eq-6">(5)</a>. It might not be obvious that <a class="reference internal" href="#equation-eq-6">(5)</a> is actually an LMI, but using
+Schur complement we can prove it is equivalent to</p>
+<div class="math notranslate nohighlight">
+\[\begin{split}- \begin{bmatrix}
+        I_p &amp; A \\
+        A^T &amp; \Lambda D + D^T \Lambda - \Lambda
+    \end{bmatrix}
+    \in \mathbb{S}_+^{p + h}.\end{split}\]</div>
+<p>If D satisfies <a class="reference internal" href="#equation-eq-5">(4)</a> then it satisfies <a class="reference internal" href="#equation-eq-6">(5)</a>. We imediately have that <span class="math notranslate nohighlight">\(D = \delta I_n\)</span> with <span class="math notranslate nohighlight">\(\delta \leq \frac{1}{2}\)</span> satisfies <a class="reference internal" href="#equation-eq-5">(4)</a>
+(and <span class="math notranslate nohighlight">\(\Vert D \Vert_2 \leq 1 - \epsilon\)</span>). Which proves that both LMIs are feasible.</p>
+</div>
+<div class="section" id="bi-convex-formulation">
+<h2>Bi-convex Formulation<a class="headerlink" href="#bi-convex-formulation" title="Permalink to this headline">¶</a></h2>
+<p>From this proof, the problem formulation reads</p>
+<div class="math notranslate nohighlight" id="equation-eq-7">
+<span class="eqno">(6)<a class="headerlink" href="#equation-eq-7" title="Permalink to this equation">¶</a></span>\[\begin{split}\begin{align}
+    \min_{\color{blue}{X} \geq 0, \color{blue}{\Theta}} \quad &amp;\mathcal{L}(Y,[\color{blue}{\Theta},\color{blue}{X}]) + \lambda^T \mathcal{F}(\color{blue}{X},\color{blue}{DX} + \color{blue}{E}U + \color{blue}{f}1_m^T) \\
+    \text{s.t.} \quad &amp;\Vert \color{blue}{D} \Vert_2 \leq 1 - \epsilon \\
+                \quad &amp;\Lambda + \color{blue}{A}^T\color{blue}{A} - (\Lambda \color{blue}{D} + \color{blue}{D}^T \Lambda) \in \mathbb{S}_+^h,
+\end{align}\end{split}\]</div>
+<p>this problem is well-posed -feasible solutions exist- and bi-smooth.</p>
+</div>
+</div>
+
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">IDL</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Formulation for IDL</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#problem-formulation">Problem formulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fenchel-divergence-lagrangian-relaxation">Fenchel Divergence Lagrangian Relaxation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#linear-matrix-inequality-parameter-constraints-for-bi-convexity">Linear matrix inequality parameter constraints for bi-convexity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#bi-convex-formulation">Bi-convex Formulation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="learning.html">Learning Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="gradient_descents.html">Gradient Descents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="dual_ascents.html">Dual Ascents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="prediction.html">Predicting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="classification_operational_example.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="citing.html">Citing</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+      <li>Previous: <a href="introduction.html" title="previous chapter">Introduction</a></li>
+      <li>Next: <a href="learning.html" title="next chapter">Learning Process</a></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+      |
+      <a href="../_sources/sections/bi_convex_formulation.rst.txt"
+          rel="nofollow">Page source</a>
+    </div>
+
+    
+
+    
+  </body>
+</html>

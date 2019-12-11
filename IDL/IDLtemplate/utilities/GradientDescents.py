@@ -1,4 +1,5 @@
 import numpy as np
+from utilities import ConvexProjection as cp
 
 def update_theta(theta, X, U, Y):
     grad_theta, lip_ABc, lip_DEf = gradient_descent_theta(theta, X, U, Y)
@@ -75,7 +76,7 @@ def alpha_x(theta, initialization=False):
                            np.max(Lambda) * (np.linalg.norm(D, ord="fro") ** 2))
     return 1 / lip_X
 
-def gradient_descent_x(theta, X, U, initialization=False):
+def gradient_descent_x(theta, X, U, y, initialization=False):
     m = theta["m"]
     A = theta["A"]
     B = theta["B"]
@@ -86,13 +87,14 @@ def gradient_descent_x(theta, X, U, initialization=False):
     Lambda = theta["Lambda"]
     # Make sure that the shapes from the outer products c @ np.ones(m) etc. are right
     if initialization :
-        grad_X = (1 / m) * (A.T @ (A @ X + B @ U + c @ np.ones(m).reshape(1, m)))
+        grad_X = (1 / m) * (A.T @ (A @ X + B @ U + c @ np.ones(m).reshape(1, m) - y ))
     else:
-        grad_X = (1 / m) * (A.T @ (A @ X + B @ U + c @ np.ones(m).reshape(1, m)) +
+        grad_X = (1 / m) * (A.T @ (A @ X + B @ U + c @ np.ones(m).reshape(1, m) - y) +
                                      (Lambda - Lambda @ D - D.T @ Lambda) @ X +
                                      D.T @ Lambda @ np.maximum(0, (D @ X + E @ U + f @ np.ones(m).reshape(1, m))) -
                                      Lambda @ (E @ U + f @ np.ones(m).reshape(1, m)))
     return grad_X
+
 
 def Omega_ABc(theta, X, U, Y):
     A, B, c = theta["A"], theta["B"], theta["c"]
@@ -102,3 +104,35 @@ def Omega_ABc(theta, X, U, Y):
 
 def Omega_DEfLambda(m, D, E, f, Lambda, X, U):
     return (1/m) * Lambda @ (np.maximum(0, (D @ X + E @ U + f @ np.ones(m).reshape(1, m))) - X)
+
+
+def block_update_X(U, y, theta, X, num_iter):
+    for k in range(num_iter):
+        X = np.maximum(0, X - alpha_x(theta) * gradient_descent_x(theta, X, U, y, initialization=True))
+    return X
+
+
+def block_update_ABc(U, y, theta, X):
+    h = theta["A"].shape[1]
+    n = theta["B"].shape[1]
+
+    Z = np.concatenate((X, U, np.ones((1, theta["m"]))), axis=0)
+    Theta = np.linalg.solve(Z @ Z.T + np.diag(np.ones((h + n + 1)) * 0.000001), Z @ y)
+    if (len(Theta.shape) == 1):
+        theta["A"] = Theta[0:h].reshape((1, h))
+        theta["B"] = Theta[h:h + n].reshape((1, n))
+        theta["c"] = Theta[h + n].T.reshape((1, 1))
+    else:
+        theta["A"] = Theta[0:h, :].T
+        theta["B"] = Theta[h:h + n:, :].T
+        theta["c"] = Theta[h + n, :].T
+
+    return theta
+
+
+def block_update_DEf(U, y, theta, X, num_iter):
+    for k in range(num_iter):
+        theta = update_DEf_init(theta, X, U, y)
+        theta["D"] = cp.non_cvx_projection(theta["D"], epsilon=1e-1)
+    return theta
+

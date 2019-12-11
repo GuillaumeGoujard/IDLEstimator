@@ -1,5 +1,5 @@
 import numpy as np
-
+import matplotlib.pyplot as plt
 
 def fenchtel_div(X, Y):
     Z = 0.5*(np.multiply(X, X) + np.multiply(np.maximum(0, Y), np.maximum(0, Y))) - np.multiply(X, Y)
@@ -35,4 +35,47 @@ def fenchtel_error(theta, X, U, lambda_=None):
     return np.float(lambda_ @ fenchtel_div(X, y_fenchtel))
 
 
+def how_far_from_RELU(U, X, theta):
+    return np.linalg.norm(X - np.maximum(0, theta["D"] @ X + theta["E"] @ U + theta["f"] @ np.ones((1, theta["m"]))),
+                   ord="fro")
 
+
+def plot_training_errors(training_errors):
+    L2_loss = np.array(training_errors)
+    fig, ax1 = plt.subplots(figsize=(12,8))
+
+    color = 'tab:red'
+    ax1.set_xlabel('rounds')
+    ax1.set_ylabel('General Loss', color=color)
+    ax1.plot(L2_loss[:, 0][1:], color=color)
+    ax1.tick_params(axis='y', labelcolor=color)
+
+    ax2 = ax1.twinx()  # instantiate a second axes that shares the same x-axis
+
+    color = 'tab:blue'
+    ax2.set_ylabel('L2 loss', color=color)  # we already handled the x-label with ax1
+    ax2.plot(L2_loss[:, 1][1:], color=color)
+    ax2.tick_params(axis='y', labelcolor=color)
+
+    fig.tight_layout()  # otherwise the right y-label is slightly clipped
+    plt.title("Training Errors in function of round")
+    plt.grid(True)
+    plt.show()
+
+    fig, ax1 = plt.subplots(figsize=(12, 8))
+    ax1.set_xlabel('rounds')
+    color = 'tab:red'
+    ax1.set_ylabel('1 norm of lambda vector', color=color)
+    ax1.plot(L2_loss[:, 2][1:], color=color)
+
+    ax2 = ax1.twinx()  # instantiate a second axes that shares the same x-axis
+
+    color = 'tab:blue'
+    ax2.set_ylabel('gap between X and (X...)_+', color=color)  # we already handled the x-label with ax1
+    ax2.plot(L2_loss[:, 3][1:], color=color)
+    ax2.tick_params(axis='y', labelcolor=color)
+
+    plt.title("Fenchel Errors in function of round")
+    fig.tight_layout()  # otherwise the right y-label is slightly clipped
+    plt.grid(True)
+    plt.show()

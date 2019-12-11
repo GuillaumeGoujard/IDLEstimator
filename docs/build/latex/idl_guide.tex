@@ -71,7 +71,7 @@
 
 
 \title{IDL\_Guide Documentation}
-\date{Dec 04, 2019}
+\date{Dec 10, 2019}
 \release{0.9}
 \author{us}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -298,7 +298,7 @@ this problem is well-posed -feasible solutions exist- and bi-smooth.
 \index{IDLModel (class in IDL)@\spxentry{IDLModel}\spxextra{class in IDL}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{sections/learning:IDL.IDLModel}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{IDL.}}\sphinxbfcode{\sphinxupquote{IDLModel}}}{\emph{hidden\_variables=1}, \emph{dual\_learning\_rate=0.1}, \emph{tol\_fenchtel=0.1}, \emph{inner\_tol=0.001}, \emph{random\_state=0}, \emph{verbosity=True}, \emph{solver=None}, \emph{solver\_options=None}}{}
+\phantomsection\label{\detokenize{sections/learning:IDL.IDLModel}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{IDL.}}\sphinxbfcode{\sphinxupquote{IDLModel}}}{\emph{hidden\_variables=1}, \emph{dual\_learning\_rate=0.1}, \emph{tol\_fenchtel=0.1}, \emph{inner\_tol=0.001}, \emph{starting\_lambda=None}, \emph{initialization\_theta=None}, \emph{random\_state=0}, \emph{early\_stopping=True}, \emph{verbosity=True}}{}
 Implementation of the Scikit-Learn API for Implicit Deep Learning
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
@@ -315,20 +315,16 @@ Positive float, Dual learning rate (IDL’s “alpha”)
 Positive float, Fenchel tolerance threshold for dual’s update (IDL’s “alpha”)
 
 \item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{inner\_tol}} \textendash{} float
+Positive float, tolerance threshold for early stopping in the gradient descents with respect to theta
+
+\item {} 
 \sphinxstyleliteralstrong{\sphinxupquote{verbosity}} \textendash{} bool
 Verbosity of the training process.
 
 \item {} 
 \sphinxstyleliteralstrong{\sphinxupquote{random\_state}} \textendash{} int
 Random number seed for initialization.
-
-\item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{solver}} \textendash{} string
-solver used for cvxpy, if None then we select “ECOS”
-
-\item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{solver\_options}} \textendash{} dict
-options for the solver to use
 
 \end{itemize}
 
@@ -354,7 +350,7 @@ Feature matrix
 Labels
 
 \item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{max\_rounds\_number}} \textendash{} int
+\sphinxstyleliteralstrong{\sphinxupquote{rounds\_number}} \textendash{} int
 Maximum rounds number in the outer loop
 
 \item {} 
@@ -367,7 +363,7 @@ Two types of training :
 \begin{quote}
 \begin{itemize}
 \item {} 
-”two\_loops” : RECOMMENDED, we optimize the theta, X variables and then we do one step of dual ascent.
+”two\_loops” : RECOMMENDED, we optimize theta and X variables and then we do one step of dual ascent.
 
 \item {} 
 ”one\_loop” : one iteration is going to successively operate one step of gradient descent and one step
@@ -595,7 +591,7 @@ with \(\beta > 1\) a hyperparameter.
 \index{IDLModel (class in IDL)@\spxentry{IDLModel}\spxextra{class in IDL}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{sections/prediction:IDL.IDLModel}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{IDL.}}\sphinxbfcode{\sphinxupquote{IDLModel}}}{\emph{hidden\_variables=1}, \emph{dual\_learning\_rate=0.1}, \emph{tol\_fenchtel=0.1}, \emph{inner\_tol=0.001}, \emph{random\_state=0}, \emph{verbosity=True}, \emph{solver=None}, \emph{solver\_options=None}}{}
+\phantomsection\label{\detokenize{sections/prediction:IDL.IDLModel}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{IDL.}}\sphinxbfcode{\sphinxupquote{IDLModel}}}{\emph{hidden\_variables=1}, \emph{dual\_learning\_rate=0.1}, \emph{tol\_fenchtel=0.1}, \emph{inner\_tol=0.001}, \emph{starting\_lambda=None}, \emph{initialization\_theta=None}, \emph{random\_state=0}, \emph{early\_stopping=True}, \emph{verbosity=True}}{}
 Implementation of the Scikit-Learn API for Implicit Deep Learning
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
@@ -612,20 +608,16 @@ Positive float, Dual learning rate (IDL’s “alpha”)
 Positive float, Fenchel tolerance threshold for dual’s update (IDL’s “alpha”)
 
 \item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{inner\_tol}} \textendash{} float
+Positive float, tolerance threshold for early stopping in the gradient descents with respect to theta
+
+\item {} 
 \sphinxstyleliteralstrong{\sphinxupquote{verbosity}} \textendash{} bool
 Verbosity of the training process.
 
 \item {} 
 \sphinxstyleliteralstrong{\sphinxupquote{random\_state}} \textendash{} int
 Random number seed for initialization.
-
-\item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{solver}} \textendash{} string
-solver used for cvxpy, if None then we select “ECOS”
-
-\item {} 
-\sphinxstyleliteralstrong{\sphinxupquote{solver\_options}} \textendash{} dict
-options for the solver to use
 
 \end{itemize}
 

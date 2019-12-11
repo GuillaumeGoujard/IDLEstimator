@@ -1,0 +1,238 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>IDL &#8212; IDL 0.9 documentation</title>
+    <link rel="stylesheet" href="../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../" src="../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../_static/jquery.js"></script>
+    <script type="text/javascript" src="../_static/underscore.js"></script>
+    <script type="text/javascript" src="../_static/doctools.js"></script>
+    <script type="text/javascript" src="../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" />
+   
+  <link rel="stylesheet" href="../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for IDL</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">sklearn.base</span> <span class="k">import</span> <span class="n">BaseEstimator</span>
+<span class="kn">from</span> <span class="nn">sklearn.utils.validation</span> <span class="k">import</span> <span class="n">check_X_y</span><span class="p">,</span> <span class="n">check_array</span><span class="p">,</span> <span class="n">check_is_fitted</span>
+<span class="kn">from</span> <span class="nn">utilities</span> <span class="k">import</span> <span class="n">PicardIterations</span> <span class="k">as</span> <span class="n">pi</span>
+<span class="kn">import</span> <span class="nn">training</span> <span class="k">as</span> <span class="nn">idltraining</span>
+
+
+<div class="viewcode-block" id="IDLModel"><a class="viewcode-back" href="../sections/prediction.html#IDL.IDLModel">[docs]</a><span class="k">class</span> <span class="nc">IDLModel</span><span class="p">(</span><span class="n">BaseEstimator</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Implementation of the Scikit-Learn API for Implicit Deep Learning</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    :param hidden_variables: int</span>
+<span class="sd">        number of hidden variables of the vector X (see</span>
+<span class="sd">    :param dual_learning_rate: float</span>
+<span class="sd">        Positive float, Dual learning rate (IDL&#39;s &quot;alpha&quot;)</span>
+<span class="sd">    :param tol_fenchel: float</span>
+<span class="sd">        Positive float, Fenchel tolerance threshold for dual&#39;s update (IDL&#39;s &quot;alpha&quot;)</span>
+<span class="sd">    :param inner_tol: float</span>
+<span class="sd">        Positive float, tolerance threshold for early stopping in the gradient descents with respect to theta</span>
+<span class="sd">    :param verbosity: bool</span>
+<span class="sd">        Verbosity of the training process.</span>
+<span class="sd">    :param random_state: int</span>
+<span class="sd">        Random number seed for initialization.</span>
+
+<span class="sd">    Note</span>
+<span class="sd">    ----</span>
+<span class="sd">    Full documentation of parameters can</span>
+<span class="sd">        be found here: https://github.com/GuillaumeGoujard/IDLEstimator/blob/master/docs/source/sections/introduction.rst.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hidden_variables</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">dual_learning_rate</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">tol_fenchtel</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">inner_tol</span><span class="o">=</span><span class="mf">1e-3</span><span class="p">,</span> <span class="n">starting_lambda</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">initialization_theta</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">early_stopping</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
+                 <span class="n">verbosity</span><span class="o">=</span><span class="kc">True</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">is_fitted_</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">h</span> <span class="o">=</span> <span class="n">hidden_variables</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">dual_learning_rate</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">tol_fenchtel</span> <span class="o">=</span> <span class="n">dual_learning_rate</span><span class="p">,</span> <span class="n">tol_fenchtel</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">random_state</span> <span class="o">=</span> <span class="n">random_state</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_X</span> <span class="o">=</span> <span class="p">{},</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">verbosity</span> <span class="o">=</span> <span class="n">verbosity</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">inner_tol</span> <span class="o">=</span> <span class="n">inner_tol</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">evals_result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">starting_lambda</span> <span class="o">=</span> <span class="n">starting_lambda</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">initialization_theta</span> <span class="o">=</span> <span class="n">initialization_theta</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">early_stopping</span> <span class="o">=</span> <span class="n">early_stopping</span>
+
+
+
+<div class="viewcode-block" id="IDLModel.fit"><a class="viewcode-back" href="../sections/learning.html#IDL.IDLModel.fit">[docs]</a>    <span class="k">def</span> <span class="nf">fit</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">rounds_number</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">type_of_training</span><span class="o">=</span><span class="s2">&quot;two_loops&quot;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;Fit IDL Model \n</span>
+
+<span class="sd">        :param X: array_like</span>
+<span class="sd">            Feature matrix</span>
+<span class="sd">        :param y: array_like</span>
+<span class="sd">            Labels</span>
+<span class="sd">        :param rounds_number: int</span>
+<span class="sd">            Maximum rounds number in the outer loop</span>
+<span class="sd">        :param verbose: bool</span>
+<span class="sd">        :param type_of_training: string</span>
+<span class="sd">            Two types of training :</span>
+<span class="sd">                * &quot;two_loops&quot; : RECOMMENDED, we optimize theta and X variables and then we do one step of dual ascent.</span>
+<span class="sd">                * &quot;one_loop&quot; : one iteration is going to successively operate one step of gradient descent and one step</span>
+<span class="sd">                of dual ascent</span>
+
+<span class="sd">        :return: self : object</span>
+<span class="sd">            Returns self.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1">#For multi-label y, set multi_output=True to allow 2D and sparse y.</span>
+        <span class="n">X</span><span class="p">,</span> <span class="n">y</span> <span class="o">=</span> <span class="n">check_X_y</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">multi_output</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">U</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># set the shape (n_features, m_samples), to be consistent with IDL notes</span>
+
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">initialization_theta</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">theta</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">initialization_theta</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">theta</span><span class="p">,</span> <span class="n">X</span> <span class="o">=</span> <span class="n">idltraining</span><span class="o">.</span><span class="n">initialize_theta_2</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">starting_lambda</span><span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">starting_lambda</span><span class="p">,</span>
+                                                    <span class="n">tol_fenchtel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tol_fenchtel</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+                                                    <span class="n">random_state</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">random_state</span><span class="p">)</span>
+
+        <span class="n">evals_result</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="n">type_of_training</span> <span class="o">==</span> <span class="s2">&quot;two_loops&quot;</span><span class="p">:</span>
+            <span class="n">IDLResults</span> <span class="o">=</span> <span class="n">idltraining</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">outer_max_rounds_number</span><span class="o">=</span><span class="n">rounds_number</span><span class="p">,</span>
+                                           <span class="n">inner_max_rounds_number</span><span class="o">=</span><span class="mi">1000</span><span class="p">,</span>
+                                           <span class="n">inner_loop_tol</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">inner_tol</span><span class="p">,</span> <span class="n">dual_learning_rate</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dual_learning_rate</span><span class="p">,</span>
+                                           <span class="n">tol_fenchtel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tol_fenchtel</span><span class="p">,</span> <span class="n">evals_result</span><span class="o">=</span><span class="n">evals_result</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">,</span>
+                                           <span class="n">early_stopping</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">early_stopping</span><span class="p">)</span>
+
+        <span class="k">elif</span> <span class="n">type_of_training</span> <span class="o">==</span> <span class="s2">&quot;one_loop&quot;</span><span class="p">:</span>
+            <span class="n">IDLResults</span> <span class="o">=</span> <span class="n">idltraining</span><span class="o">.</span><span class="n">train_theta_lambda</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">outer_max_rounds_number</span><span class="o">=</span><span class="n">rounds_number</span><span class="p">,</span>
+                                                        <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span>
+                                                        <span class="n">dual_learning_rate</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">dual_learning_rate</span><span class="p">,</span>
+                                                        <span class="n">tol_fenchtel</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">tol_fenchtel</span><span class="p">,</span> <span class="n">evals_result</span><span class="o">=</span><span class="n">evals_result</span><span class="p">,</span>
+                                                        <span class="n">verbose</span><span class="o">=</span><span class="n">verbose</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;ERROR&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="kc">False</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">training_X</span> <span class="o">=</span> <span class="n">IDLResults</span><span class="o">.</span><span class="n">theta</span><span class="p">,</span> <span class="n">IDLResults</span><span class="o">.</span><span class="n">X</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">evals_result</span> <span class="o">=</span> <span class="n">IDLResults</span><span class="o">.</span><span class="n">evals_result</span>
+        <span class="k">if</span> <span class="n">verbose</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">evals_result</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">idltraining</span><span class="o">.</span><span class="n">plot_training_errors</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">evals_result</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="p">,</span></div>
+
+
+<div class="viewcode-block" id="IDLModel.predict"><a class="viewcode-back" href="../sections/prediction.html#IDL.IDLModel.predict">[docs]</a>    <span class="k">def</span> <span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">k_iterations</span><span class="o">=</span><span class="mi">10000</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot; Predicting function.</span>
+<span class="sd">        :param X: array-like</span>
+<span class="sd">            The input sample.</span>
+<span class="sd">        :param k_iterations: int</span>
+<span class="sd">            Maximum number of Picard iterations</span>
+
+<span class="sd">        :return: y: array-like</span>
+<span class="sd">            Returns a prediction array.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">check_array</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="n">accept_sparse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+        <span class="n">check_is_fitted</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="s1">&#39;is_fitted_&#39;</span><span class="p">)</span>
+        <span class="n">U</span> <span class="o">=</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span><span class="o">.</span><span class="n">copy</span><span class="p">()</span>  <span class="c1"># set the shape (n_features, m_samples)</span>
+        <span class="n">n_features</span><span class="p">,</span> <span class="n">m_samples</span> <span class="o">=</span> <span class="n">U</span><span class="o">.</span><span class="n">shape</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">h</span><span class="p">,</span> <span class="n">m_samples</span><span class="p">))</span>
+        <span class="n">X</span> <span class="o">=</span> <span class="n">pi</span><span class="o">.</span><span class="n">picard_iterations</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">]</span><span class="nd">@U</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="s2">&quot;f&quot;</span><span class="p">]</span><span class="nd">@np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">m_samples</span><span class="p">)),</span>
+                                 <span class="n">k_iterations</span><span class="o">=</span><span class="n">k_iterations</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">]</span><span class="nd">@X</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">]</span><span class="nd">@U</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">theta</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">]</span><span class="nd">@np</span><span class="o">.</span><span class="n">ones</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="n">m_samples</span><span class="p">))</span></div></div>
+
+
+
+<span class="k">class</span> <span class="nc">IDLClassifier</span><span class="p">(</span><span class="n">IDLModel</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">hidden_variables</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">epsilon</span><span class="o">=</span><span class="mf">0.1</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">IDLModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">hidden_variables</span><span class="o">=</span><span class="n">hidden_variables</span><span class="p">,</span> <span class="n">alpha</span><span class="o">=</span><span class="n">alpha</span><span class="p">,</span>
+                                       <span class="n">epsilon</span><span class="o">=</span><span class="n">epsilon</span><span class="p">,</span> <span class="n">random_state</span><span class="o">=</span><span class="n">random_state</span><span class="p">,</span> <span class="n">seed</span><span class="o">=</span><span class="n">seed</span><span class="p">)</span>
+
+
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../index.html">IDL</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../sections/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sections/bi_convex_formulation.html">Formulation for IDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sections/learning.html">Learning Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sections/gradient_descents.html">Gradient Descents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sections/dual_ascents.html">Dual Ascents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sections/prediction.html">Predicting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sections/classification_operational_example.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../sections/citing.html">Citing</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../index.html">Documentation overview</a><ul>
+  <li><a href="index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.8.8)  4 DEC 2019 09:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.19 (TeX Live 2018) (preloaded format=pdflatex 2018.8.8)  10 DEC 2019 16:58
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -834,15 +834,15 @@ LaTeX Font Info:    Font shape `T1/phv/bx/n' in size <14.4> not available
  (./idl_guide.toc
 LaTeX Font Info:    Font shape `T1/ptm/bx/n' in size <10> not available
 (Font)              Font shape `T1/ptm/b/n' tried instead on input line 2.
-)
+[1
+
+])
 \tf@toc=\write6
 \openout6 = `idl_guide.toc'.
 
- [1
+ [2] [1
 
 ] [2
-
-] [1] [2
 
 ]
 Chapter 1.
@@ -936,6 +936,13 @@ l.290 \end{align}\end{split}
 Chapter 3.
 LaTeX Font Info:    Font shape `T1/pcr/bx/n' in size <10> not available
 (Font)              Font shape `T1/pcr/b/n' tried instead on input line 301.
+
+Underfull \hbox (badness 10000) in paragraph at lines 301--301
+\T1/ptm/m/it/10 start-ing_lambda=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ini-tial-
+iza-tion_theta=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ran-dom_state=0\T1/ptm/m/n/
+10 ,
+ []
+
 LaTeX Font Info:    Try loading font information for TS1+ptm on input line 305.
 
 (/usr/local/texlive/2018/texmf-dist/tex/latex/psnfss/ts1ptm.fd
@@ -948,7 +955,7 @@ See the LaTeX manual or LaTeX Companion for explanation.
 Type  H <return>  for immediate help.
  ...                                              
                                                   
-l.368 \begin{itemize}
+l.364 \begin{itemize}
                      
 ? 
 [7
@@ -960,54 +967,54 @@ Chapter 4.
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.411 \end{align}\end{split}
+l.407 \end{align}\end{split}
                             
 ? 
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.411 \end{align}\end{split}
+l.407 \end{align}\end{split}
                             
 ? 
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.411 \end{align}\end{split}
+l.407 \end{align}\end{split}
                             
 ? 
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.411 \end{align}\end{split}
+l.407 \end{align}\end{split}
                             
 ? 
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.411 \end{align}\end{split}
+l.407 \end{align}\end{split}
                             
 ? 
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.411 \end{align}\end{split}
+l.407 \end{align}\end{split}
                             
 ? 
 [9]
-Overfull \hbox (15.9295pt too wide) detected at line 458
+Overfull \hbox (15.9295pt too wide) detected at line 454
 []
  []
 
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.475 \end{align}\end{split}
+l.471 \end{align}\end{split}
                             
 ? 
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.475 \end{align}\end{split}
+l.471 \end{align}\end{split}
                             
 ? 
 [10] [11] [12
@@ -1017,17 +1024,24 @@ Chapter 5.
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.566 \end{align}\end{split}
+l.562 \end{align}\end{split}
                             
 ? 
 ! Misplaced \omit.
 \math@cr@@@ ...@ \@ne \add@amps \maxfields@ \omit 
                                                   \kern -\alignsep@ \iftag@ ...
-l.566 \end{align}\end{split}
+l.562 \end{align}\end{split}
                             
 ? 
 [13] [14]
 Chapter 6.
+
+Underfull \hbox (badness 10000) in paragraph at lines 594--594
+\T1/ptm/m/it/10 start-ing_lambda=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ini-tial-
+iza-tion_theta=None\T1/ptm/m/n/10 , \T1/ptm/m/it/10 ran-dom_state=0\T1/ptm/m/n/
+10 ,
+ []
+
 [15
 
 ] [16
@@ -1060,30 +1074,23 @@ d-ule util-i-
 
 
 ])
-Package atveryend Info: Empty hook `BeforeClearDocument' on input line 710.
-Package atveryend Info: Empty hook `AfterLastShipout' on input line 710.
+Package atveryend Info: Empty hook `BeforeClearDocument' on input line 702.
+Package atveryend Info: Empty hook `AfterLastShipout' on input line 702.
  (./idl_guide.aux)
-Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 710.
-Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 710.
-
-
-Package rerunfilecheck Warning: File `idl_guide.out' has changed.
-(rerunfilecheck)                Rerun to get outlines right
-(rerunfilecheck)                or use package `bookmark'.
-
-Package rerunfilecheck Info: Checksums for `idl_guide.out':
-(rerunfilecheck)             Before: BF82B98B7E97EA2BDD75CCBBDFC3A16A;5517
-(rerunfilecheck)             After:  D62F53F02EE50C1391EA66536A59E6E7;5588.
-Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 710.
+Package atveryend Info: Executing hook `AtVeryEndDocument' on input line 702.
+Package atveryend Info: Executing hook `AtEndAfterFileList' on input line 702.
+Package rerunfilecheck Info: File `idl_guide.out' has not changed.
+(rerunfilecheck)             Checksum: D62F53F02EE50C1391EA66536A59E6E7;5588.
+Package atveryend Info: Empty hook `AtVeryVeryEnd' on input line 702.
  ) 
 Here is how much of TeX's memory you used:
- 13446 strings out of 492649
- 190073 string characters out of 6129623
+ 13447 strings out of 492649
+ 190086 string characters out of 6129623
  287807 words of memory out of 5000000
- 16949 multiletter control sequences out of 15000+600000
+ 16950 multiletter control sequences out of 15000+600000
  50547 words of font info for 70 fonts, out of 8000000 for 9000
  1142 hyphenation exceptions out of 8191
- 37i,27n,49p,471b,590s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 37i,27n,49p,489b,590s stack positions out of 5000i,500n,10000p,200000b,80000s
 {/usr/local/texlive/2018/texmf-dist/fonts/enc/dvips/base/8r.enc}</usr/local/t
 exlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmex10.pfb></usr/local/te
 xlive/2018/texmf-dist/fonts/type1/public/amsfonts/cm/cmmi10.pfb></usr/local/tex
@@ -1102,10 +1109,10 @@ rw/helvetic/uhvbo8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/hel
 vetic/uhvr8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/times/utmb
 8a.pfb></usr/local/texlive/2018/texmf-dist/fonts/type1/urw/times/utmr8a.pfb></u
 sr/local/texlive/2018/texmf-dist/fonts/type1/urw/times/utmri8a.pfb>
-Output written on idl_guide.pdf (29 pages, 236541 bytes).
+Output written on idl_guide.pdf (29 pages, 236612 bytes).
 PDF statistics:
- 443 PDF objects out of 1000 (max. 8388607)
- 385 compressed objects within 4 object streams
+ 447 PDF objects out of 1000 (max. 8388607)
+ 389 compressed objects within 4 object streams
  86 named destinations out of 1000 (max. 500000)
- 269 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 277 words of extra memory for PDF output out of 10000 (max. 10000000)
 

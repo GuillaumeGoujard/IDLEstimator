@@ -2,129 +2,35 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97b0686d-5d10-4a7a-9111-942bab0dbc7a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/IDL/IDLtemplate/BertrandExample.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/IDL/IDLtemplate/tests/presentation_example.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/ExampleABcDEf.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/tests/ExampleABcDEf.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/IDL.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/IDL.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/presentation_example.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/tests/boston.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/tests/gradient_tests.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/tests/guillaume_testset.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/tests/mnist.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/tests/test_common.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/tests/test_projection.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/tests/test_template.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/tests/theta_example.py" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/training.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/training.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/ConvexProjection.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/ConvexProjection.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/DualAscents.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/DualAscents.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/GradientDescents.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/GradientDescents.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/Metrics.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/Metrics.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/PicardIterations.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/PicardIterations.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/workingExample.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/workingExample.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/utilities/draft_examples/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/workingExample.py" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/IDLtemplate/tests/workingExample.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/build/doctrees/environment.pickle" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/environment.pickle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/doctrees/sections/code.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/sections/code.doctree" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/build/doctrees/sections/learning.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/sections/learning.doctree" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docs/build/doctrees/sections/prediction.doctree" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/doctrees/sections/prediction.doctree" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/.buildinfo" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/.buildinfo" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_modules/IDL.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_modules/IDL.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_modules/docs/test_example/test.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_modules/docs/test_example/test.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_modules/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_modules/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_modules/utilities/GradientDescents.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_modules/utilities/GradientDescents.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/css/bootstrap-theme.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/css/bootstrap.min.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/glyphicons-halflings-regular.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/glyphicons-halflings-regular.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/glyphicons-halflings-regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/glyphicons-halflings-regular.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-Bold-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-Bold-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-Bold-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-Bold-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-BoldItalic-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-BoldItalic-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-BoldItalic-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-BoldItalic-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-ExtraBold-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-ExtraBold-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-ExtraBold-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-ExtraBold-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-ExtraBoldItalic-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-ExtraBoldItalic-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-ExtraBoldItalic-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-ExtraBoldItalic-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-Italic-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-Italic-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-Italic-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-Italic-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-Light-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-Light-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-Light-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-Light-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-LightItalic-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-LightItalic-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-LightItalic-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-LightItalic-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-Regular-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-Regular-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-Regular-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-Regular-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-Semibold-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-Semibold-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-Semibold-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-Semibold-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-SemiboldItalic-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-SemiboldItalic-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-SemiboldItalic-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/fonts/OpenSans-SemiboldItalic-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/open-sans/stylesheet.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/EOT/SourceSerifPro-Black.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/EOT/SourceSerifPro-Bold.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/EOT/SourceSerifPro-ExtraLight.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/EOT/SourceSerifPro-Light.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/EOT/SourceSerifPro-Regular.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/EOT/SourceSerifPro-Semibold.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/LICENSE.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/OTF/SourceSerifPro-Black.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/OTF/SourceSerifPro-Bold.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/OTF/SourceSerifPro-ExtraLight.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/OTF/SourceSerifPro-Light.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/OTF/SourceSerifPro-Regular.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/OTF/SourceSerifPro-Semibold.otf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/README.md" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/ReadMe.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/SourceSerifProReadMe.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/TTF/SourceSerifPro-Black.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/TTF/SourceSerifPro-Bold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/TTF/SourceSerifPro-ExtraLight.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/TTF/SourceSerifPro-Light.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/TTF/SourceSerifPro-Regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/TTF/SourceSerifPro-Semibold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/WOFF/OTF/SourceSerifPro-Black.otf.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/WOFF/OTF/SourceSerifPro-Bold.otf.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/WOFF/OTF/SourceSerifPro-ExtraLight.otf.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/WOFF/OTF/SourceSerifPro-Light.otf.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/WOFF/OTF/SourceSerifPro-Regular.otf.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/WOFF/OTF/SourceSerifPro-Semibold.otf.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/WOFF/TTF/SourceSerifPro-Black.ttf.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/WOFF/TTF/SourceSerifPro-Bold.ttf.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/WOFF/TTF/SourceSerifPro-ExtraLight.ttf.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/WOFF/TTF/SourceSerifPro-Light.ttf.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/WOFF/TTF/SourceSerifPro-Regular.ttf.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/WOFF/TTF/SourceSerifPro-Semibold.ttf.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/bower.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/fonts/source-serif-pro/source-serif-pro.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/guzzle.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/jquery.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_static/jquery.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/jquery.min.map" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/js/bootstrap.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/js/bootstrap.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/_static/pygments.css" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/_static/pygments.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/genindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/genindex.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/objects.inv" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/objects.inv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/py-modindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/py-modindex.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/searchindex.js" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/searchindex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/bi_convex_formulation.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/bi_convex_formulation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/citing.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/citing.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/classification_operational_example.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/classification_operational_example.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/code.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/code.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/dual_ascents.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/dual_ascents.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/gradient_descents.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/gradient_descents.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/introduction.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/introduction.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/learning.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/learning.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/options.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/options.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/prediction.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/prediction.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/regression_operational_example copy.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/regression_operational_example copy.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/build/html/sections/rts_example.html" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/html/sections/rts_example.html" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/idl_guide.fdb_latexmk" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/latex/idl_guide.fdb_latexmk" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/idl_guide.fls" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/latex/idl_guide.fls" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/idl_guide.log" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/latex/idl_guide.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/idl_guide.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/latex/idl_guide.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/build/latex/idl_guide.tex" beforeDir="false" afterPath="$PROJECT_DIR$/docs/build/latex/idl_guide.tex" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -135,76 +41,10 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/GradientDescents.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="390">
-              <caret line="26" column="34" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/IDL.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-184">
-              <caret line="86" column="43" selection-start-line="86" selection-start-column="43" selection-end-line="86" selection-end-column="43" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/workingExample.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-214">
-              <caret line="33" selection-start-line="33" selection-end-line="33" />
-              <folding>
-                <element signature="e#0#17#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/PicardIterations.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="135">
-              <caret line="9" column="14" lean-forward="true" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/tests/boston.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="186">
-              <caret line="58" selection-start-line="58" selection-end-line="60" selection-end-column="60" />
-              <folding>
-                <element signature="e#0#18#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/BertrandExample.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="41">
-              <caret line="41" selection-start-line="41" selection-end-line="48" selection-end-column="70" />
-              <folding>
-                <element signature="e#0#17#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/source/conf.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="18" column="39" selection-start-line="18" selection-start-column="39" selection-end-line="18" selection-end-column="39" />
+            <state relative-caret-position="-677">
+              <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
             </state>
           </provider>
         </entry>
@@ -212,8 +52,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/training.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="469">
-              <caret line="90" column="18" selection-start-line="90" selection-start-column="18" selection-end-line="90" selection-end-column="18" />
+            <state relative-caret-position="3525">
+              <caret line="235" column="8" lean-forward="true" selection-start-line="235" selection-start-column="8" selection-end-line="235" selection-end-column="8" />
               <folding>
                 <element signature="e#0#44#0" expanded="true" />
               </folding>
@@ -222,10 +62,52 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/PicardIterations.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="210">
+              <caret line="14" column="28" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="28" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/Metrics.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="58">
+              <caret line="4" column="73" lean-forward="true" selection-start-line="4" selection-start-column="73" selection-end-line="4" selection-end-column="73" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/GradientDescents.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="15">
+              <caret line="1" column="22" lean-forward="true" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/DualAscents.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/ConvexProjection.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="110" column="18" lean-forward="true" selection-start-line="110" selection-start-column="18" selection-end-line="110" selection-end-column="18" />
+            <state relative-caret-position="285">
+              <caret line="21" selection-start-line="21" selection-end-line="21" />
               <folding>
                 <element signature="e#0#31#0" expanded="true" />
               </folding>
@@ -233,11 +115,38 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/cvxpy/problems/problem.py">
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/tests/presentation_example.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="494">
-              <caret line="549" column="34" selection-start-line="549" selection-start-column="34" selection-end-line="549" selection-end-column="34" />
+            <state relative-caret-position="186">
+              <caret line="123" column="16" lean-forward="true" selection-start-line="123" selection-start-column="16" selection-end-line="123" selection-end-column="16" />
+              <folding>
+                <element signature="e#0#17#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/tests/workingExample.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="306">
+              <caret line="94" selection-start-line="94" selection-end-line="96" selection-end-column="88" />
+              <folding>
+                <element signature="e#0#17#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/tests/ExampleABcDEf.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="509">
+              <caret line="56" column="11" selection-start-line="56" selection-end-line="56" selection-end-column="11" />
+              <folding>
+                <element signature="e#0#17#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -258,6 +167,7 @@
       <find>master_doc</find>
       <find>hidden_features</find>
       <find>alpha</find>
+      <find>gradien</find>
     </findStrings>
     <replaceStrings>
       <replace>self</replace>
@@ -282,27 +192,28 @@
         <option value="$PROJECT_DIR$/test.py" />
         <option value="$PROJECT_DIR$/docs/source/sections/code.rst" />
         <option value="$PROJECT_DIR$/IDL/IDLtemplate/tests/mnist.py" />
-        <option value="$PROJECT_DIR$/IDL/IDLtemplate/utilities/GradientDescents.py" />
         <option value="$PROJECT_DIR$/IDL/IDLtemplate/tests/boston.py" />
         <option value="$PROJECT_DIR$/docs/source/conf2.py" />
         <option value="/Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/cvxpy/problems/problem.py" />
-        <option value="$PROJECT_DIR$/IDL/IDLtemplate/utilities/Metrics.py" />
+        <option value="$PROJECT_DIR$/docs/source/conf.py" />
         <option value="$PROJECT_DIR$/IDL/IDLtemplate/utilities/DualAscents.py" />
         <option value="$PROJECT_DIR$/IDL/IDLtemplate/utilities/ConvexProjection.py" />
-        <option value="$PROJECT_DIR$/IDL/IDLtemplate/utilities/PicardIterations.py" />
-        <option value="$PROJECT_DIR$/IDL/IDLtemplate/workingExample.py" />
-        <option value="$PROJECT_DIR$/docs/source/conf.py" />
-        <option value="$PROJECT_DIR$/IDL/IDLtemplate/IDL.py" />
-        <option value="$PROJECT_DIR$/IDL/IDLtemplate/training.py" />
         <option value="$PROJECT_DIR$/IDL/IDLtemplate/BertrandExample.py" />
+        <option value="$PROJECT_DIR$/IDL/IDLtemplate/ExampleABcDEf.py" />
+        <option value="$PROJECT_DIR$/IDL/IDLtemplate/presentation_example.py" />
+        <option value="$PROJECT_DIR$/IDL/IDLtemplate/workingExample.py" />
+        <option value="$PROJECT_DIR$/IDL/IDLtemplate/utilities/PicardIterations.py" />
+        <option value="$PROJECT_DIR$/IDL/IDLtemplate/utilities/GradientDescents.py" />
+        <option value="$PROJECT_DIR$/IDL/IDLtemplate/utilities/Metrics.py" />
+        <option value="$PROJECT_DIR$/IDL/IDLtemplate/training.py" />
+        <option value="$PROJECT_DIR$/IDL/IDLtemplate/IDL.py" />
+        <option value="$PROJECT_DIR$/IDL/IDLtemplate/tests/presentation_example.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
-    <option name="x" value="180" />
-    <option name="y" value="112" />
-    <option name="width" value="1080" />
-    <option name="height" value="676" />
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectView">
     <navigator proportions="" version="1">
@@ -326,7 +237,20 @@
               <item name="EE227B_project" type="b2602c69:ProjectViewProjectNode" />
               <item name="EE227B_project" type="462c0819:PsiDirectoryNode" />
               <item name="docs" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="EE227B_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EE227B_project" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
               <item name="source" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="EE227B_project" type="b2602c69:ProjectViewProjectNode" />
+              <item name="EE227B_project" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+              <item name="source" type="462c0819:PsiDirectoryNode" />
+              <item name="sections" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="EE227B_project" type="b2602c69:ProjectViewProjectNode" />
@@ -373,6 +297,8 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/IDL/IDLtemplate/tests" />
+      <recent name="$PROJECT_DIR$/IDL/IDLtemplate" />
       <recent name="$PROJECT_DIR$/docs/test_example" />
       <recent name="$PROJECT_DIR$/docs" />
       <recent name="$PROJECT_DIR$" />
@@ -390,18 +316,21 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.BertrandExample">
+  <component name="RunManager" selected="Python.presentation_example">
     <configuration name="BertrandExample" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="EE227B_project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/IDL/IDLtemplate" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/IDL/IDLtemplate/BertrandExample.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/IDL/IDLtemplate/tests/ExampleABcDEf.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -498,7 +427,7 @@
       <option name="INPUT_FILE" value="" />
       <method v="2" />
     </configuration>
-    <configuration name="workingExample" type="PythonConfigurationType" factoryName="Python" temporary="true">
+    <configuration name="presentation_example" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <module name="EE227B_project" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -508,7 +437,29 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/IDL/IDLtemplate/workingExample.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/IDL/IDLtemplate/tests/presentation_example.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="true" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="workingExample" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <module name="EE227B_project" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/IDL/IDLtemplate" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/IDL/IDLtemplate/tests/workingExample.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="true" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -524,11 +475,13 @@
       <item itemvalue="Python.workingExample" />
       <item itemvalue="Python.boston" />
       <item itemvalue="Python.BertrandExample" />
+      <item itemvalue="Python.presentation_example" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python.BertrandExample" />
+        <item itemvalue="Python.presentation_example" />
         <item itemvalue="Python.workingExample" />
+        <item itemvalue="Python.BertrandExample" />
         <item itemvalue="Python.boston" />
         <item itemvalue="Python.mnist" />
       </list>
@@ -559,12 +512,18 @@
       <workItem from="1575334067456" duration="4632000" />
       <workItem from="1575349985633" duration="12000" />
       <workItem from="1575391755463" duration="10032000" />
-      <workItem from="1575406327611" duration="6771000" />
+      <workItem from="1575406327611" duration="7238000" />
+      <workItem from="1575435665482" duration="158000" />
+      <workItem from="1575481533153" duration="19640000" />
+      <workItem from="1575561248569" duration="9453000" />
+      <workItem from="1575749256571" duration="69000" />
+      <workItem from="1576023264712" duration="2817000" />
+      <workItem from="1576090202062" duration="1570000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="61710000" />
+    <option name="totallyTimeSpent" value="95884000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -579,7 +538,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.27363896" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22421204" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -590,15 +549,15 @@
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32971016" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
-      <window_info anchor="bottom" id="Version Control" order="8" weight="0.32971016" />
-      <window_info anchor="bottom" id="Database Changes" order="9" />
-      <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.18115942" />
-      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.49516907" />
+      <window_info anchor="bottom" id="Database Changes" order="8" />
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Version Control" order="10" weight="0.32971016" />
+      <window_info anchor="bottom" id="Terminal" order="11" weight="0.29589373" />
+      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.3152174" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="right" id="SciView" order="3" weight="0.6876791" />
+      <window_info active="true" anchor="right" id="SciView" order="3" visible="true" weight="0.3144699" />
       <window_info anchor="right" id="Database" order="4" />
       <window_info anchor="right" id="R Graphics" order="5" weight="0.32995737" />
       <window_info anchor="right" id="R Packages" order="6" />
@@ -611,6 +570,7 @@
     <SUITE FILE_PATH="coverage/EE227B_project$mnist.coverage" NAME="mnist Coverage Results" MODIFIED="1574728153545" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/IDL/IDLtemplate/tests" />
     <SUITE FILE_PATH="coverage/EE227B_project$BertrandExample.coverage" NAME="BertrandExample Coverage Results" MODIFIED="1575424362972" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/IDL/IDLtemplate" />
     <SUITE FILE_PATH="coverage/EE227B_project$workingExample.coverage" NAME="workingExample Coverage Results" MODIFIED="1574384630218" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/IDL/IDLtemplate" />
+    <SUITE FILE_PATH="coverage/EE227B_project$presentation_example.coverage" NAME="presentation_example Coverage Results" MODIFIED="1575562317412" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/IDL/IDLtemplate" />
     <SUITE FILE_PATH="coverage/EE227B_project$boston.coverage" NAME="boston Coverage Results" MODIFIED="1574794311951" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/IDL/IDLtemplate/tests" />
   </component>
   <component name="editorHistoryManager">
@@ -674,9 +634,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/__init__.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/xgboost/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="120">
@@ -717,19 +674,11 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/build/html/index.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="480">
-          <caret line="32" column="12" selection-start-line="32" selection-start-column="12" selection-end-line="32" selection-end-column="12" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/build/html/index.html" />
     <entry file="file://$PROJECT_DIR$/docs/Makefile">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/source/sections/code.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/sections/code.rst" />
     <entry file="file:///usr/local/lib/python3.7/site-packages/cvxpy/problems/problem.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="148">
@@ -771,44 +720,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/Metrics.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/DualAscents.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="4" column="52" selection-start-line="4" selection-start-column="52" selection-end-line="4" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/GradientDescents.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="26" column="34" selection-start-line="26" selection-start-column="34" selection-end-line="26" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/cvxpy/problems/problem.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="494">
-          <caret line="549" column="34" selection-start-line="549" selection-start-column="34" selection-end-line="549" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/ConvexProjection.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="110" column="18" lean-forward="true" selection-start-line="110" selection-start-column="18" selection-end-line="110" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#31#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/tests/boston.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="186">
@@ -819,6 +730,7 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/sections/rts_example.rst" />
     <entry file="file://$PROJECT_DIR$/docs/source/conf.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
@@ -826,17 +738,104 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/PicardIterations.py">
+    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/ConvexProjection-2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="14" lean-forward="true" selection-start-line="9" selection-start-column="14" selection-end-line="9" selection-end-column="14" />
+        <state relative-caret-position="121">
+          <caret line="26" selection-start-line="26" selection-end-line="49" selection-end-column="13" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/IDL.py">
+    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/training2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-184">
-          <caret line="86" column="43" selection-start-line="86" selection-start-column="43" selection-end-line="86" selection-end-column="43" />
+        <state relative-caret-position="267">
+          <caret line="267" column="19" lean-forward="true" selection-start-line="163" selection-end-line="267" selection-end-column="19" />
+          <folding>
+            <element signature="e#0#44#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/sections/bi_convex_formulation.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/source/sections/learning.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/build/latex/idl_guide.tex">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="8" column="27" selection-end-line="701" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages/cvxpy/problems/problem.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="3990">
+          <caret line="288" selection-start-line="288" selection-end-line="288" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/tests/workingExample.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="306">
+          <caret line="94" selection-start-line="94" selection-end-line="96" selection-end-column="88" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/tests/ExampleABcDEf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="509">
+          <caret line="56" column="11" selection-start-line="56" selection-end-line="56" selection-end-column="11" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/PicardIterations.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" column="28" selection-start-line="14" selection-start-column="4" selection-end-line="14" selection-end-column="28" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/GradientDescents.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="1" column="22" lean-forward="true" selection-start-line="1" selection-start-column="22" selection-end-line="1" selection-end-column="22" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/DualAscents.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="9" column="26" selection-start-line="9" selection-start-column="26" selection-end-line="9" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/ConvexProjection.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="21" selection-start-line="21" selection-end-line="21" />
+          <folding>
+            <element signature="e#0#31#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/utilities/Metrics.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="58">
+          <caret line="4" column="73" lean-forward="true" selection-start-line="4" selection-start-column="73" selection-end-line="4" selection-end-column="73" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
@@ -845,28 +844,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/training.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="469">
-          <caret line="90" column="18" selection-start-line="90" selection-start-column="18" selection-end-line="90" selection-end-column="18" />
+        <state relative-caret-position="3525">
+          <caret line="235" column="8" lean-forward="true" selection-start-line="235" selection-start-column="8" selection-end-line="235" selection-end-column="8" />
           <folding>
             <element signature="e#0#44#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/workingExample.py">
+    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/IDL.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-214">
-          <caret line="33" selection-start-line="33" selection-end-line="33" />
-          <folding>
-            <element signature="e#0#17#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="-677">
+          <caret line="5" column="33" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="33" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/BertrandExample.py">
+    <entry file="file://$PROJECT_DIR$/IDL/IDLtemplate/tests/presentation_example.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="41">
-          <caret line="41" selection-start-line="41" selection-end-line="48" selection-end-column="70" />
+        <state relative-caret-position="186">
+          <caret line="123" column="16" lean-forward="true" selection-start-line="123" selection-start-column="16" selection-end-line="123" selection-end-column="16" />
           <folding>
             <element signature="e#0#17#0" expanded="true" />
           </folding>

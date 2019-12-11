@@ -1,0 +1,213 @@
+
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>utilities.GradientDescents &#8212; IDL 0.9 documentation</title>
+    <link rel="stylesheet" href="../../_static/alabaster.css" type="text/css" />
+    <link rel="stylesheet" href="../../_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../" src="../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../_static/doctools.js"></script>
+    <script type="text/javascript" src="../../_static/language_data.js"></script>
+    <script async="async" type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" />
+   
+  <link rel="stylesheet" href="../../_static/custom.css" type="text/css" />
+  
+  
+  <meta name="viewport" content="width=device-width, initial-scale=0.9, maximum-scale=0.9" />
+
+  </head><body>
+  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          
+
+          <div class="body" role="main">
+            
+  <h1>Source code for utilities.GradientDescents</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+
+<span class="k">def</span> <span class="nf">update_theta</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+    <span class="n">grad_theta</span><span class="p">,</span> <span class="n">lip_ABc</span><span class="p">,</span> <span class="n">lip_DEf</span> <span class="o">=</span> <span class="n">gradient_descent_theta</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">grad_theta</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">]:</span>
+            <span class="n">theta</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">-=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">lip_ABc</span><span class="p">)</span> <span class="o">*</span> <span class="n">grad_theta</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">]:</span>
+            <span class="n">theta</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">-=</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">lip_DEf</span><span class="p">)</span> <span class="o">*</span> <span class="n">grad_theta</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+
+    <span class="k">return</span> <span class="n">theta</span>
+
+
+<span class="k">def</span> <span class="nf">update_ABc_init</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+    <span class="n">grad_theta</span><span class="p">,</span> <span class="n">lip_ABc</span><span class="p">,</span> <span class="n">lip_DEf</span> <span class="o">=</span> <span class="n">gradient_descent_theta</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">grad_theta</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">,</span> <span class="s2">&quot;B&quot;</span><span class="p">,</span> <span class="s2">&quot;c&quot;</span><span class="p">]:</span>
+            <span class="n">theta</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">-=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">lip_ABc</span><span class="p">)</span> <span class="o">*</span> <span class="n">grad_theta</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">theta</span>
+
+
+<span class="k">def</span> <span class="nf">update_DEf_init</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+    <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;Lambda&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">identity</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="s2">&quot;Lambda&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">grad_theta</span><span class="p">,</span> <span class="n">lip_ABc</span><span class="p">,</span> <span class="n">lip_DEf</span> <span class="o">=</span> <span class="n">gradient_descent_theta</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">Y</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">grad_theta</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">key</span> <span class="ow">in</span> <span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">,</span> <span class="s2">&quot;E&quot;</span><span class="p">,</span> <span class="s2">&quot;f&quot;</span><span class="p">]:</span>
+            <span class="n">theta</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="o">-=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">lip_DEf</span><span class="p">)</span> <span class="o">*</span> <span class="n">grad_theta</span><span class="p">[</span><span class="n">key</span><span class="p">]</span>
+    <span class="k">return</span> <span class="n">theta</span>
+
+
+<div class="viewcode-block" id="gradient_descent_theta"><a class="viewcode-back" href="../../sections/gradient_descents.html#utilities.GradientDescents.gradient_descent_theta">[docs]</a><span class="k">def</span> <span class="nf">gradient_descent_theta</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the gradient of theta \n</span>
+<span class="sd">    :param theta: a dictionary</span>
+<span class="sd">    :param X: hidden variables</span>
+<span class="sd">    :param U: input data</span>
+<span class="sd">    :param Y: output data</span>
+<span class="sd">    :return: grad_theta: dictionary containing gradients of elemnts in theta</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">grad_theta</span> <span class="o">=</span> <span class="p">{}</span>
+
+    <span class="n">m</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;m&quot;</span><span class="p">]</span>
+    <span class="n">AB_Omega</span> <span class="o">=</span> <span class="n">Omega_ABc</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="n">U</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span><span class="n">Y</span><span class="p">)</span>
+    <span class="n">grad_theta</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">AB_Omega</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">grad_theta</span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">AB_Omega</span> <span class="o">@</span> <span class="n">U</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">grad_theta</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">AB_Omega</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">xnorm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">unorm</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+    <span class="n">lip_theta_one</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">xnorm</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">unorm</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">X</span> <span class="o">@</span> <span class="n">U</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="mi">2</span><span class="p">))</span>
+
+    <span class="n">DEF_Omega</span> <span class="o">=</span> <span class="n">Omega_DEfLambda</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="n">theta</span><span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">],</span> <span class="n">E</span><span class="o">=</span><span class="n">theta</span><span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">],</span> <span class="n">f</span><span class="o">=</span><span class="n">theta</span><span class="p">[</span><span class="s2">&quot;f&quot;</span><span class="p">],</span>
+                                <span class="n">Lambda</span><span class="o">=</span><span class="n">theta</span><span class="p">[</span><span class="s2">&quot;Lambda&quot;</span><span class="p">],</span> <span class="n">X</span><span class="o">=</span><span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="o">=</span><span class="n">U</span><span class="p">)</span>
+
+    <span class="n">grad_theta</span><span class="p">[</span><span class="s2">&quot;D&quot;</span> <span class="p">]</span> <span class="o">=</span> <span class="n">DEF_Omega</span> <span class="o">@</span> <span class="n">X</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">grad_theta</span><span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">DEF_Omega</span> <span class="o">@</span> <span class="n">U</span><span class="o">.</span><span class="n">T</span>
+    <span class="n">grad_theta</span><span class="p">[</span><span class="s2">&quot;f&quot;</span><span class="p">]</span> <span class="o">=</span> <span class="n">DEF_Omega</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+
+    <span class="n">lip_theta_two</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">theta</span><span class="p">[</span><span class="s2">&quot;Lambda&quot;</span><span class="p">])</span> <span class="o">/</span> <span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="nb">max</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">xnorm</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">unorm</span> <span class="o">**</span> <span class="mi">2</span><span class="p">,</span> <span class="n">xnorm</span><span class="p">,</span> <span class="n">unorm</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">grad_theta</span><span class="p">,</span> <span class="n">lip_theta_one</span><span class="p">,</span> <span class="n">lip_theta_two</span></div>
+
+
+<span class="k">def</span> <span class="nf">alpha_x</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">initialization</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;m&quot;</span><span class="p">]</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">]</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">]</span>
+    <span class="n">Lambda</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;Lambda&quot;</span><span class="p">]</span>
+
+    <span class="k">if</span> <span class="n">initialization</span><span class="p">:</span>
+        <span class="n">lip_X</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">A</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">lip_X</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">A</span> <span class="o">+</span> <span class="n">Lambda</span> <span class="o">-</span> <span class="n">Lambda</span> <span class="o">@</span> <span class="n">D</span> <span class="o">+</span> <span class="n">D</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Lambda</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="s2">&quot;fro&quot;</span><span class="p">)</span> <span class="o">+</span>
+                           <span class="n">np</span><span class="o">.</span><span class="n">max</span><span class="p">(</span><span class="n">Lambda</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="nb">ord</span><span class="o">=</span><span class="s2">&quot;fro&quot;</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span><span class="p">))</span>
+    <span class="k">return</span> <span class="mi">1</span> <span class="o">/</span> <span class="n">lip_X</span>
+
+<span class="k">def</span> <span class="nf">gradient_descent_x</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">initialization</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;m&quot;</span><span class="p">]</span>
+    <span class="n">A</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">]</span>
+    <span class="n">B</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">]</span>
+    <span class="n">D</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;D&quot;</span><span class="p">]</span>
+    <span class="n">E</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;E&quot;</span><span class="p">]</span>
+    <span class="n">f</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;f&quot;</span><span class="p">]</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">]</span>
+    <span class="n">Lambda</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;Lambda&quot;</span><span class="p">]</span>
+    <span class="c1"># Make sure that the shapes from the outer products c @ np.ones(m) etc. are right</span>
+    <span class="k">if</span> <span class="n">initialization</span> <span class="p">:</span>
+        <span class="n">grad_X</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">X</span> <span class="o">+</span> <span class="n">B</span> <span class="o">@</span> <span class="n">U</span> <span class="o">+</span> <span class="n">c</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span> <span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">grad_X</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">A</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">X</span> <span class="o">+</span> <span class="n">B</span> <span class="o">@</span> <span class="n">U</span> <span class="o">+</span> <span class="n">c</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="o">-</span> <span class="n">y</span><span class="p">)</span> <span class="o">+</span>
+                                     <span class="p">(</span><span class="n">Lambda</span> <span class="o">-</span> <span class="n">Lambda</span> <span class="o">@</span> <span class="n">D</span> <span class="o">-</span> <span class="n">D</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Lambda</span><span class="p">)</span> <span class="o">@</span> <span class="n">X</span> <span class="o">+</span>
+                                     <span class="n">D</span><span class="o">.</span><span class="n">T</span> <span class="o">@</span> <span class="n">Lambda</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">D</span> <span class="o">@</span> <span class="n">X</span> <span class="o">+</span> <span class="n">E</span> <span class="o">@</span> <span class="n">U</span> <span class="o">+</span> <span class="n">f</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="p">)))</span> <span class="o">-</span>
+                                     <span class="n">Lambda</span> <span class="o">@</span> <span class="p">(</span><span class="n">E</span> <span class="o">@</span> <span class="n">U</span> <span class="o">+</span> <span class="n">f</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="p">)))</span>
+    <span class="k">return</span> <span class="n">grad_X</span>
+
+
+<span class="k">def</span> <span class="nf">Omega_ABc</span><span class="p">(</span><span class="n">theta</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">,</span> <span class="n">Y</span><span class="p">):</span>
+    <span class="n">A</span><span class="p">,</span> <span class="n">B</span><span class="p">,</span> <span class="n">c</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;A&quot;</span><span class="p">],</span> <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;B&quot;</span><span class="p">],</span> <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;c&quot;</span><span class="p">]</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">theta</span><span class="p">[</span><span class="s2">&quot;m&quot;</span><span class="p">]</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">A</span> <span class="o">@</span> <span class="n">X</span> <span class="o">+</span> <span class="n">B</span> <span class="o">@</span> <span class="n">U</span> <span class="o">+</span> <span class="n">c</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="p">)</span> <span class="o">-</span> <span class="n">Y</span><span class="p">)</span>
+
+
+<span class="k">def</span> <span class="nf">Omega_DEfLambda</span><span class="p">(</span><span class="n">m</span><span class="p">,</span> <span class="n">D</span><span class="p">,</span> <span class="n">E</span><span class="p">,</span> <span class="n">f</span><span class="p">,</span> <span class="n">Lambda</span><span class="p">,</span> <span class="n">X</span><span class="p">,</span> <span class="n">U</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">(</span><span class="mi">1</span><span class="o">/</span><span class="n">m</span><span class="p">)</span> <span class="o">*</span> <span class="n">Lambda</span> <span class="o">@</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">maximum</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="p">(</span><span class="n">D</span> <span class="o">@</span> <span class="n">X</span> <span class="o">+</span> <span class="n">E</span> <span class="o">@</span> <span class="n">U</span> <span class="o">+</span> <span class="n">f</span> <span class="o">@</span> <span class="n">np</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="n">m</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="n">m</span><span class="p">)))</span> <span class="o">-</span> <span class="n">X</span><span class="p">)</span>
+</pre></div>
+
+          </div>
+          
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+<h1 class="logo"><a href="../../index.html">IDL</a></h1>
+
+
+
+
+
+
+
+
+<h3>Navigation</h3>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../sections/introduction.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sections/bi_convex_formulation.html">Formulation for IDL</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sections/learning.html">Learning Process</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sections/gradient_descents.html">Gradient Descents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sections/dual_ascents.html">Dual Ascents</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sections/prediction.html">Predicting</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sections/classification_operational_example.html">Examples</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../sections/citing.html">Citing</a></li>
+</ul>
+
+<div class="relations">
+<h3>Related Topics</h3>
+<ul>
+  <li><a href="../../index.html">Documentation overview</a><ul>
+  <li><a href="../index.html">Module code</a><ul>
+  </ul></li>
+  </ul></li>
+</ul>
+</div>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="../../search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+
+
+
+
+
+
+
+
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="footer">
+      &copy;.
+      
+      |
+      Powered by <a href="http://sphinx-doc.org/">Sphinx 2.2.1</a>
+      &amp; <a href="https://github.com/bitprophet/alabaster">Alabaster 0.7.12</a>
+      
+    </div>
+
+    
+
+    
+  </body>
+</html>

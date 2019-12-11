@@ -10,7 +10,7 @@ from sklearn.metrics import mean_squared_error, r2_score
 def generate_a_model():
     n, m = 10, 10000
     p = 1
-    h = 100
+    h = 500
     np.random.RandomState(0)
     A = sparse.random(p, h).toarray()
     B = sparse.random(p, n).toarray()
@@ -34,19 +34,19 @@ X = U.T
 test_data_point = int(0.1*X.shape[0])
 X_train, y_train, X_test, y_test = X[:-test_data_point], hat_y[:-test_data_point], X[-test_data_point:], hat_y[-test_data_point:]
 
-hidden_variables = 50
+h = 50
 dual_learning_rate = 1000
 tol_fenchtel = 0.001
 
 results = {}
-f = 0.001
-hidden_variables = [10, 25, 50, 100]
-for h in hidden_variables:
-    IDL = idl.IDLModel(hidden_variables=h, dual_learning_rate=dual_learning_rate, tol_fenchtel=f,
-                       random_state=0, verbosity=True, inner_tol=1e-3)
-    IDL.fit(X_train, y_train, rounds_number=100, verbose=True, type_of_training="two_loops")
-    y_test_predict = IDL.predict(X_test)[0]
-    results[h] = (np.sqrt(mean_squared_error(y_test, y_test_predict)))
+# f = 0.001
+# hidden_variables = [10, 25, 50, 100]
+# h = 25
+IDL = idl.IDLModel(hidden_variables=h, dual_learning_rate=dual_learning_rate, tol_fenchtel=tol_fenchtel,
+                   random_state=0, verbosity=True, inner_tol=1e-3)
+IDL.fit(X_train, y_train, rounds_number=100, verbose=True, type_of_training="two_loops")
+y_test_predict = IDL.predict(X_test)[0]
+results[h] = (np.sqrt(mean_squared_error(y_test, y_test_predict)))
 
 
 
