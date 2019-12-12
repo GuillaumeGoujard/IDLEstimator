@@ -41,8 +41,8 @@ def linear_example():
     dual_learning_rate = 1
     tol_fenchtel = 0.01
     IDL = idl.IDLModel(hidden_variables=hidden_variables, dual_learning_rate=dual_learning_rate, tol_fenchel=tol_fenchtel,
-                       random_state=0, verbosity=True)
-    IDL.fit(X_train, y_train, rounds_number=50, verbose=True, type_of_training="two_loops")
+                       random_state=0, verbosity=True, early_stopping=True, starting_lambda=None)
+    IDL.fit(X_train, y_train, rounds_number=50, verbose=True, type_of_training="two_loops", eval_set=(X_test, y_test))
 
 
     """
@@ -125,11 +125,11 @@ def sin_example():
     plt.title("Predictions over the test set")
     plt.show()
 
-    dual_learning_rate = 1000
+    dual_learning_rate = 100000
     tol_fenchtel = 1e-10
     IDL = idl.IDLModel(hidden_variables=hidden_variables, dual_learning_rate=dual_learning_rate, tol_fenchel=tol_fenchtel,
                        early_stopping=False,
-                       initialization_theta=(theta.copy(), X.copy()), starting_lambda=1000000,
+                       initialization_theta=(theta.copy(), X.copy()), starting_lambda=None,
                        random_state=0, verbosity=True)
     IDL.fit(X_train, y_train, rounds_number=200, verbose=True, type_of_training="two_loops", eval_set = (X_test, y_test),
             )

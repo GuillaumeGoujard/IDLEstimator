@@ -264,7 +264,7 @@ def initialize_theta_2(U, y, h_variables, tol_fenchtel=0.01, verbose=True, rando
     y_fenchtel = D @ X + E @ U + f @ np.ones((1, m))
     fenchel = me.fenchtel_div(X, y_fenchtel)
     if starting_lambda is None:
-        first_lambda = (me.loss(U,y, theta, X))/np.linalg.norm(fenchel)
+        first_lambda = tol_fenchtel #(me.loss(U,y, theta, X))/np.linalg.norm(fenchel)
     else:
         first_lambda = starting_lambda
     print("FIRST LAMBDA = ", first_lambda)
