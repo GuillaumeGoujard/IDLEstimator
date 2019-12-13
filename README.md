@@ -1,10 +1,9 @@
-# IDLEstimator
 
-## Documents
-Notes of Bertrand and useful ressources that you can find helpful online
+IDL - a scikit-learn package for Implicit Deep Learning
+============================================================
 
-##IDL
-The Code
 
-Let's have fun ;)
-
+Structure of the code
+----------------------
+* The core code is in IDLtemplate, and the main class in IDL.py
+* examples in tests

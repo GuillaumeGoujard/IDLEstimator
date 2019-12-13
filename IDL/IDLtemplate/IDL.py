@@ -43,6 +43,8 @@ class IDLModel(BaseEstimator):
         self.evals_result = []
         self.starting_lambda = starting_lambda
         self.initialization_theta = initialization_theta
+        if initialization_theta:
+            self.theta = initialization_theta[0]
         self.early_stopping = early_stopping
 
     def fit(self, X, y, rounds_number=100, verbose=True, type_of_training="two_loops", eval_set = None):

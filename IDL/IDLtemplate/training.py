@@ -63,7 +63,7 @@ def train(U, y, theta, X, outer_max_rounds_number=50, inner_max_rounds_number=50
         if eval_set is not None:
             X_temp, loss = L2_eval_set(U_test, y_test, X_temp, theta)
             eval_element = eval_element + [loss]
-            print(eval_element)
+            # print(eval_element)
         evals_result.append(eval_element)
 
     if verbose:
@@ -127,7 +127,7 @@ def L2_eval_set(U_test, y_test, X_temp, theta):
     m_samples = U_test.shape[1]
     X_temp = pi.picard_iterations(X_temp, theta["D"], theta["E"] @ U_test + theta["f"] @ np.ones((1, m_samples)),
                              k_iterations=1000)
-    return X_temp, me.L2Loss(U_test, y_test, theta, X_temp)
+    return X_temp, me.L2Loss(U_test, y_test, theta, X_temp, evaluating=True)
 
 def train_theta_lambda(U, y, theta, X, outer_max_rounds_number=50, early_stopping_rounds=10, dual_learning_rate=0.1,
                        tol_fenchtel=0.01, evals_result=None, verbose=True, solver=None, solver_options=None):
@@ -273,14 +273,15 @@ def initialize_theta_2(U, y, h_variables, tol_fenchtel=0.01, verbose=True, rando
     print("Initialization is a Success ! ")
     print("...")
 
-    plt.scatter(U[0,:],y)
-    plt.scatter(U[0,:],theta["A"]@X + theta["B"]@U + theta["c"]@np.ones((1, theta["m"])))
-    print(np.linalg.norm(X-np.maximum(0, theta["D"] @ X + theta["E"] @ U + theta["f"]@np.ones((1, theta["m"]))), ord= "fro"))
-    Xpic = pi.picard_iterations(X, theta["D"], theta["E"]@U + theta["f"]@np.ones((1,theta["m"])), k_iterations=1000)
-    plt.scatter(U[0,:],theta["A"]@Xpic + theta["B"]@U + theta["c"]@np.ones((1, theta["m"])), label = "pic")
-    plt.legend()
-    plt.title("initialization h = " + str(h))
-    plt.show()
+    if verbose:
+        plt.scatter(U[0,:],y)
+        plt.scatter(U[0,:],theta["A"]@X + theta["B"]@U + theta["c"]@np.ones((1, theta["m"])))
+        print(np.linalg.norm(X-np.maximum(0, theta["D"] @ X + theta["E"] @ U + theta["f"]@np.ones((1, theta["m"]))), ord= "fro"))
+        Xpic = pi.picard_iterations(X, theta["D"], theta["E"]@U + theta["f"]@np.ones((1,theta["m"])), k_iterations=1000)
+        plt.scatter(U[0,:],theta["A"]@Xpic + theta["B"]@U + theta["c"]@np.ones((1, theta["m"])), label = "pic")
+        plt.legend()
+        plt.title("initialization h = " + str(h))
+        plt.show()
     
     return theta, X
 

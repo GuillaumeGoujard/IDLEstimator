@@ -3,6 +3,7 @@ import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.metrics import mean_squared_error, r2_score
 from sklearn.linear_model import LinearRegression
+import training as idltraining
 
 """
 Let us try to make it learn a very simple model :
@@ -95,9 +96,10 @@ def sin_example():
     """
     IDL model
     """
+
     hidden_variables = 100
-    dual_learning_rate = 100
-    tol_fenchtel = 1/dual_learning_rate
+    dual_learning_rate = 1000
+    tol_fenchtel = 0.0001
     starting_lambda = tol_fenchtel
     import training as idltraining
     U = X_train.T.copy()
@@ -109,40 +111,21 @@ def sin_example():
     """
     First example : No tuning
     """
-    IDL = idl.IDLModel(hidden_variables=hidden_variables, dual_learning_rate=dual_learning_rate, tol_fenchel=tol_fenchtel,
-                       initialization_theta=(theta.copy(), X.copy()), starting_lambda=starting_lambda,
-                       random_state=0, verbosity=True)
-    IDL.fit(X_train, y_train, rounds_number=200, verbose=True, type_of_training="two_loops", eval_set = (X_test, y_test))
+    lambda0 = [ 1e-4, 1e-3, 1e-2, 1e-1, 1, 10, 100, 1000 ]
+    dual_learning_rates = [ 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1, 1, 10, 100, 1000 ]
+    tol_fenchtels =[ 1e-6, 1e-5, 1e-4, 1e-3, 1e-2, 1e-1, 1, 10, 100, 1000 ]
+    results = {}
+    for d in tol_fenchtels:
+        print(d)
 
-    y_pred = IDL.predict(X_test)
-    X_test_model = X_test.reshape(1, -1).copy()
-    X_test_model.sort()
-    plt.plot(X_test_model[0], quadratic_model(X_test_model, noise_std=0)[1][0], color="red", label="denoised model")
-    plt.scatter(X_test, y_test, label="y_test")
-    plt.scatter(X_test, y_pred, label="predictions")
-    plt.grid(True)
-    plt.legend()
-    plt.title("Predictions over the test set")
+        IDL = idl.IDLModel(hidden_variables=hidden_variables, dual_learning_rate=1e-6, tol_fenchel=d,
+                           initialization_theta=(theta.copy(), X.copy()), starting_lambda=None,
+                           random_state=0, verbosity=False, early_stopping=True)
+        IDL.fit(X_train, y_train, rounds_number=200, verbose=False, type_of_training="two_loops",
+                eval_set=(X_test, y_test))
+        y_pred = IDL.predict(X_test)
+        results[d] = np.sqrt(mean_squared_error(y_test, y_pred[0]))
+
+    plt.plot(np.log(dual_learning_rates), list(results.values()))
     plt.show()
-
-    dual_learning_rate = 100000
-    tol_fenchtel = 1e-10
-    IDL = idl.IDLModel(hidden_variables=hidden_variables, dual_learning_rate=dual_learning_rate, tol_fenchel=tol_fenchtel,
-                       early_stopping=False,
-                       initialization_theta=(theta.copy(), X.copy()), starting_lambda=None,
-                       random_state=0, verbosity=True)
-    IDL.fit(X_train, y_train, rounds_number=200, verbose=True, type_of_training="two_loops", eval_set = (X_test, y_test),
-            )
-
-    y_pred = IDL.predict(X_test)
-    X_test_model = X_test.reshape(1, -1).copy()
-    X_test_model.sort()
-    plt.plot(X_test_model[0], quadratic_model(X_test_model, noise_std=0)[1][0], color="red", label="denoised model")
-    plt.scatter(X_test, y_test, label="y_test")
-    plt.scatter(X_test, y_pred, label="predictions")
-    plt.grid(True)
-    plt.legend()
-    plt.title("Predictions over the test set")
-    plt.show()
-
 

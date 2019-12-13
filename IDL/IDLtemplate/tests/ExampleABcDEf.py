@@ -5,7 +5,7 @@ from utilities import ConvexProjection as cp
 from scipy import sparse
 from sklearn.linear_model import LinearRegression
 from sklearn.metrics import mean_squared_error, r2_score
-
+import training as idltraining
 
 def generate_a_model():
     n, m = 10, 10000
@@ -34,19 +34,16 @@ X = U.T
 test_data_point = int(0.1*X.shape[0])
 X_train, y_train, X_test, y_test = X[:-test_data_point], hat_y[:-test_data_point], X[-test_data_point:], hat_y[-test_data_point:]
 
-h = 50
-dual_learning_rate = 1000
-tol_fenchtel = 0.001
-
-results = {}
-# f = 0.001
-# hidden_variables = [10, 25, 50, 100]
-# h = 25
-IDL = idl.IDLModel(hidden_variables=h, dual_learning_rate=dual_learning_rate, tol_fenchtel=tol_fenchtel,
-                   random_state=0, verbosity=True, inner_tol=1e-3)
-IDL.fit(X_train, y_train, rounds_number=100, verbose=True, type_of_training="two_loops")
+theta, X = idltraining.initialize_theta_2(X_train.T, y_train, 300, starting_lambda=None,
+                                          tol_fenchtel=1e-5, verbose=False,
+                                          random_state=0)
+IDL = idl.IDLModel(hidden_variables=300, dual_learning_rate=100, tol_fenchel=1e-5,
+                   random_state=0, verbosity=True, inner_tol=1e-3, initialization_theta=(theta.copy(), X.copy()),)
+y_pred = IDL.predict(X_test)
+results_before = (np.sqrt(mean_squared_error(y_test, y_pred[0])))
+IDL.fit(X_train, y_train, rounds_number=200, verbose=True, type_of_training="two_loops", eval_set=(X_test, y_test))
 y_test_predict = IDL.predict(X_test)[0]
-results[h] = (np.sqrt(mean_squared_error(y_test, y_test_predict)))
+results = (np.sqrt(mean_squared_error(y_test, y_test_predict)))
 
 
 
