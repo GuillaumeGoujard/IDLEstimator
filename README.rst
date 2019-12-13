@@ -34,7 +34,7 @@ Structure of the code
 ----------------------
 * The IDLModel class is in IDLtemplate/IDL.py
 * Working examples in are in IDLtemplate/tests
-
+* The report can be found in EE227BReport/
 
 Contributors
 --------------
@@ -46,5 +46,3 @@ Citing
 
 * "Implicit Deep Learning" Laurent El Ghaoui, Fangda Gu, Bertrand Travacca, Armin Askari, arXiv:1908.06315, 2019.
 * "Bi-convex Implicit Deep Learning" Bertrand Travacca, October 2019
-
-
