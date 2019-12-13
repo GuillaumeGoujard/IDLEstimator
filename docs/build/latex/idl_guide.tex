@@ -71,7 +71,7 @@
 
 
 \title{IDL\_Guide Documentation}
-\date{Dec 10, 2019}
+\date{Dec 12, 2019}
 \release{0.9}
 \author{us}
 \newcommand{\sphinxlogo}{\vbox{}}
@@ -156,22 +156,6 @@ Note that \(\Vert D \Vert_2 < 1\) is only a sufficient condition for well-posedn
 we will consider in this article.
 
 
-\section{Loss Functions}
-\label{\detokenize{sections/introduction:loss-functions}}
-** section 3.2 equation 4 ** + Classification loss
-(see more at {\hyperref[\detokenize{sections/learning:learning}]{\sphinxcrossref{\DUrole{std,std-ref}{Learning Process}}}})
-
-
-\section{Description of the learning process}
-\label{\detokenize{sections/introduction:description-of-the-learning-process}}
-(see more at {\hyperref[\detokenize{sections/bi_convex_formulation:formulation}]{\sphinxcrossref{\DUrole{std,std-ref}{Formulation for IDL}}}})
-
-
-\section{Description of the prediction process}
-\label{\detokenize{sections/introduction:description-of-the-prediction-process}}
-(see more at {\hyperref[\detokenize{sections/prediction:prediction}]{\sphinxcrossref{\DUrole{std,std-ref}{Predicting}}}})
-
-
 \section{Setup}
 \label{\detokenize{sections/introduction:setup}}
 TODO
@@ -233,7 +217,7 @@ Given \(X = [x_1, \cdots, x_m]\) and \(Z = [z_1, \cdots, z_m]\) we write
 \begin{split}\mathcal{F}(X,Z) := \frac{1}{m} \sum_{i=1}^m \mathcal{F}(x_i,z_i).\end{split}
 \end{equation*}
 A Lagrangian relaxation approach to solving \eqref{equation:sections/bi_convex_formulation:eq_2} problem using the implicit constraint formulation \eqref{equation:sections/bi_convex_formulation:eq_3} consists in
-solving given a dual variable \(\lambda \in \mathcal{R}_+^h\)
+solving given a dual variable \(\lambda \in \mathbb{R}_+^h\)
 \begin{equation}\label{equation:sections/bi_convex_formulation:eq_4}
 \begin{split}\begin{align}
     \min_{\color{blue}{X} \geq 0, \color{blue}{\Theta}} \quad &\mathcal{L}(Y,[\color{blue}{\Theta},\color{blue}{X}]) + \lambda^T \mathcal{F}(\color{blue}{X},\color{blue}{DX} + \color{blue}{E}U + \color{blue}{f}1_m^T) \\
@@ -246,7 +230,7 @@ with extra conditions on \(\Theta\) as shown in the next section.
 
 \section{Linear matrix inequality parameter constraints for bi-convexity}
 \label{\detokenize{sections/bi_convex_formulation:linear-matrix-inequality-parameter-constraints-for-bi-convexity}}
-Let us define \(\Lambda = diag(\lambda) \in \mathbb{S}_+^h\)
+Let us define \(\Lambda = \text{diag}(\lambda) \in \mathbb{S}_+^h\)
 
 Theorem 1. \sphinxstyleemphasis{Problem} \eqref{equation:sections/bi_convex_formulation:eq_4} \sphinxstyleemphasis{is bi-convex in} \([\Theta,X]\) \sphinxstyleemphasis{if we impose one of the two following feasible linear matrix inequalities (LMI)}
 \begin{equation}\label{equation:sections/bi_convex_formulation:eq_5}
@@ -286,7 +270,8 @@ From this proof, the problem formulation reads
 \begin{split}\begin{align}
     \min_{\color{blue}{X} \geq 0, \color{blue}{\Theta}} \quad &\mathcal{L}(Y,[\color{blue}{\Theta},\color{blue}{X}]) + \lambda^T \mathcal{F}(\color{blue}{X},\color{blue}{DX} + \color{blue}{E}U + \color{blue}{f}1_m^T) \\
     \text{s.t.} \quad &\Vert \color{blue}{D} \Vert_2 \leq 1 - \epsilon \\
-                \quad &\Lambda + \color{blue}{A}^T\color{blue}{A} - (\Lambda \color{blue}{D} + \color{blue}{D}^T \Lambda) \in \mathbb{S}_+^h,
+                \quad &\Lambda + \color{blue}{A}^T\color{blue}{A} - (\Lambda \color{blue}{D} + \color{blue}{D}^T \Lambda) \in \mathbb{S}_+^h \\
+                \quad &\Lambda = \text{diag}(\lambda) \in \mathbb{S}_+^h,
 \end{align}\end{split}
 \end{equation}
 this problem is well-posed -feasible solutions exist- and bi-smooth.
@@ -298,7 +283,7 @@ this problem is well-posed -feasible solutions exist- and bi-smooth.
 \index{IDLModel (class in IDL)@\spxentry{IDLModel}\spxextra{class in IDL}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{sections/learning:IDL.IDLModel}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{IDL.}}\sphinxbfcode{\sphinxupquote{IDLModel}}}{\emph{hidden\_variables=1}, \emph{dual\_learning\_rate=0.1}, \emph{tol\_fenchtel=0.1}, \emph{inner\_tol=0.001}, \emph{starting\_lambda=None}, \emph{initialization\_theta=None}, \emph{random\_state=0}, \emph{early\_stopping=True}, \emph{verbosity=True}}{}
+\phantomsection\label{\detokenize{sections/learning:IDL.IDLModel}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{IDL.}}\sphinxbfcode{\sphinxupquote{IDLModel}}}{\emph{hidden\_variables=1}, \emph{dual\_learning\_rate=0.1}, \emph{tol\_fenchel=0.1}, \emph{inner\_tol=0.001}, \emph{starting\_lambda=None}, \emph{initialization\_theta=None}, \emph{random\_state=0}, \emph{early\_stopping=True}, \emph{verbosity=True}}{}
 Implementation of the Scikit-Learn API for Implicit Deep Learning
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
@@ -329,6 +314,8 @@ Random number seed for initialization.
 \end{itemize}
 
 \end{description}\end{quote}
+
+:param initialization\_theta
 \begin{description}
 \item[{Full documentation of parameters can}] \leavevmode
 be found here: \sphinxurl{https://github.com/GuillaumeGoujard/IDLEstimator/blob/master/docs/source/sections/introduction.rst}.
@@ -337,7 +324,7 @@ be found here: \sphinxurl{https://github.com/GuillaumeGoujard/IDLEstimator/blob/
 \index{fit() (IDL.IDLModel method)@\spxentry{fit()}\spxextra{IDL.IDLModel method}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{sections/learning:IDL.IDLModel.fit}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{fit}}}{\emph{X}, \emph{y}, \emph{rounds\_number=100}, \emph{verbose=True}, \emph{type\_of\_training='two\_loops'}}{}
+\phantomsection\label{\detokenize{sections/learning:IDL.IDLModel.fit}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{fit}}}{\emph{X}, \emph{y}, \emph{rounds\_number=100}, \emph{verbose=True}, \emph{type\_of\_training='two\_loops'}, \emph{eval\_set=None}}{}
 Fit IDL Model
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
@@ -379,6 +366,29 @@ of dual ascent
 \item[{Returns}] \leavevmode
 self : object
 Returns self.
+
+\end{description}\end{quote}
+
+\end{fulllineitems}
+
+\index{predict() (IDL.IDLModel method)@\spxentry{predict()}\spxextra{IDL.IDLModel method}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{sections/learning:IDL.IDLModel.predict}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{predict}}}{\emph{X}, \emph{k\_iterations=10000}}{}
+Predicting function.
+:param X: array-like
+\begin{quote}
+
+The input sample.
+\end{quote}
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode
+\sphinxstyleliteralstrong{\sphinxupquote{k\_iterations}} \textendash{} int
+Maximum number of Picard iterations
+
+\item[{Returns}] \leavevmode
+y: array-like
+Returns a prediction array.
 
 \end{description}\end{quote}
 
@@ -457,9 +467,9 @@ A Lipschitz constant for this gradient is
 \begin{split}L_X(\Theta) = \frac{1}{m}(\Vert A^TA + \Lambda - \Lambda D + D^T\Lambda \Vert_2 + \lambda_{\text{max}} \Vert D \Vert_2^2).\end{split}
 \end{equation*}
 We can then take the step-size \(\alpha_X(\Theta) = \frac{1}{L_X(\Theta)}\). We propose the following block coordinate projected
-gradient scheme (BC-gradient) to  nd a candidate solution to :eq:{\color{red}\bfseries{}{}`}eq\_7. We denote compactly the convex set
+gradient scheme (BC-gradient) to  find a candidate solution to :eq:{\color{red}\bfseries{}{}`}eq\_7. We denote compactly the convex set
 \begin{equation*}
-\begin{split}\mathcal{S}_{\Theta} := \{\Theta \vert \Lambda + A^TA - (\Lambda D + D^T \Lambda) \in \mathbb{s}_+^h, \Vert D \Vert_2 \leq 1 - \epsilon \}\end{split}
+\begin{split}\mathcal{S}_{\Theta} := \{\Theta \vert \Lambda + A^TA - (\Lambda D + D^T \Lambda) \in \mathbb{S}_+^h, \Vert D \Vert_2 \leq 1 - \epsilon \}\end{split}
 \end{equation*}
 and \(\mathcal{P}_{\mathcal{S}_{\Theta}}\) the corresponding convex projection
 
@@ -471,16 +481,6 @@ and \(\mathcal{P}_{\mathcal{S}_{\Theta}}\) the corresponding convex projection
 \end{align}\end{split}
 \end{equation*}
 \sphinxstylestrong{end}
-
-
-\section{Bi-Convexity of the Loss function}
-\label{\detokenize{sections/gradient_descents:bi-convexity-of-the-loss-function}}
-TODO
-
-
-\section{Gradient Descents}
-\label{\detokenize{sections/gradient_descents:id4}}
-TODO
 
 
 \section{Code for calculating Gradient Descent}
@@ -532,8 +532,8 @@ and then
 \begin{equation*}
 \begin{split}\min_{\color{blue}{D}, \color{blue}{E}, \color{blue}{f}} 1_h^T\mathcal{F}(\color{blue}{X},\color{blue}{DX} + \color{blue}{E}U + \color{blue}{f}1_m^T).\end{split}
 \end{equation*}
-If \(\mathcal{F}^* := \mathcal{F}(X,DX + EU + f1_m^T) < \epsilon I_h\) then we stop there. Otherwise, we do one of the two following ‘dual
-updates’
+If \(\mathcal{F}^* := \mathcal{F}(X,DX + EU + f1_m^T) < \epsilon I_h\) then we stop there. Otherwise, we do the following ‘dual
+update’
 
 
 \section{Dual ascent conditional on Fenchel Divergence}
@@ -546,42 +546,6 @@ iterate. Alternatively, if the BC-gradient method is used, we can do a dual upda
 update.
 
 
-\section{Dual variable update conditional on loss}
-\label{\detokenize{sections/dual_ascents:dual-variable-update-conditional-on-loss}}
-We start with \(\lambda = \epsilon I_h\). Given \((\Theta,X)\), we define the unique \(\bar{X}\) such that the implicit constraint
-is enforced given \(\Theta\)
-\begin{equation*}
-\begin{split}\bar{X} = (DX + EU + f1_m^T)_+.\end{split}
-\end{equation*}
-We then define \(\Delta X := X - \bar{X}\). We can compute in close form the error on the loss due to the implicit
-constraint violation
-\begin{equation*}
-\begin{split}\begin{align}
-    \Delta \mathcal{L} :&= \mathcal{L}(Y,[\Theta,\bar{X}]) - \mathcal{L}(Y,[\Theta,X]) \\
-    &= \frac{1}{2m} \bigg(\Vert A \Delta X \Vert_F^2 + Tr(\Omega,A \Delta X) \bigg)
-\end{align}\end{split}
-\end{equation*}
-with \(\Omega := BU + c1_m^T\). We can write this error as a sum of contributions with respect to each hidden variable
-components \(j \in \{1,\cdots,h\}\)
-\begin{equation*}
-\begin{split}\Delta \mathcal{L} = \sum_{j=1}^h \bigg\{ \Delta \mathcal{L}_j := \frac{1}{m} A_j^T \bigg( \frac{1}{2} A \Delta X + \Omega \bigg) \Delta X_j^T \bigg\},\end{split}
-\end{equation*}
-where \(A_j \in \mathbb{R}^h\) is the \(j^{th}\) column of \(A\) and \(\Delta X_j \in \mathbb{R}^{1 \times m}\) is the \(j^{th}\)
-row of \(\Delta X\). The objective of this dual update is to achieve an error on the loss that is smaller than a fraction \(\eta \in (0,1)\) of the loss
-\begin{equation*}
-\begin{split}\frac{\Delta \mathcal{L}}{\mathcal{L}(Y,[\Theta,\bar{X}])} \leq \eta.\end{split}
-\end{equation*}
-In order to update each component of the dual variable, we propose the following update. Given \(j \in \{1,\cdots,h\}\) if
-\begin{equation*}
-\begin{split}\frac{(\Delta \mathcal{L}_j)_+}{\mathcal{L}(Y,[\Theta,\bar{X}])} \geq \frac{\eta}{h},\end{split}
-\end{equation*}
-then we do the update
-\begin{equation*}
-\begin{split}\lambda_j \rightarrow \beta \lambda_j,\end{split}
-\end{equation*}
-with \(\beta > 1\) a hyperparameter.
-
-
 \section{Code for calculating Dual Ascents}
 \label{\detokenize{sections/dual_ascents:code-for-calculating-dual-ascents}}\phantomsection\label{\detokenize{sections/dual_ascents:module-utilities.DualAscents}}\index{utilities.DualAscents (module)@\spxentry{utilities.DualAscents}\spxextra{module}}
 
@@ -591,7 +555,7 @@ with \(\beta > 1\) a hyperparameter.
 \index{IDLModel (class in IDL)@\spxentry{IDLModel}\spxextra{class in IDL}}
 
 \begin{fulllineitems}
-\phantomsection\label{\detokenize{sections/prediction:IDL.IDLModel}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{IDL.}}\sphinxbfcode{\sphinxupquote{IDLModel}}}{\emph{hidden\_variables=1}, \emph{dual\_learning\_rate=0.1}, \emph{tol\_fenchtel=0.1}, \emph{inner\_tol=0.001}, \emph{starting\_lambda=None}, \emph{initialization\_theta=None}, \emph{random\_state=0}, \emph{early\_stopping=True}, \emph{verbosity=True}}{}
+\phantomsection\label{\detokenize{sections/prediction:IDL.IDLModel}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{IDL.}}\sphinxbfcode{\sphinxupquote{IDLModel}}}{\emph{hidden\_variables=1}, \emph{dual\_learning\_rate=0.1}, \emph{tol\_fenchel=0.1}, \emph{inner\_tol=0.001}, \emph{starting\_lambda=None}, \emph{initialization\_theta=None}, \emph{random\_state=0}, \emph{early\_stopping=True}, \emph{verbosity=True}}{}
 Implementation of the Scikit-Learn API for Implicit Deep Learning
 \begin{quote}\begin{description}
 \item[{Parameters}] \leavevmode\begin{itemize}
@@ -622,6 +586,8 @@ Random number seed for initialization.
 \end{itemize}
 
 \end{description}\end{quote}
+
+:param initialization\_theta
 \begin{description}
 \item[{Full documentation of parameters can}] \leavevmode
 be found here: \sphinxurl{https://github.com/GuillaumeGoujard/IDLEstimator/blob/master/docs/source/sections/introduction.rst}.
@@ -673,6 +639,50 @@ Returns a prediction array.
 “Bi-convex Implicit Deep Learning” Bertrand Travacca, October 2019
 
 \end{itemize}
+\index{IDLModel (class in IDL)@\spxentry{IDLModel}\spxextra{class in IDL}}
+
+\begin{fulllineitems}
+\phantomsection\label{\detokenize{index:IDL.IDLModel}}\pysiglinewithargsret{\sphinxbfcode{\sphinxupquote{class }}\sphinxcode{\sphinxupquote{IDL.}}\sphinxbfcode{\sphinxupquote{IDLModel}}}{\emph{hidden\_variables=1}, \emph{dual\_learning\_rate=0.1}, \emph{tol\_fenchel=0.1}, \emph{inner\_tol=0.001}, \emph{starting\_lambda=None}, \emph{initialization\_theta=None}, \emph{random\_state=0}, \emph{early\_stopping=True}, \emph{verbosity=True}}{}
+Implementation of the Scikit-Learn API for Implicit Deep Learning
+\begin{quote}\begin{description}
+\item[{Parameters}] \leavevmode\begin{itemize}
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{hidden\_variables}} \textendash{} int
+number of hidden variables of the vector X (see
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{dual\_learning\_rate}} \textendash{} float
+Positive float, Dual learning rate (IDL’s “alpha”)
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{tol\_fenchel}} \textendash{} float
+Positive float, Fenchel tolerance threshold for dual’s update (IDL’s “alpha”)
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{inner\_tol}} \textendash{} float
+Positive float, tolerance threshold for early stopping in the gradient descents with respect to theta
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{verbosity}} \textendash{} bool
+Verbosity of the training process.
+
+\item {} 
+\sphinxstyleliteralstrong{\sphinxupquote{random\_state}} \textendash{} int
+Random number seed for initialization.
+
+\end{itemize}
+
+\end{description}\end{quote}
+
+:param initialization\_theta
+\begin{description}
+\item[{Full documentation of parameters can}] \leavevmode
+be found here: \sphinxurl{https://github.com/GuillaumeGoujard/IDLEstimator/blob/master/docs/source/sections/introduction.rst}.
+
+\end{description}
+
+\end{fulllineitems}
+
 
 
 \chapter{Indices and tables}

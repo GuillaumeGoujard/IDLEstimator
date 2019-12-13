@@ -17,6 +17,7 @@ model for regression and classification purpose.
    sections/classification_operational_example.rst
    sections/citing.rst
 
+.. autoclass:: IDL.IDLModel
 
 Indices and tables
 ==================
