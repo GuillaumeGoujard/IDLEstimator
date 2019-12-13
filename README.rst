@@ -8,8 +8,7 @@ This package can be used to fit an Implicit Deep Learning (IDL) model for regres
 and classification purpose.
 
 The IDL.fit function estimates a vector of parameters by applying successively
-gradient descents (see more at :ref:`Gradient Descents`) and dual ascent
-(see more at :ref:`Dual Ascents`).
+gradient descents and dual ascent.
 
 Implicit Deep Learning
 *************************
@@ -17,7 +16,7 @@ Implicit Deep Learning
 Given an input :math:`u \in \mathbb{R}^n`, where n denotes the number of features,
 we define the implicit deep learning prediction rule :math:`\hat{y}(u) \in \mathbb{R}^n` with ReLU activation
 
-.. math::
+:math::
     \begin{align}
         \hat{y}(u) &= Ax + Bu + c \\
         x &= (Dx + Eu + f)_+,

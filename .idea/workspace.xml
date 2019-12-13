@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="97b0686d-5d10-4a7a-9111-942bab0dbc7a" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/IDL/IDLtemplate/tests/workingExample.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/IDL/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/IDL/README.rst" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.rst" beforeDir="false" afterPath="$PROJECT_DIR$/README.rst" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -27,7 +25,7 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/IDL/README.rst">
+        <entry file="file://$PROJECT_DIR$/README.rst">
           <provider selected="true" editor-type-id="restructured-text-editor" />
         </entry>
       </file>
@@ -44,15 +42,6 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/source/index.rst">
           <provider selected="true" editor-type-id="restructured-text-editor" />
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/README.md">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="120">
-              <caret line="8" column="19" selection-start-line="8" selection-start-column="19" selection-end-line="8" selection-end-column="19" />
-            </state>
-          </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
@@ -131,6 +120,7 @@
         <option value="$PROJECT_DIR$/IDL/IDLtemplate/tests/presentation_example.py" />
         <option value="$PROJECT_DIR$/IDL/IDLtemplate/tests/ExampleABcDEf.py" />
         <option value="$PROJECT_DIR$/IDL/README.rst" />
+        <option value="$PROJECT_DIR$/README.rst" />
       </list>
     </option>
   </component>
@@ -153,43 +143,7 @@
             <path>
               <item name="EE227B_project" type="b2602c69:ProjectViewProjectNode" />
               <item name="EE227B_project" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="EE227B_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EE227B_project" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="source" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="EE227B_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EE227B_project" type="462c0819:PsiDirectoryNode" />
-              <item name="docs" type="462c0819:PsiDirectoryNode" />
-              <item name="source" type="462c0819:PsiDirectoryNode" />
-              <item name="sections" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="EE227B_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EE227B_project" type="462c0819:PsiDirectoryNode" />
-              <item name="documents" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="EE227B_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EE227B_project" type="462c0819:PsiDirectoryNode" />
               <item name="IDL" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="EE227B_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EE227B_project" type="462c0819:PsiDirectoryNode" />
-              <item name="IDL" type="462c0819:PsiDirectoryNode" />
-              <item name="IDLtemplate" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="EE227B_project" type="b2602c69:ProjectViewProjectNode" />
-              <item name="EE227B_project" type="462c0819:PsiDirectoryNode" />
-              <item name="IDL" type="462c0819:PsiDirectoryNode" />
-              <item name="IDLtemplate" type="462c0819:PsiDirectoryNode" />
-              <item name="tests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -207,11 +161,11 @@
   </component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/IDL/IDLtemplate/tests" />
       <recent name="$PROJECT_DIR$/IDL/IDLtemplate" />
       <recent name="$PROJECT_DIR$/docs/test_example" />
       <recent name="$PROJECT_DIR$/docs" />
-      <recent name="$PROJECT_DIR$" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -427,12 +381,12 @@
       <workItem from="1576023264712" duration="2817000" />
       <workItem from="1576090202062" duration="4536000" />
       <workItem from="1576104355472" duration="6975000" />
-      <workItem from="1576194506761" duration="6025000" />
+      <workItem from="1576194506761" duration="6156000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="111850000" />
+    <option name="totallyTimeSpent" value="111981000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -447,7 +401,7 @@
     <frame x="0" y="0" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2299427" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2299427" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -459,10 +413,10 @@
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32971016" />
       <window_info anchor="bottom" id="Docker" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="8" />
-      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.5007163" side_tool="true" visible="true" weight="0.29589373" />
       <window_info anchor="bottom" id="Version Control" order="10" weight="0.32971016" />
-      <window_info anchor="bottom" id="Terminal" order="11" weight="0.29589373" />
-      <window_info anchor="bottom" id="Python Console" order="12" visible="true" weight="0.3067633" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="11" sideWeight="0.49928367" visible="true" weight="0.29589373" />
+      <window_info anchor="bottom" id="Python Console" order="12" sideWeight="0.49928367" weight="0.3067633" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -724,7 +678,7 @@
     <entry file="file://$PROJECT_DIR$/docs/source/sections/introduction.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/IDL/README.rst">
+    <entry file="file://$PROJECT_DIR$/README.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
   </component>
